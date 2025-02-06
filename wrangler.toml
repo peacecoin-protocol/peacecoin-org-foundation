@@ -1,0 +1,15 @@
+workers_dev = true
+name = "pc-foundation"
+compatibility_date = "2024-11-18"
+compatibility_flags = ["nodejs_compat"]
+main = "./build/server/index.js"
+assets = { directory = "./build/client/" }
+
+[vars]
+VALUE_FROM_CLOUDFLARE = "Hello from Cloudflare"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "foundation-prd"
+database_id = "f603fd5a-26ae-4dad-a32c-39e86ea5adaa"
+migrations_dir = "drizzle"
