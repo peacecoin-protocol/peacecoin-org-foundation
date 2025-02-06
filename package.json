@@ -10,6 +10,7 @@
     "deploy": "npm run build && wrangler deploy",
     "dev": "react-router dev",
     "start": "wrangler dev",
+    "typegen": "wrangler types",
     "typecheck": "react-router typegen && tsc -b",
     "format": "prettier --write . --ignore-path .gitignore"
   },

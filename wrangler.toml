@@ -6,7 +6,7 @@ main = "./build/server/index.js"
 assets = { directory = "./build/client/" }
 
 [vars]
-VALUE_FROM_CLOUDFLARE = "Hello from Cloudflare"
+CROWDIN_PROJECT_ID = "629106"
 
 [[d1_databases]]
 binding = "DB"
