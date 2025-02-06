@@ -1,52 +1,12 @@
 import * as v from 'valibot'
+import {
+  translateStatusResponse,
+  type GetTranslatedStatusOutput,
+} from 'schemas/crowdin'
 
-const intSchema = v.pipe(v.number(), v.integer())
-
-const translateStatusItem = v.object({
-  data: v.object({
-    languageId: v.string(), // "ja"
-    language: v.object({
-      id: v.string(), // "ja",
-      name: v.string(), // "Japanese",
-      editorCode: v.string(), // "ja",
-      twoLettersCode: v.string(), // "ja",
-      threeLettersCode: v.string(), // "jpn",
-      locale: v.string(), // "ja-JP",
-      androidCode: v.string(), // "ja-rJP",
-      osxCode: v.string(), // "ja.lproj",
-      osxLocale: v.string(), // "ja",
-      pluralCategoryNames: v.array(v.string()), // ["other"]
-      pluralRules: v.string(), // "0",
-      pluralExamples: v.array(v.string()), // ["0-999; 1.2..."]
-      textDirection: v.string(), // "ltr",
-      dialectOf: v.nullable(v.string()), // null,
-    }),
-    words: v.object({
-      total: intSchema,
-      translated: intSchema,
-      preTranslateAppliedTo: intSchema,
-      approved: intSchema,
-    }),
-    phrases: v.object({
-      total: intSchema,
-      translated: intSchema,
-      preTranslateAppliedTo: intSchema,
-      approved: intSchema,
-    }),
-    translationProgress: intSchema,
-    approvalProgress: intSchema,
-  }),
-})
-
-const translateStatusResponse = v.object({
-  data: v.array(translateStatusItem),
-  pagination: v.object({
-    offset: intSchema,
-    limit: intSchema,
-  }),
-})
-
-export async function getTranslatedStatus(env: Env) {
+export async function getTranslatedStatus(
+  env: Env,
+): Promise<GetTranslatedStatusOutput> {
   const url = new URL(
     `https://api.crowdin.com/api/v2/projects/${env.CROWDIN_PROJECT_ID}/languages/progress`,
   )
@@ -65,7 +25,7 @@ export async function getTranslatedStatus(env: Env) {
     locale: data.language.locale,
     approvalProgress: data.approvalProgress,
     translationProgress: data.translationProgress,
-    words: data.words.total,
-    phrases: data.phrases.total,
+    words: data.words.approved,
+    phrases: data.phrases.approved,
   }))
 }

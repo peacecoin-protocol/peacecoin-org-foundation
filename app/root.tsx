@@ -13,7 +13,6 @@ import i18next from '@/i18next.server'
 import type { Route } from './+types/root'
 import './app.css'
 import { useTranslation } from 'react-i18next'
-import { getTranslatedStatus } from './.server/crowdin'
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -28,18 +27,16 @@ export const links: Route.LinksFunction = () => [
   },
 ]
 
-export async function loader({ request, context }: Route.LoaderArgs) {
-  const [locale, translatedStatus] = await Promise.all([
-    i18next.getLocale(request),
-    getTranslatedStatus(context.cloudflare.env),
-  ])
-  return { locale, translatedStatus }
+export async function loader({ request }: Route.LoaderArgs) {
+  const [locale] = await Promise.all([i18next.getLocale(request)])
+  return { locale }
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { locale } = useLoaderData<typeof loader>()
   const { i18n } = useTranslation()
   useChangeLanguage(locale)
+
   return (
     <html lang={locale} dir={i18n.dir()}>
       <head>

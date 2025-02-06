@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import i18next from '@/i18next.server'
 import type { Route } from './+types'
-import { LanguageMenu } from '@/components/composite/language-menu'
+import { LocaleMenu } from '@/components/composite/locale-menu'
 
 export async function loader({ request }: Route.LoaderArgs) {
   const t = await i18next.getFixedT(request, 'home')
@@ -22,7 +22,7 @@ export default function Index() {
   const { t: commonT } = useTranslation('common')
   return (
     <div>
-      <LanguageMenu />
+      <LocaleMenu />
       <h1>{t('title')}</h1>
       <div>{commonT('welcome')}</div>
     </div>
