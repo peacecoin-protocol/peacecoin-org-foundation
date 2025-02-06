@@ -62,8 +62,10 @@ export async function getTranslatedStatus(env: Env) {
   const result = v.parse(translateStatusResponse, await response.json())
 
   return result.data.map(({ data }) => ({
-    id: data.languageId,
-    progress: data.approvalProgress,
+    locale: data.language.locale,
+    approvalProgress: data.approvalProgress,
+    translationProgress: data.translationProgress,
     words: data.words.total,
+    phrases: data.phrases.total,
   }))
 }
