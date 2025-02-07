@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
 } from '../ui/dropdown-menu'
 import { Button } from '../ui/button'
+import { apiClient } from '@/lib/api-client'
 
 export function LocaleMenu() {
   const { i18n } = useTranslation()
@@ -16,20 +17,21 @@ export function LocaleMenu() {
   const [translatedStatusItems, setTranslatedStatusItems] =
     useState<GetTranslatedStatusOutput>([])
 
-  const handleLoad = useCallback(async () => {
-    if (translatedStatusItems.length) {
+  const handleLoad = useCallback(async (open: boolean) => {
+    if (!open) {
       return
     }
-    const response = await fetch('/api/translated')
+    const response = await apiClient.v1.locales.status.$get()
     if (!response.ok) {
       return
     }
-    const data = await response.json()
-    setTranslatedStatusItems(data as GetTranslatedStatusOutput)
-  }, [translatedStatusItems])
+    setTranslatedStatusItems(await response.json())
+  }, [])
 
   return (
-    <DropdownMenu onOpenChange={handleLoad}>
+    <DropdownMenu
+      onOpenChange={translatedStatusItems.length ? undefined : handleLoad}
+    >
       <DropdownMenuTrigger asChild>
         <Button>{langCode}</Button>
       </DropdownMenuTrigger>

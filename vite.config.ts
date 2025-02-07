@@ -1,15 +1,15 @@
 import { reactRouter } from '@react-router/dev/vite'
-import { cloudflareDevProxy } from '@react-router/dev/vite/cloudflare'
+// import { cloudflareDevProxy } from '@react-router/dev/vite/cloudflare'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import mdx from '@mdx-js/rollup'
 import remarkGfm from 'remark-gfm'
-// import serverAdapter from 'hono-react-router-adapter/vite'
-// import adapter from '@hono/vite-dev-server/cloudflare'
+import serverAdapter from 'hono-react-router-adapter/vite'
+import adapter from '@hono/vite-dev-server/cloudflare'
 import { getLoadContext } from './load-context'
 
-export default defineConfig(({ isSsrBuild }) => ({
+export default defineConfig(({ isSsrBuild, mode }) => ({
   build: {
     target: 'esnext',
     rollupOptions: isSsrBuild
@@ -21,7 +21,7 @@ export default defineConfig(({ isSsrBuild }) => ({
   ssr: {
     target: 'webworker',
     noExternal: true,
-    external: ['node:path', 'node:fs'],
+    external: ['node:path', 'node:crypto', 'node:fs'],
     resolve: {
       conditions: ['workerd', 'browser'],
     },
@@ -38,9 +38,9 @@ export default defineConfig(({ isSsrBuild }) => ({
     },
   },
   plugins: [
-    cloudflareDevProxy({
-      getLoadContext,
-    }),
+    // cloudflareDevProxy({
+    //   getLoadContext,
+    // }),
     {
       enforce: 'pre',
       ...mdx({
@@ -50,13 +50,13 @@ export default defineConfig(({ isSsrBuild }) => ({
     },
     tailwindcss(),
     reactRouter(),
-    // serverAdapter({
-    //   entry: './server/index.ts',
-    //   adapter() {
-    //     return adapter({ proxy: { environment: mode } })
-    //   },
-    //   getLoadContext,
-    // }),
+    serverAdapter({
+      entry: './server/index.ts',
+      adapter() {
+        return adapter({ proxy: { environment: mode } })
+      },
+      getLoadContext,
+    }),
     tsconfigPaths(),
   ],
 }))

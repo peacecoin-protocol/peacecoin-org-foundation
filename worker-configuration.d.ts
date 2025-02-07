@@ -4,5 +4,6 @@ interface Env {
   KV: KVNamespace
   CROWDIN_PROJECT_ID: '629106'
   CROWDIN_ACCESS_TOKEN: string
+  CROWDIN_WEBHOOK_API_KEY: string
   DB: D1Database
 }

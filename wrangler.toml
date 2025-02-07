@@ -17,3 +17,16 @@ migrations_dir = "drizzle"
 [[kv_namespaces]]
 binding = "KV"
 id = "30b4166488744b9da52e3da65f926de0"
+
+[env.development.vars]
+CROWDIN_PROJECT_ID = "629106"
+
+[[env.development.d1_databases]]
+binding = "DB"
+database_name = "foundation-prd"
+database_id = "f603fd5a-26ae-4dad-a32c-39e86ea5adaa"
+migrations_dir = "drizzle"
+
+[[env.development.kv_namespaces]]
+binding = "KV"
+id = "30b4166488744b9da52e3da65f926de0"

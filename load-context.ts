@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto'
 import { drizzle, type DrizzleD1Database } from 'drizzle-orm/d1'
 import * as schema from './database/schema'
 import type { ExecutionContext } from '@cloudflare/workers-types'
@@ -14,6 +15,7 @@ declare module 'react-router' {
       ctx: Omit<ExecutionContext, 'props'>
     }
     db: DrizzleD1Database<typeof schema>
+    nonce?: string
   }
 }
 
@@ -28,5 +30,6 @@ export function getLoadContext({ context }: GetLoadContextArgs) {
   return {
     cloudflare: context.cloudflare,
     db,
+    nonce: randomUUID(),
   }
 }
