@@ -1,0 +1,42 @@
+{
+  "metaTitle": "PEACE COIN Foundation",
+  "hero": {
+    "title": "Thanks-Driven\nEconomy",
+    "forDeveloper": "PEACE COIN Docs Para Desenvolvedores"
+  },
+  "concept": {
+    "title": "Uma plataforma de moeda comunitária\nque faz circular o capital social",
+    "description": "Na plataforma PEACE COIN, a circulação é considerada o mais importante.\nAo expressar e fazer circular os diversos valores detidos por cada indivíduo e comunidade,\na sustentabilidade da sociedade é reforçada.",
+    "detail": "Sobre o PEACE COIN"
+  },
+  "map": {
+    "countries": {
+      "title": "Países",
+      "unit": "países/regiões"
+    },
+    "communities": {
+      "title": "Comunidades",
+      "unit": ""
+    },
+    "caption": "Verde: Países e regiões onde foi utilizada a PEACE COIN"
+  },
+  "usecase": {
+    "title": "Casos de Implementação",
+    "more": "Ver todos os casos de implementação"
+  },
+  "usage-scene": {
+    "title": "Descubra soluções inovadoras\nque o PEACE COIN resolve",
+    "01": {
+      "title": "Qualquer pessoa pode criar facilmente\numa moeda comunitária",
+      "description": "O 'design, emissão e gestão' de moedas comunitárias, que tradicionalmente eram difíceis de criar, agora podem ser facilmente realizados por qualquer pessoa."
+    },
+    "02": {
+      "title": "Melhore o envolvimento\nda comunidade",
+      "description": "Ao promover a troca de serviços e produtos dentro da comunidade, o envolvimento pode ser naturalmente reforçado."
+    },
+    "03": {
+      "title": "Forneça recompensas para\ntrabalho não remunerado",
+      "description": "Com uma nova abordagem, torna-se possível expressar gratidão pelo trabalho não remunerado de uma 'forma visível'."
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "siteName": "PEACE COIN Foundation",
+  "navigation": {
+    "home": "Início",
+    "concept": "Sobre PEACE COIN",
+    "usageScene": "Cenários de Uso",
+    "useCase": "Casos de Implementação",
+    "developers": "Para Desenvolvedores",
+    "translationProgram": "Programa de Tradução",
+    "about": "Sobre Nós",
+    "privacyPolicy": "Política de Privacidade",
+    "termsOfUse": "Termos de Uso",
+    "cookiePolicy": "Política de Cookies"
+  },
+  "learnAbout": "Conheça o PEACE COIN",
+  "participate": "Participe no PEACE COIN",
+  "catchphrase": "AVANCE O CAPITALISMO PARA O PRÓXIMO ESTÁGIO\n USANDO TECNOLOGIA BLOCKCHAIN.",
+  "copyright": "PEACE COIN ORG.",
+  "language": {
+    "label": "Idiomas PT",
+    "filteredList": "Lista de filtros ({{val, number}} Idiomas)",
+    "filterPlaceholder": "Escreva para filtrar",
+    "browserDefault": "Navegador padrão",
+    "translated": "{{val, number}}% traduzido",
+    "words": "{{val, number}} palavras",
+    "locales": {
+      "ja-JP": "Japonês",
+      "en": "Inglês",
+      "pt-PT": "Português (Portugal)"
+    },
+    "footer": "Ajude-nos a traduzir o peace-coin.org.",
+    "more": "Saber mais",
+    "loading": "Carregando..."
+  },
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Próximo"
+  }
+}

@@ -8,11 +8,13 @@ import {
   useLoaderData,
 } from 'react-router'
 import { useChangeLanguage } from 'remix-i18next/react'
+import { useTranslation } from 'react-i18next'
+
 import i18next from '@/i18next.server'
 
 import type { Route } from './+types/root'
+
 import './app.css'
-import { useTranslation } from 'react-i18next'
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -27,27 +29,29 @@ export const links: Route.LinksFunction = () => [
   },
 ]
 
-export async function loader({ request }: Route.LoaderArgs) {
-  let locale = await i18next.getLocale(request)
-  return { locale }
+export async function loader({ request, context }: Route.LoaderArgs) {
+  const [locale] = await Promise.all([i18next.getLocale(request)])
+  return { locale, nonce: context.nonce }
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { locale } = useLoaderData<typeof loader>()
+  const { locale, nonce } = useLoaderData<typeof loader>()
   const { i18n } = useTranslation()
   useChangeLanguage(locale)
+
   return (
     <html lang={locale} dir={i18n.dir()}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {nonce && <meta property="csp-nonce" nonce={nonce} />}
         <Meta />
         <Links />
       </head>
       <body>
         {children}
-        <ScrollRestoration />
-        <Scripts />
+        <ScrollRestoration nonce={nonce} />
+        <Scripts nonce={nonce} />
       </body>
     </html>
   )

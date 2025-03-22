@@ -1,0 +1,16 @@
+{
+  "title": "コードでつながる、PEACE COINの未来",
+  "metaTitle": "開発者向け",
+  "github": {
+    "title": "GitHub",
+    "description": "誰でも自由に開発・改良できるPEACE COINのオープンソース版をGitHubで公開しています。"
+  },
+  "discord": {
+    "title": "Discord",
+    "description": "PEACE COINの開発・運営・アイデア交換ができる公式Discordコミュニティです。"
+  },
+  "whitePaper": {
+    "title": "ホワイトペーパー",
+    "description": "PEACE COINのコンセプト・技術・ビジョンを解説した公式White Paper を公開しています。"
+  }
+}
