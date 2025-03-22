@@ -8,11 +8,13 @@ import {
   useLoaderData,
 } from 'react-router'
 import { useChangeLanguage } from 'remix-i18next/react'
+import { useTranslation } from 'react-i18next'
+
 import i18next from '@/i18next.server'
 
 import type { Route } from './+types/root'
+
 import './app.css'
-import { useTranslation } from 'react-i18next'
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

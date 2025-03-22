@@ -1,13 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": [
-    "react-router.config.ts",
-    "vite.config.ts",
-    "database/**/*",
-    "load-context.ts",
-    "worker-configuration.d.ts",
-    "schemas/**/*"
-  ],
+  "include": ["vite.config.ts", "load-context.ts", "worker-configuration.d.ts"],
   "compilerOptions": {
     "composite": true,
     "strict": true,
@@ -15,10 +8,6 @@
     "lib": ["ES2022"],
     "target": "ES2022",
     "module": "ES2022",
-    "moduleResolution": "bundler",
-    "baseUrl": ".",
-    "paths": {
-      "@/schemas": ["./schemas/index.ts"]
-    }
+    "moduleResolution": "bundler"
   }
 }

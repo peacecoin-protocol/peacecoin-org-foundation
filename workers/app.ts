@@ -1,10 +1,17 @@
-import handle from 'hono-react-router-adapter/cloudflare-workers'
 import { getLoadContext } from 'load-context'
-import server from 'server'
+import { createRequestHandler } from 'react-router'
 
-export default handle(
-  // @ts-expect-error - virtual module provided by React Router at build time
+const requestHandler = createRequestHandler(
   () => import('virtual:react-router/server-build'),
-  server,
-  { getLoadContext },
+  import.meta.env.MODE,
 )
+
+export default {
+  fetch(request, env, ctx) {
+    const loadContext = getLoadContext({
+      request,
+      context: { cloudflare: { env, ctx } },
+    })
+    return requestHandler(request, loadContext)
+  },
+} satisfies ExportedHandler<CloudflareEnvironment>

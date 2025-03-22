@@ -13,7 +13,7 @@ import {
   type PrepareUploadOutput,
   type UpdateFileInput,
   type UpdateFileOutput,
-} from 'schemas'
+} from '@/schemas'
 
 const BASE_URL = 'https://api.crowdin.com'
 

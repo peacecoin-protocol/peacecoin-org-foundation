@@ -1,18 +1,12 @@
 workers_dev = true
 name = "pc-foundation"
-compatibility_date = "2024-11-18"
+compatibility_date = "2025-03-10"
 compatibility_flags = ["nodejs_compat"]
-main = "./build/server/index.js"
+main = "./workers/app.ts"
 assets = { directory = "./build/client/" }
 
 [vars]
 CROWDIN_PROJECT_ID = "629106"
-
-[[d1_databases]]
-binding = "DB"
-database_name = "foundation-prd"
-database_id = "f603fd5a-26ae-4dad-a32c-39e86ea5adaa"
-migrations_dir = "drizzle"
 
 [[kv_namespaces]]
 binding = "KV"
@@ -20,12 +14,6 @@ id = "30b4166488744b9da52e3da65f926de0"
 
 [env.development.vars]
 CROWDIN_PROJECT_ID = "629106"
-
-[[env.development.d1_databases]]
-binding = "DB"
-database_name = "foundation-prd"
-database_id = "f603fd5a-26ae-4dad-a32c-39e86ea5adaa"
-migrations_dir = "drizzle"
 
 [[env.development.kv_namespaces]]
 binding = "KV"

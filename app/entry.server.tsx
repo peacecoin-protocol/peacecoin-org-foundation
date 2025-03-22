@@ -2,13 +2,11 @@ import type { AppLoadContext, EntryContext } from 'react-router'
 import { ServerRouter } from 'react-router'
 import { isbot } from 'isbot'
 import { renderToReadableStream } from 'react-dom/server'
-
+import type { HttpBackendOptions } from 'i18next-http-backend'
 import { createInstance } from 'i18next'
-import i18next from './i18next.server'
+import i18next, { backend } from './i18next.server'
 import { I18nextProvider, initReactI18next } from 'react-i18next'
-import Backend from 'i18next-fs-backend'
 import i18n from './i18n'
-import { resolve } from 'node:path'
 
 const ABORT_DELAY = 5000
 
@@ -66,14 +64,36 @@ export default async function handleRequest(
   const instance = createInstance()
   const lng = await i18next.getLocale(request)
   const ns = i18next.getRouteNamespaces(routerContext)
+
   await instance
     .use(initReactI18next)
-    .use(Backend)
-    .init({
+    .use(backend)
+    .init<HttpBackendOptions>({
       ...i18n,
       lng,
       ns,
-      backend: { loadPath: resolve('./public/locales/{{lng}}/{{ns}}.json') },
+      backend: {
+        loadPath: '/locales/{{lng}}/{{ns}}.json',
+        request(_config, path, _payload, callback) {
+          if (path.includes('translation.json')) {
+            return callback(null, {
+              status: 200,
+              data: {},
+            })
+          }
+          const url = new URL(path, request.url)
+          fetch(url)
+            .then(async (res) => {
+              callback(null, {
+                status: res.status,
+                data: (await res.json()) as Record<string, string>,
+              })
+            })
+            .catch((error) => {
+              callback(error, null)
+            })
+        },
+      },
     })
   const nonce = loadContext.nonce
   const controller = new AbortController()

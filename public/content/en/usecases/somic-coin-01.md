@@ -1,0 +1,64 @@
+---
+title: Introduction of a Development Program to Foster a Sense of Regional and Environmental Sustainability
+description: Recognizing the risks of greenwashing, we are engaging in "Forest Wellness Management Activities" aimed at contributing to establishing competitive advantages in the Somic Group environmental policy, sowing seeds for new business ventures, and developing the capabilities of the personnel who will realize these initiatives.
+lang: en
+tokenName: Somic Coin
+communityName: Somic Group
+category: Company-Originated Model
+published: 2025-04-01
+---
+
+## Overview
+
+We recognize the risks of greenwashing and are engaging in "Forest Wellness Management Activities" aimed at contributing to establishing competitive advantages in the Somic Group environmental policy, sowing seeds for new business ventures, and developing the capabilities of the personnel who will bring these to fruition.
+
+### Motivation for Implementation
+
+As the Somic Group—which operates automotive parts manufacturing across seven countries and practices purpose‑driven management—we introduced the Somic Coin (PEACE COIN) into a development program designed to move away from the industrial working style of manufacturing and cultivate a sense of sustainability for the planet and nature.
+
+<div className="md:flex">
+![Leaflet, commemorative pen, Somic Coin](/assets/images/usecases/somic-coin-01/1.webp)
+![Mini lecture on learning about forests](/assets/images/usecases/somic-coin-01/2.webp)
+</div>
+
+## Purpose & Philosophy
+
+Introducing a community currency involves many challenges.
+
+There are numerous factors to consider, including currency design, value assurance, establishing a distribution system, recruiting participants, and developing a legal framework.
+
+Additionally, significant effort is required to build trust among community members and to operate and manage the currency after its introduction.
+
+These challenges can become major barriers for many communities when creating their own currency.
+
+## Initiatives Using the Coin
+
+- Exchange coins earned through forest activities for dishes and sweets made from naturally cultivated vegetables provided by local partners.
+- Conduct transactions using paper‑based tokens called “Somic Coin,” backed by corporate collateral (with space for messages on the reverse side).
+- Use Somic Coin in herb gardens and coworking spaces.
+
+<div className="md:flex">
+![Serving herbal tea](/assets/images/usecases/somic-coin-01/3.webp)
+![Essential oil making experience](/assets/images/usecases/somic-coin-01/4.webp)
+</div>
+
+## Model
+
+### Company-Originated Model
+
+![Model Diagram](/assets/images/usecases/somic-coin-01/5.webp)
+
+## Future Developments in This Model
+
+### Corporate Initiatives
+
+- Sell products derived from the forest.
+- Address wildlife damage by processing and selling deer meat and hides.
+- Host “Kotomarche” events in urban areas.
+- Collaborate with neighboring communities.
+
+### Challenges for Activity Visualization
+
+- Continuously conducting forest activities increases time spent in the forest, so measure total forest‑stay time.
+- Measure the transaction volume of Somic Coin granted for forest restoration activities.
+- Measure transaction volume when exchanging Somic Coin for food from local partners.
