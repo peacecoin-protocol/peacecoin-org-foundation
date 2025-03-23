@@ -5,7 +5,7 @@ lang: en
 tokenName: Somic Coin
 communityName: Somic Group
 category: Company-Originated Model
-published: 2025-04-01
+publishedAt: 2025-04-01
 ---
 
 ## Overview

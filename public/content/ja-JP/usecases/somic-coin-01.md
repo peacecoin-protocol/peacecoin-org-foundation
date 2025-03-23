@@ -5,7 +5,7 @@ lang: ja
 tokenName: Somicコイン
 communityName: ソミックグループ
 category: 企業起点モデル
-published: 2025-04-01
+publishedAt: 2025-04-01
 ---
 
 ## 概要

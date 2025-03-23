@@ -5,7 +5,7 @@ lang: pt
 tokenName: Moeda Somic
 communityName: Grupo Somic
 category: Modelo Iniciado pela Empresa
-published: 2025-04-01
+publishedAt: 2025-04-01
 ---
 
 ## Visão Geral
