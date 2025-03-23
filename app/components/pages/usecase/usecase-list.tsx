@@ -1,10 +1,10 @@
-import type { Usecase } from '@/schemas'
+import type { UsecaseMaster } from '@/schemas'
 import { UsecaseItem } from './usecase-item'
 import type { HTMLAttributes } from 'react'
 import { cn } from '@/lib/utils'
 
 export type UsecaseListProps = HTMLAttributes<HTMLUListElement> & {
-  items: Usecase[]
+  items: UsecaseMaster[]
 }
 
 export function UsecaseList({ items, className, ...rest }: UsecaseListProps) {

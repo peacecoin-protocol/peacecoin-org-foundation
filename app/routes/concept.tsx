@@ -5,7 +5,7 @@ import { SectionTitle } from '@/components/composite/section-title'
 
 export async function loader({ request }: Route.LoaderArgs) {
   const t = await i18next.getFixedT(request, 'concept')
-  const title = t('title')
+  const title = t('metaTitle')
   return { title }
 }
 

@@ -1,17 +1,17 @@
 import { Outlet } from 'react-router'
-import { KVVideo } from '@/components/layout/kv-video'
-import { Header } from '@/components/layout/header'
-import { Footer } from '@/components/layout/footer'
+import { KVVideo } from '@/components/pages/common/kv-video'
+import { GlobalHeader } from '@/components/pages/common/global-header'
+import { GlobalFooter } from '@/components/pages/common/global-footer'
 
 export default function Layout() {
   return (
     <div className="flex flex-col min-h-screen">
       <KVVideo />
-      <Header />
+      <GlobalHeader />
       <div className="flex-grow relative mb-[7rem]">
         <Outlet />
       </div>
-      <Footer />
+      <GlobalFooter />
     </div>
   )
 }

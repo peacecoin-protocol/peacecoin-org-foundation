@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 export async function loader({ request }: Route.LoaderArgs) {
   const t = await i18next.getFixedT(request, 'developers')
-  const title = t('title')
+  const title = t('metaTitle')
   return { title }
 }
 

@@ -13,10 +13,10 @@ export default [
       index('routes/home.tsx'),
       route('developers', 'routes/developers.tsx'),
       route('concept', 'routes/concept.tsx'),
-      // ...prefix('usage-scenes', [
-      //   index('routes/usage-scenes/index.tsx'),
-      //   route(':id', 'routes/usage-scenes/$id.tsx'),
-      // ]),
+      ...prefix('usage-scenes', [
+        index('routes/usage-scenes/index.tsx'),
+        route(':id', 'routes/usage-scenes/$id.tsx'),
+      ]),
       ...prefix('usecases', [
         index('routes/usecases/index.tsx'),
         route(':id', 'routes/usecases/$id.tsx'),

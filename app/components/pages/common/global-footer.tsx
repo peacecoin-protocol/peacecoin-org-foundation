@@ -1,8 +1,9 @@
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import logo from '@/assets/svg/logo-v.svg'
 import type { HTMLAttributes, ReactNode } from 'react'
-import { BreakLine } from '../functional/break-line'
+
+import logo from '@/assets/svg/logo-v.svg'
+import { BreakLine } from '@/components/functional/break-line'
 
 type SNSLink = {
   href: string
@@ -71,7 +72,7 @@ const snsLinks: SNSLink[] = [
 
 export type FooterProps = HTMLAttributes<HTMLElement>
 
-export function Footer(props: FooterProps) {
+export function GlobalFooter(props: FooterProps) {
   const { t } = useTranslation('common')
   const currentYear = new Date().getFullYear()
 

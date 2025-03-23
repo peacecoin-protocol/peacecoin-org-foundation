@@ -6,7 +6,7 @@ import {
   HomeMapSection,
   HomeUsageSceneSection,
   HomeUsecaseSection,
-} from '@/components/home'
+} from '@/components/pages/home'
 import { usageCountryCodes, tokens, tokensJp } from '@/constants'
 
 export async function loader({ request }: Route.LoaderArgs) {

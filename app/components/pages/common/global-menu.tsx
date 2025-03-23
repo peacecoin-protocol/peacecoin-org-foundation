@@ -2,14 +2,14 @@ import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { LocaleMenu } from '@/components/composite/locale-menu'
+import { LocaleMenu } from '@/components/pages/common/locale-menu'
 
-interface MobileNavProps {
+interface GlobalMenuProps {
   onClose: () => void
   logoH: string
 }
 
-export function MobileNav({ onClose, logoH }: MobileNavProps) {
+export function GlobalMenu({ onClose, logoH }: GlobalMenuProps) {
   const { t } = useTranslation('common')
   const [activeTab, setActiveTab] = useState<string | null>(null)
 

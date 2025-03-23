@@ -1,7 +1,7 @@
-import type { Usecase } from '@/schemas'
+import type { UsecaseMaster } from '@/schemas'
 import { Link } from 'react-router'
 
-export type UsecaseItemProps = Usecase
+export type UsecaseItemProps = UsecaseMaster
 
 export function UsecaseItem({
   id,

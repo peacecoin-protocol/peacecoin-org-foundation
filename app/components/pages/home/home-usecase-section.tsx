@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
-import { SectionTitle } from '../composite/section-title'
-import { Button } from '../ui/button'
+import { SectionTitle } from '@/components/composite/section-title'
+import { Button } from '@/components/ui/button'
 import { Link } from 'react-router'
-import type { Usecase } from '@/schemas'
+import type { UsecaseMaster } from '@/schemas'
 import { UsecaseList } from '../usecase/usecase-list'
 
 export type HomeUsecaseSectionProps = {
-  items: Usecase[]
+  items: UsecaseMaster[]
 }
 
 export function HomeUsecaseSection({ items }: HomeUsecaseSectionProps) {

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { SectionTitle } from '../composite/section-title'
+import { SectionTitle } from '@/components/composite/section-title'
 import { Link } from 'react-router'
 
 const list = ['01', '02', '03']

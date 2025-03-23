@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router'
-import { SectionTitle } from '../composite/section-title'
+import { SectionTitle } from '@/components/composite/section-title'
 
 export function HomeConceptSection() {
   const { t } = useTranslation('home', {

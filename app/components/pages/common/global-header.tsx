@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useCallback, useEffect, useState, type HTMLAttributes } from 'react'
-import { LocaleMenu } from '@/components/composite/locale-menu'
+import { LocaleMenu } from '@/components/pages/common/locale-menu'
 // import { MobileNav } from '@/components/layout/mobile-nav'
 import logoH from '@/assets/svg/logo-h.svg?url'
 import { cn } from '@/lib/utils'
@@ -30,7 +30,7 @@ function MenuButton({ className, open, ...rest }: MenuButtonProps) {
   )
 }
 
-export function Header() {
+export function GlobalHeader() {
   const { t } = useTranslation('common')
   const [scrolling, setScrolling] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
