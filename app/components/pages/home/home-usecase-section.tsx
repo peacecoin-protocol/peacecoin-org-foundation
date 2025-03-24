@@ -15,11 +15,11 @@ export function HomeUsecaseSection({ items }: HomeUsecaseSectionProps) {
   })
 
   return (
-    <section className="bg-primary/7 py-[7.5rem]">
-      <div className="flex flex-col items-center gap-16 container">
+    <section className="bg-primary/7 py-16 md:py-[7.5rem]">
+      <div className="flex flex-col items-center justify-center gap-12 md:gap-16 container mx-auto px-6">
         <SectionTitle subtitle="Use Case">{t('title')}</SectionTitle>
         <UsecaseList items={items} />
-        <Button asChild>
+        <Button asChild size="lg">
           <Link to="/usecases">{t('more')}</Link>
         </Button>
       </div>

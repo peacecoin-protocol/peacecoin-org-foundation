@@ -36,7 +36,7 @@ export default function Index({
   loaderData: { tokens, usageCountryCodes },
 }: Route.ComponentProps) {
   return (
-    <main>
+    <main className="grid gap-16 md:gap-[7.5rem]">
       <HomeHeroSection tokens={tokens} />
       <HomeConceptSection />
       <HomeMapSection

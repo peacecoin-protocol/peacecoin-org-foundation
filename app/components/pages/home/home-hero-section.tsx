@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Link } from 'react-router'
 import { useEffect, useRef, useState } from 'react'
 import type { CommunityToken } from '@/schemas'
+import { BreakLine } from '@/components/functional/break-line'
 
 export type HomeHeroSectionProps = {
   tokens: CommunityToken[]
@@ -12,7 +13,7 @@ export function HomeHeroSection({ tokens }: HomeHeroSectionProps) {
   const { t } = useTranslation('home', {
     keyPrefix: 'hero',
   })
-  const [activeToken, setActiveToken] = useState<CommunityToken>()
+  const [activeToken, setActiveToken] = useState<CommunityToken>(tokens[0])
   const [autoScrolling, setAutoScrolling] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -41,17 +42,24 @@ export function HomeHeroSection({ tokens }: HomeHeroSectionProps) {
   }, [autoScrolling])
 
   return (
-    <section ref={ref} className="h-screen md:min-h-[50rem] flex flex-col">
-      <div className="flex-grow flex items-center">
-        <h1 className="text-[5rem] font-bold mb-7">{t('title')}</h1>
-        <div className="text-primary text-[2.5rem] font-bolc mb-10">
-          {activeToken?.name ?? ' '}
+    <section ref={ref}>
+      <div className="container mx-auto flex flex-col justify-center gap-5 md:gap-7 px-6 h-[calc(100dvh-4.35rem)] md:h-[calc(100dvh-11.5rem)] pt-20 max-md:pb-[50vw]">
+        <BreakLine
+          component="h1"
+          className="text-[2.6rem] md:text-[5rem] font-bold leading-tight"
+        >
+          {t('title')}
+        </BreakLine>
+        <div className="text-primary text-2xl md:text-[2.5rem] font-bold">
+          {activeToken.name}
         </div>
-        <Button asChild>
-          <Link to="">{t('forDeveloper')}</Link>
-        </Button>
+        <div>
+          <Button asChild size="lg">
+            <Link to="/developers">{t('forDeveloper')}</Link>
+          </Button>
+        </div>
       </div>
-      <div className="relative overflow-hidden w-full h-[11.5rem] bg-background">
+      <div className="relative overflow-hidden w-full h-[8.7rem] md:h-[11.5rem] bg-background">
         {tokens.map((token) => (
           <img
             key={token.tokenAddress}

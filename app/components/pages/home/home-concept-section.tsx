@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router'
 import { SectionTitle } from '@/components/composite/section-title'
+import { BreakLine } from '@/components/functional/break-line'
 
 export function HomeConceptSection() {
   const { t } = useTranslation('home', {
@@ -9,7 +10,7 @@ export function HomeConceptSection() {
   })
 
   return (
-    <section className="flex flex-col items-center justify-center gap-16 text-center">
+    <section className="flex flex-col items-center justify-center gap-12 md:gap-16 container mx-auto px-6">
       <SectionTitle
         subtitle={
           <>
@@ -19,8 +20,13 @@ export function HomeConceptSection() {
       >
         {t('title')}
       </SectionTitle>
-      <p className="font-medium text-lg leading-[2.6]">{t('description')}</p>
-      <Button asChild>
+      <BreakLine
+        component="p"
+        className="-mt-4 font-medium text-sm md:text-lg leading-[1.8] md:leading-[2.6] md:text-center"
+      >
+        {t('description')}
+      </BreakLine>
+      <Button asChild size="lg">
         <Link to="/concept">{t('detail')}</Link>
       </Button>
     </section>

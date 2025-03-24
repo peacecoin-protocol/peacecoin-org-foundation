@@ -45,6 +45,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {nonce && <meta property="csp-nonce" nonce={nonce} />}
+        <script src="https://www.youtube.com/iframe_api" async />
         <Meta />
         <Links />
       </head>

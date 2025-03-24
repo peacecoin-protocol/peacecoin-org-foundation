@@ -8,7 +8,7 @@ export default function Layout() {
     <div className="flex flex-col min-h-screen">
       <KVVideo />
       <GlobalHeader />
-      <div className="flex-grow relative mb-[7rem]">
+      <div className="flex-grow relative mb-16 md:mb-[7.5rem]">
         <Outlet />
       </div>
       <GlobalFooter />

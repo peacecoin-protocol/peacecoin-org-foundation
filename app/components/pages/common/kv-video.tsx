@@ -1,3 +1,4 @@
+import { YouTube } from '@/components/composite/youtube'
 import { cn } from '@/lib/utils'
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router'
@@ -78,7 +79,24 @@ export function KVVideo() {
       }}
       ref={rootRef}
     >
-      <video
+      <YouTube
+        className={cn(
+          // common
+          'aspect-video absolute outline-0',
+          // sp
+          'max-md:origin-bottom-left max-md:transform-(--sp-transform) max-md:h-[100vw] max-md:w-auto max-md:left-0 max-md:bottom-0',
+          // desktop
+          'md:w-auto md:h-full md:bottom-0 md:right-0',
+        )}
+        style={
+          {
+            '--sp-transform': 'rotate(90deg) translateX(-100%)',
+          } as React.CSSProperties
+        }
+        videoId="w6Hjdms-DCI"
+        onLoaded={() => setLoaded(true)}
+      />
+      {/* <video
         className="w-auto h-full absolute top-0 right-0"
         loop
         muted
@@ -88,7 +106,7 @@ export function KVVideo() {
         ref={videoRef}
       >
         <source src="/assets/video/kv.mp4" type="video/mp4" />
-      </video>
+      </video> */}
     </div>
   )
 }
