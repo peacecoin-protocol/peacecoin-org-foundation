@@ -4,6 +4,7 @@ import type { HTMLAttributes, ReactNode } from 'react'
 
 import logo from '@/assets/svg/logo-v.svg'
 import { BreakLine } from '@/components/functional/break-line'
+import { cn } from '@/lib/utils'
 
 type SNSLink = {
   href: string
@@ -72,13 +73,13 @@ const snsLinks: SNSLink[] = [
 
 export type FooterProps = HTMLAttributes<HTMLElement>
 
-export function GlobalFooter(props: FooterProps) {
+export function GlobalFooter({ className, ...rest }: FooterProps) {
   const { t } = useTranslation('common')
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer {...props}>
-      <div className="container mx-auto py-6 px-5">
+    <footer className={cn('bg-background', className)} {...rest}>
+      <div className="container mx-auto pt-12 pb-6 px-5">
         <div className="flex flex-col gap-8 md:flex-row md:gap-16">
           <div className="md:flex-1">
             <img

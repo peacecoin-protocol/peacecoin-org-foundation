@@ -1,6 +1,6 @@
 import { YouTube } from '@/components/composite/youtube'
 import { cn } from '@/lib/utils'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type HTMLAttributes } from 'react'
 import { useLocation } from 'react-router'
 
 function getOpacity(pathname: string) {
@@ -15,12 +15,14 @@ function getOpacity(pathname: string) {
   }
 }
 
-export function KVVideo() {
+export type KVVideoProps = HTMLAttributes<HTMLDivElement>
+
+export function KVVideo({ className, style, ...rest }: KVVideoProps) {
   const location = useLocation()
   const [loaded, setLoaded] = useState(false)
   const [opacity, setOpacity] = useState(getOpacity(location.pathname))
   const rootRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  // const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     setOpacity(getOpacity(location.pathname))
@@ -28,55 +30,62 @@ export function KVVideo() {
 
   useEffect(() => {
     const root = rootRef.current
-    const video = videoRef.current
 
-    if (!root || !video || !opacity) {
-      if (video?.paused === false) {
-        video.pause()
-      }
+    if (!root) {
       return
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          if (video.paused) {
-            video.play()
-          }
-        } else if (!video.paused) {
-          video.pause()
-        }
-      },
-      {
-        rootMargin: '0px',
-        threshold: 0.5,
-      },
-    )
+    // const video = videoRef.current
+
+    // if (!root || !video || !opacity) {
+    //   if (video?.paused === false) {
+    //     video.pause()
+    //   }
+    //   return
+    // }
+
+    // const observer = new IntersectionObserver(
+    //   ([entry]) => {
+    //     if (entry.isIntersecting) {
+    //       if (video.paused) {
+    //         video.play()
+    //       }
+    //     } else if (!video.paused) {
+    //       video.pause()
+    //     }
+    //   },
+    //   {
+    //     rootMargin: '0px',
+    //     threshold: 0.5,
+    //   },
+    // )
 
     const listener = () => {
-      const offset =
-        Math.max(0, Math.min(window.scrollY, window.innerHeight)) * 0.5
+      const offset = Math.max(0, window.scrollY) * 0.5
       root.style.transform = `translateY(${offset}px)`
     }
 
-    observer.observe(root)
+    // observer.observe(root)
     window.addEventListener('scroll', listener, { passive: true })
     listener()
 
     return () => {
       window.removeEventListener('scroll', listener)
-      observer.disconnect()
+      // observer.disconnect()
     }
   }, [opacity])
 
   return (
     <div
       className={cn(
-        'absolute top-0 left-0 w-full h-lvh pointer-events-none opacity-0 transition-opacity duration-500',
+        'absolute top-0 left-0 w-full h-lvh overflow-hidden pointer-events-none opacity-0 transition-opacity duration-500',
+        className,
       )}
       style={{
         opacity: `${loaded ? opacity : 0}`,
+        ...style,
       }}
+      {...rest}
       ref={rootRef}
     >
       <YouTube
@@ -107,6 +116,7 @@ export function KVVideo() {
       >
         <source src="/assets/video/kv.mp4" type="video/mp4" />
       </video> */}
+      <i className="absolute left-0 right-0 bottom-0 h-[25%] bg-gradient-to-b from-transparent to-background" />
     </div>
   )
 }

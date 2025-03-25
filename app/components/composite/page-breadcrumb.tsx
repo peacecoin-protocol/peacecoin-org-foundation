@@ -1,0 +1,79 @@
+import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import type { ComponentProps } from 'react'
+import { Link } from 'react-router'
+
+type Item = {
+  href: string
+  label: string
+}
+
+export type PageBreadcrumbProps = ComponentProps<'nav'> & {
+  list: [Item, ...Item[]]
+}
+
+export function PageBreadcrumb({ list, ...rest }: PageBreadcrumbProps) {
+  const first = list[0]
+  const dropMenuItems = list.slice(1, -2)
+  const parent = list.slice(-2)[0]
+  const last = list.slice(-1)[0]
+
+  return (
+    <Breadcrumb {...rest}>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink asChild>
+            <Link to={first.href}>{first.label}</Link>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        {dropMenuItems.length > 0 && (
+          <>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1">
+                  <BreadcrumbEllipsis className="h-4 w-4" />
+                  <span className="sr-only">Toggle menu</span>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start">
+                  {dropMenuItems.map(({ href, label }) => (
+                    <DropdownMenuItem key={href}>
+                      <Link to={href}>{label}</Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </BreadcrumbItem>
+          </>
+        )}
+        {first !== parent && (
+          <>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to={parent.href}>{parent.label}</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </>
+        )}
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>{last.label}</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  )
+}

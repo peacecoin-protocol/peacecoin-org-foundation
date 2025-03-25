@@ -2,25 +2,9 @@ import { useTranslation } from 'react-i18next'
 import { SectionTitle } from '@/components/composite/section-title'
 import { Link } from 'react-router'
 import { BreakLine } from '@/components/functional/break-line'
+import { CircleArrowIcon } from '@/components/ui/icon'
 
 const list = ['01', '02', '03']
-
-function CicleArrowIcon() {
-  return (
-    <i className="size-16 md:size-20 rounded-full border border-primary flex items-center justify-center">
-      <svg
-        viewBox="0 0 15 28"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-[12px] h-[22.4px] md:w-[15px] md:h-[28px]"
-      >
-        <path
-          d="m.7 28-.7-.7 13.5-13.3-13.5-13.3.7-.7 14.3 14z"
-          className="fill-primary"
-        />
-      </svg>
-    </i>
-  )
-}
 
 export function HomeUsageSceneSection() {
   const { t } = useTranslation('home', {
@@ -53,7 +37,7 @@ export function HomeUsageSceneSection() {
               <p className="text-sm leading-[1.8] my-2">
                 {t(`${key}.description`)}
               </p>
-              <CicleArrowIcon />
+              <CircleArrowIcon />
             </Link>
           </li>
         ))}

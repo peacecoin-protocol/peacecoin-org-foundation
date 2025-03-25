@@ -26,6 +26,7 @@
     ]
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-dropdown-menu": "^2.1.6",
     "@radix-ui/react-slot": "^1.1.2",
     "@react-router/cloudflare": "^7.1.5",

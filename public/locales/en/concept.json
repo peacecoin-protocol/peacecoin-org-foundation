@@ -1,3 +1,25 @@
 {
-  "metaTitle": "Concept"
+  "metaTitle": "Concept",
+  "title": "To Bring Out Mutual Aid in Communities",
+  "description1": "Community activities are built on the power of mutual aid.\nHowever, since taking action often doesn't lead to monetary value,\nthese activities tend to end without lasting long.\nEven in voluntary communities, they eventually face capitalistic issues,\nwhere decision-making power concentrates where capital accumulates.\nThis diminishes liquidity and vitality within the community.\nCommunity currency provides a means to visualize and\nevaluate mutual aid and contributions within various communities, such as local societies.",
+  "subtitle1": "Making it possible to express the value of social capital\nthat cannot be measured with conventional money",
+  "description2": "Specifically, PEACE COIN promotes circulation within communities through an algorithm called ARIGATO CREATION.\nCommunity currency also functions as a governance tool,\nallowing members to have a direct impact in a way that aligns consumption with voting.",
+  "description3": "However, creating such a currency from scratch is challenging.\nPEACE COIN is a platform for digitalizing social capital as community currency.\nIt visualizes social capital within communities and encourages contributions and mutual support.\nUsers can promote value exchange within and outside communities by evaluating each other's social capital.",
+  "description4": "PEACE COIN also proposes a new governance model that brings transparency and fairness,\naiming for all participants to have substantial influence on community development.",
+  "arigatoCreation": {
+    "title": "What is <span>ARIGATO CREATION</span>",
+    "subtitle": "It is PEACE COIN's unique algorithm\nthat increases when payments\nare made to value providers",
+    "description1": "By decreasing unused tokens, the velocity of token circulation increases, enhancing the incentive to use tokens, which promotes economic activity.",
+    "description2": "By using tokens that increase and decrease, not only does it stimulate economic activity across a wide range of communities, from individuals to companies, households, and local societies, but it also realizes the visualization, valuation, and liquidity of 'values not yet evaluated,' such as social capital and unpaid work like volunteering and household labor."
+  },
+  "vision": {
+    "title": "Creating a Rich Society Where Diversity is Mutually Recognized",
+    "altText": "A society where gratitude circulates",
+    "description1": "The 'rich' society that the PEACE COIN platform aims for is\na society where diverse values circulate.",
+    "description2": "Recognizing and circulating the unique contributions and values of each individual and community\nleads to enhancing the sustainability of society.\nThis common understanding brings not only economic richness but also mental composure and purpose in life.\nThrough PEACE COIN's algorithm, we propose a new form of economic activity\nthat realizes balanced (harmonious) ways of earning and spending.",
+    "subtitle1": "PEACE COIN's new value system is an approach\nthat prioritizes mutual aid and connections over savings",
+    "description3": "PEACE COIN redefines the value and meaning of spending, rather than focusing solely on saving.\nUnlike conventional capitalist societies where increased savings don't actually reduce anxiety,\nPEACE COIN can reduce that anxiety by promoting mutual aid and contributions, connecting with the community.\nThis paradoxical approach provides an opportunity for people to experience the importance of\ndeeper human relationships and social connections, beyond traditional monetary values.",
+    "subtitle2": "PEACE COIN reevaluates\npeople's socially contributive actions",
+    "description4": "Service providers who receive PEACE COIN shift from traditional cost-performance focus to\nvalues that prioritize sustainable services and the people in front of them.\nThis promotes altruistic behavior and reevaluates the role as a provider.\nPaying more PEACE COIN deepens human relationships and trust, strengthening social connections.\nThese actions take economic activity a step further,\nwith the underlying desire to promote more fulfilling community formation at the core of PEACE COIN."
+  }
 }

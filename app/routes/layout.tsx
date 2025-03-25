@@ -11,7 +11,7 @@ export default function Layout() {
       <div className="flex-grow relative mb-16 md:mb-[7.5rem]">
         <Outlet />
       </div>
-      <GlobalFooter />
+      <GlobalFooter className="relative" />
     </div>
   )
 }
