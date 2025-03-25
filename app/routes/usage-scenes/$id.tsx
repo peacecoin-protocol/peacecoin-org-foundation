@@ -1,25 +1,26 @@
-import * as v from 'valibot'
+// import * as v from 'valibot'
 import type { Route } from './+types/$id'
-import { loadMDFile } from '@/.server/markdown'
-import { usageSceneSchema } from '@/schemas'
+// import { loadMDFile } from '@/.server/markdown'
+// import { usageSceneSchema } from '@/schemas'
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const locale = params.lang ?? 'en'
-  const content = await loadMDFile(locale, `usage-scenes/${params.id}`).catch(
-    () => null,
-  )
+  // const locale = params.lang ?? 'en'
+  // const content = await loadMDFile(locale, `usage-scenes/${params.id}`).catch(
+  //   () => null,
+  // )
 
-  if (!content) {
-    throw new Response('Not found', { status: 404 })
-  }
+  // if (!content) {
+  //   throw new Response('Not found', { status: 404 })
+  // }
 
-  const parsed = v.safeParse(usageSceneSchema, content)
+  // const parsed = v.safeParse(usageSceneSchema, content)
 
-  if (!parsed.success) {
-    throw new Response('Invalid content', { status: 500 })
-  }
+  // if (!parsed.success) {
+  //   throw new Response('Invalid content', { status: 500 })
+  // }
 
-  return parsed.output
+  // return parsed.output
+  return { title: 'Usage Scenes' }
 }
 
 export function meta({ data }: Route.MetaArgs) {

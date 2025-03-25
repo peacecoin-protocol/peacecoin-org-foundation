@@ -12,6 +12,9 @@ CROWDIN_PROJECT_ID = "629106"
 binding = "KV"
 id = "30b4166488744b9da52e3da65f926de0"
 
+[env.development]
+name = "pc-foundation-dev"
+
 [env.development.vars]
 CROWDIN_PROJECT_ID = "629106"
 
