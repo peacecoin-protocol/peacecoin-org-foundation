@@ -43,7 +43,7 @@ export function HomeHeroSection({ tokens }: HomeHeroSectionProps) {
 
   return (
     <section ref={ref}>
-      <div className="container mx-auto flex flex-col justify-center gap-5 md:gap-7 px-6 h-[calc(100dvh-4.35rem)] md:h-[calc(100dvh-11.5rem)] pt-20 max-md:pb-[50vw]">
+      <div className="container mx-auto flex flex-col justify-center gap-5 md:gap-7 px-6 h-[calc(100dvh-4.35rem)] md:h-[calc(100dvh-11.5rem)] pt-(--gh) max-md:pb-[50vw]">
         <BreakLine
           component="h1"
           className="text-[2.6rem] md:text-[5rem] font-bold leading-tight"

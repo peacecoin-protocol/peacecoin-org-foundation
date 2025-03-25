@@ -108,13 +108,12 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
                   {t('navigation.concept')}
                 </Link>
               </li>
-              <li className="flex gap-1">
-                {t('navigation.usageScene')}{' '}
+              <li className="flex items-center gap-1">
                 <Link
                   to="/usage-scenes/01"
                   className="hover:text-primary transition-colors"
                 >
-                  01
+                  {t('navigation.usageScene')} 01
                 </Link>
                 <span className="text-primary">・</span>
                 <Link

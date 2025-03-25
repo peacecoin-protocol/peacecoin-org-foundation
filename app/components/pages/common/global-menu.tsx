@@ -1,196 +1,200 @@
-import { Link } from 'react-router'
+import type { PropsWithChildren, ReactNode } from 'react'
+import { Link, type LinkProps } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { LocaleMenu } from '@/components/pages/common/locale-menu'
+import { cn } from '@/lib/utils'
+import { useCallback, useEffect, useState } from 'react'
 
-interface GlobalMenuProps {
-  onClose: () => void
-  logoH: string
+import {
+  GlobalMenuAccordion,
+  GlobalMenuAccordionContent,
+  GlobalMenuAccordionItem,
+  GlobalMenuAccordionTrigger,
+} from './global-menu-accordion'
+import { LocaleMenu } from './locale-menu'
+import { LocaleButton } from './locale-button'
+import { useLocale } from '@/hooks/use-locale'
+
+function NavLink({ className, ...rest }: LinkProps) {
+  return (
+    <Link
+      {...rest}
+      className={cn('block py-1 text-foreground hover:text-primary', className)}
+    />
+  )
 }
 
-export function GlobalMenu({ onClose, logoH }: GlobalMenuProps) {
+function NavLinkItem({ children }: PropsWithChildren) {
+  return (
+    <li className="flex items-center gap-2">
+      <span className="text-primary">-</span>
+      {children}
+    </li>
+  )
+}
+
+type NavLinkListProps = {
+  children: ReactNode
+}
+
+function NavLinkList({ children }: NavLinkListProps) {
+  return <ul className="space-y-4">{children}</ul>
+}
+
+export type GlobalMenuProps = {
+  open: boolean
+}
+
+export function GlobalMenu({ open }: GlobalMenuProps) {
   const { t } = useTranslation('common')
-  const [activeTab, setActiveTab] = useState<string | null>(null)
+  const [isDesktop, setIsDesktop] = useState(false)
+  const { load, list } = useLocale()
+  const [isOpenLocale, setIsOpenLocale] = useState(false)
+
+  const handleTooggleLocaleMenu = useCallback(() => {
+    setIsOpenLocale((prev) => !prev)
+    load()
+  }, [load])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize, { passive: true })
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
-    <div className="fixed inset-0 z-50">
-      {/* Mobile Menu */}
-      <div className="md:hidden bg-background w-full h-full">
-        <div className="flex h-full flex-col overflow-y-auto">
-          <div className="flex items-center justify-between px-4 py-4 border-b border-muted">
-            <div className="flex items-center">
-              <img
-                src={logoH}
-                alt="PEACE COIN"
-                width="217"
-                height="44"
-                className="h-10 w-auto"
-              />
-            </div>
-            <button
-              type="button"
-              className="flex items-center justify-center w-10 h-10 bg-primary text-primary-foreground rounded-full"
-              onClick={onClose}
-              aria-label={t('nav.close')}
+    <>
+      <nav
+        className={cn(
+          'fixed top-0 left-0 overflow-hidden z-10 w-full bg-white/80 backdrop-blur-sm transition-[height]',
+          open
+            ? 'h-dvh duration-300 delay-100 ease-out'
+            : 'h-0 duration-250 ease-in',
+        )}
+      >
+        <div className="flex flex-col container mx-auto p-6 pt-(--gh) h-full">
+          <div className="overflow-y-auto hidden-scrollbar flex-grow md:flex md:justify-center md:space-x-24 md:pt-[9rem]">
+            <GlobalMenuAccordion
+              {...(isDesktop
+                ? {
+                    type: 'multiple',
+                    defaultValue: ['learnAbout', 'useCase', 'participate'],
+                  }
+                : {
+                    type: 'single',
+                    defaultValue: 'learnAbout',
+                    collapsible: true,
+                  })}
+              className="md:flex md:space-x-24"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="h-6 w-6"
+              <GlobalMenuAccordionItem
+                value="learnAbout"
+                className={cn(
+                  'md:flex-1 transition-[translate,opacity] duration-500 transform',
+                  open ? 'delay-200' : 'opacity-0 -translate-y-10',
+                )}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+                <GlobalMenuAccordionTrigger>
+                  {t('learnAbout')}
+                </GlobalMenuAccordionTrigger>
+                <GlobalMenuAccordionContent>
+                  <NavLinkList>
+                    <NavLinkItem>
+                      <NavLink to="/concept">{t('navigation.concept')}</NavLink>
+                    </NavLinkItem>
+                    <NavLinkItem>
+                      <div className="flex items-center gap-1">
+                        <Link
+                          to="/usage-scenes/01"
+                          className="hover:text-primary transition-colors"
+                        >
+                          {t('navigation.usageScene')} 01
+                        </Link>
+                        <span className="text-primary">・</span>
+                        <Link
+                          to="/usage-scenes/02"
+                          className="hover:text-primary transition-colors"
+                        >
+                          02
+                        </Link>
+                        <span className="text-primary">・</span>
+                        <Link
+                          to="/usage-scenes/03"
+                          className="hover:text-primary transition-colors"
+                        >
+                          03
+                        </Link>
+                      </div>
+                    </NavLinkItem>
+                  </NavLinkList>
+                </GlobalMenuAccordionContent>
+              </GlobalMenuAccordionItem>
+
+              <GlobalMenuAccordionItem
+                value="useCase"
+                className={cn(
+                  'md:flex-1 transition-[translate,opacity] duration-500 transform',
+                  open ? 'delay-300' : 'opacity-0 -translate-y-10',
+                )}
+              >
+                <GlobalMenuAccordionTrigger>
+                  {t('navigation.useCase')}
+                </GlobalMenuAccordionTrigger>
+                <GlobalMenuAccordionContent>
+                  <NavLinkList>
+                    <NavLinkItem>
+                      <NavLink to="/usecases/somic-coin001">Somic coin</NavLink>
+                    </NavLinkItem>
+                  </NavLinkList>
+                </GlobalMenuAccordionContent>
+              </GlobalMenuAccordionItem>
+
+              <GlobalMenuAccordionItem
+                value="participate"
+                className={cn(
+                  'md:flex-1 transition-[translate,opacity] duration-500 transform',
+                  open ? 'delay-400' : 'opacity-0 -translate-y-10',
+                )}
+              >
+                <GlobalMenuAccordionTrigger>
+                  {t('participate')}
+                </GlobalMenuAccordionTrigger>
+                <GlobalMenuAccordionContent>
+                  <NavLinkList>
+                    <NavLinkItem>
+                      <NavLink to="/developers">
+                        {t('navigation.developers')}
+                      </NavLink>
+                    </NavLinkItem>
+                    <NavLinkItem>
+                      <NavLink to="/usage-scenes">
+                        {t('navigation.translationProgram')}
+                      </NavLink>
+                    </NavLinkItem>
+                  </NavLinkList>
+                </GlobalMenuAccordionContent>
+              </GlobalMenuAccordionItem>
+            </GlobalMenuAccordion>
           </div>
-
-          <div className="flex-1 px-6 py-8">
-            <div className="mb-8">
-              <h2 className="text-xl font-bold text-primary mb-2">
-                PEACE COINを知る
-              </h2>
-              <nav className="space-y-4 ml-4">
-                <Link
-                  to="/concept"
-                  className="block py-1 text-base font-medium text-foreground/75 hover:text-primary"
-                  onClick={onClose}
-                >
-                  PEACE COINとは
-                </Link>
-                <Link
-                  to="/usage-scenes"
-                  className="block py-1 text-base font-medium text-foreground/75 hover:text-primary"
-                  onClick={onClose}
-                >
-                  活用シーン
-                </Link>
-              </nav>
-            </div>
-
-            <div className="mb-8">
-              <h2 className="text-xl font-bold text-primary mb-2">導入事例</h2>
-              <nav className="space-y-4 ml-4">
-                <Link
-                  to="/usecases"
-                  className="block py-1 text-base font-medium text-foreground/75 hover:text-primary"
-                  onClick={onClose}
-                >
-                  Somic coin
-                </Link>
-              </nav>
-            </div>
-
-            <div className="mb-8">
-              <h2 className="text-xl font-bold text-primary mb-2">
-                PEACE COINへの参加
-              </h2>
-              <nav className="space-y-4 ml-4">
-                <Link
-                  to="/translation-program"
-                  className="block py-1 text-base font-medium text-foreground/75 hover:text-primary"
-                  onClick={onClose}
-                >
-                  翻訳プログラム
-                </Link>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop Menu */}
-      <div className="hidden md:block">
-        <div className="fixed inset-x-0 top-20 mx-auto max-w-7xl px-8">
-          <div className="bg-foreground rounded-[100px] shadow-[0_0_40px_0_rgba(0,0,0,0.09)] p-16">
-            <div className="flex justify-between items-start mb-12">
-              <div className="flex items-center space-x-4">
-                <img
-                  src={logoH}
-                  alt="PEACE COIN"
-                  width="217"
-                  height="44"
-                  className="h-12 w-auto"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-16">
-              <div>
-                <h3 className="text-xl font-bold text-primary mb-6">
-                  PEACE COINを知る
-                </h3>
-                <nav className="space-y-6">
-                  <Link
-                    to="/concept"
-                    className="block py-1 text-lg font-medium text-foreground/75 hover:text-primary"
-                    onClick={onClose}
-                  >
-                    PEACE COINとは
-                  </Link>
-                  <Link
-                    to="/usage-scenes"
-                    className="block py-1 text-lg font-medium text-foreground/75 hover:text-primary"
-                    onClick={onClose}
-                  >
-                    活用シーン
-                  </Link>
-                </nav>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-primary mb-6">
-                  導入事例
-                </h3>
-                <nav className="space-y-6">
-                  <Link
-                    to="/usecases"
-                    className="block py-1 text-lg font-medium text-foreground/75 hover:text-primary"
-                    onClick={onClose}
-                  >
-                    Somic coin
-                  </Link>
-                </nav>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-primary mb-6">
-                  PEACE COINへの参加
-                </h3>
-                <nav className="space-y-6">
-                  <Link
-                    to="/translation-program"
-                    className="block py-1 text-lg font-medium text-foreground/75 hover:text-primary"
-                    onClick={onClose}
-                  >
-                    翻訳プログラム
-                  </Link>
-                </nav>
-                <div className="mt-12">
-                  <LocaleMenu />
-                </div>
-              </div>
-            </div>
+          <div
+            className={cn(
+              'md:hidden -ml-3 transition-[translate,opacity] duration-500',
+              open ? 'delay-500' : 'opacity-0 translate-x-5',
+            )}
+          >
+            <LocaleButton onClick={handleTooggleLocaleMenu} />
           </div>
         </div>
-        {/* Overlay for desktop */}
-        <div
-          className="fixed inset-0 bg-foreground/50 backdrop-blur-sm cursor-pointer"
-          onClick={onClose}
-          onKeyDown={(e) => {
-            if (e.key === 'Escape') {
-              onClose()
-            }
-          }}
-          aria-label={t('nav.close')}
-          role="button"
-          tabIndex={0}
-        />
-      </div>
-    </div>
+      </nav>
+      <LocaleMenu
+        className="fixed z-50 inset-0 pt-10"
+        list={list}
+        open={isOpenLocale}
+        initTransform={{ translateY: '2rem' }}
+        onClose={handleTooggleLocaleMenu}
+      />
+    </>
   )
 }

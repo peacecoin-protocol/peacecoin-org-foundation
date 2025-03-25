@@ -2,47 +2,52 @@ import { useTranslation } from 'react-i18next'
 import {
   useCallback,
   useState,
-  useRef,
   useEffect,
-  type HTMLAttributes,
   useMemo,
+  type ComponentProps,
 } from 'react'
-import { useFetcher, useLocation, useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { type GetTranslatedStatusOutput } from '@/schemas/crowdin'
 import { supportedLanguages } from '@/constants'
 import { cn } from '@/lib/utils'
 import { FilterIcon } from 'lucide-react'
 
+import {
+  motion,
+  AnimatePresence,
+  type TransformProperties,
+} from 'framer-motion'
+import { MenuButton } from './menu-button'
+
 function isDefault(list: string[], locale: string) {
   return list.includes(locale) || list.includes(locale.split('-')[0])
 }
 
-function LangIcon() {
-  return (
-    <div className="relative size-6 text-[0.69rem] font-bold">
-      <div className="size-4 bg-foreground text-background flex items-center justify-center rounded absolute right-0 bottom-0">
-        文
-      </div>
-      <div className="size-4 bg-background border border-foreground text-foreground flex items-center justify-center rounded  absolute left-0 top-0">
-        A
-      </div>
-    </div>
-  )
+export type LocaleMenuProps = Omit<
+  ComponentProps<'div'>,
+  'onDrag' | 'onDragEnd' | 'onDragStart' | 'onAnimationStart'
+> & {
+  list?: GetTranslatedStatusOutput | null
+  open?: boolean
+  initTransform?: TransformProperties
+  onClose?: () => void
 }
 
-export type LocaleMenuProps = HTMLAttributes<HTMLDivElement>
-
-export function LocaleMenu({ className, ...rest }: LocaleMenuProps) {
+export function LocaleMenu({
+  className,
+  list,
+  open,
+  initTransform,
+  onClose,
+  ...rest
+}: LocaleMenuProps) {
   const { i18n, t } = useTranslation('common')
   const location = useLocation()
   const navigate = useNavigate()
-  const [isOpen, setIsOpen] = useState(false)
-  const fetcher = useFetcher<GetTranslatedStatusOutput>()
-  const dropdownRef = useRef<HTMLDivElement>(null)
   const [browserDefaults, setBrowserDefaults] = useState<string[]>([])
   const locales = useMemo(
     () =>
-      fetcher.data
+      list
         ?.map(({ locale, approvalProgress, words }) => ({
           locale,
           approvalProgress,
@@ -54,7 +59,7 @@ export function LocaleMenu({ className, ...rest }: LocaleMenuProps) {
           if (!a.isBrowserDefault && b.isBrowserDefault) return 1
           return 0
         }) ?? [],
-    [browserDefaults, fetcher.data],
+    [browserDefaults, list],
   )
 
   const handleLanguageChange = useCallback(
@@ -77,52 +82,48 @@ export function LocaleMenu({ className, ...rest }: LocaleMenuProps) {
 
       // Navigate to the new path
       navigate(newPath)
-      setIsOpen(false)
     },
     [i18n, location.pathname, navigate],
   )
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
 
   useEffect(() => {
     setBrowserDefaults([...navigator.languages])
   }, [])
 
   return (
-    <div className={cn('relative', className)} {...rest} ref={dropdownRef}>
-      <button
-        className="flex items-center gap-1.5 font-medium py-2 px-4 rounded-full transition-colors hover:cursor-pointer hover:bg-primary/5"
-        onClick={() => {
-          setIsOpen(!isOpen)
-          if (!isOpen && !fetcher.data?.length) {
-            fetcher.load('/api/locales')
-          }
-        }}
-      >
-        <LangIcon />
-        {t('language.label')}
-      </button>
-
-      {isOpen && (
-        <div className="absolute right-0 mt-2 w-full bg-[#F9F9F9] dark:bg-[#1A1A1A] rounded-md shadow-lg z-50 overflow-hidden md:w-[22.5rem]">
-          <div className="p-3 pb-0">
+    <AnimatePresence initial>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, ...initTransform }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            translateY: 0,
+            transition: { ease: 'easeOut', duration: 0.15 },
+          }}
+          exit={{
+            opacity: 0,
+            scale: 0.8,
+            transition: { ease: 'easeIn', duration: 0.1 },
+            ...initTransform,
+          }}
+          className={cn(
+            'w-full bg-[#F9F9F9] dark:bg-[#1A1A1A] overflow-hidden flex flex-col origin-bottom-left md:origin-top-right',
+            className,
+          )}
+          key="locale-menu"
+          {...rest}
+        >
+          {onClose && (
+            <MenuButton
+              className="absolute top-4 right-3"
+              open
+              onClick={onClose}
+            />
+          )}
+          <div className="pt-3 pb-0 px-6 md:px-3">
             <h3 className="text-sm">
-              {t('language.filteredList', { val: fetcher.data?.length ?? 0 })}
+              {t('language.filteredList', { val: list?.length ?? 0 })}
             </h3>
             <div className="mt-2 relative">
               <input
@@ -136,9 +137,9 @@ export function LocaleMenu({ className, ...rest }: LocaleMenuProps) {
             </div>
           </div>
 
-          <div className="max-h-80 overflow-y-auto">
+          <div className="flex-grow md:h-80 overflow-y-auto hidden-scrollbar">
             {locales?.length ? (
-              <ul className="px-3 pt-0 pb-1">
+              <ul className="px-5 md:px-3 pt-0 pb-1">
                 {locales.map(
                   ({ locale, approvalProgress, words, isBrowserDefault }) => (
                     <li
@@ -199,13 +200,13 @@ export function LocaleMenu({ className, ...rest }: LocaleMenuProps) {
                 )}
               </ul>
             ) : (
-              <div className="flex items-center justify-center h-40 text-sm text-primary">
+              <div className="flex items-center justify-center h-full text-sm text-primary">
                 {t('language.loading')}
               </div>
             )}
           </div>
 
-          <div className="px-5 py-4 border-t-2 border-primary bg-primary/7 text-foreground text-xs">
+          <div className="px-6 md:px-5 py-4 border-t-2 border-primary bg-primary/7 text-foreground text-xs">
             <p>
               {t('language.footer')}
               <a
@@ -218,8 +219,8 @@ export function LocaleMenu({ className, ...rest }: LocaleMenuProps) {
               </a>
             </p>
           </div>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </AnimatePresence>
   )
 }

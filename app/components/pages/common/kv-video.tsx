@@ -1,6 +1,12 @@
 import { YouTube } from '@/components/composite/youtube'
 import { cn } from '@/lib/utils'
-import { useEffect, useRef, useState, type HTMLAttributes } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type HTMLAttributes,
+} from 'react'
 import { useLocation } from 'react-router'
 
 function getOpacity(pathname: string) {
@@ -23,6 +29,10 @@ export function KVVideo({ className, style, ...rest }: KVVideoProps) {
   const [opacity, setOpacity] = useState(getOpacity(location.pathname))
   const rootRef = useRef<HTMLDivElement>(null)
   // const videoRef = useRef<HTMLVideoElement>(null)
+
+  const handleInitialized = useCallback(() => {
+    setLoaded(true)
+  }, [])
 
   useEffect(() => {
     setOpacity(getOpacity(location.pathname))
@@ -103,14 +113,14 @@ export function KVVideo({ className, style, ...rest }: KVVideoProps) {
           } as React.CSSProperties
         }
         videoId="w6Hjdms-DCI"
-        onLoaded={() => setLoaded(true)}
+        onLoaded={handleInitialized}
       />
       {/* <video
         className="w-auto h-full absolute top-0 right-0"
         loop
         muted
         playsInline
-        onLoadedData={() => setLoaded(true)}
+        onLoadedData={handleInitialized}
         poster="/assets/images/kv-video-poster.webp"
         ref={videoRef}
       >
