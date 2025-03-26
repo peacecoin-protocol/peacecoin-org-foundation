@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/icon'
 import type { FC, SVGProps } from 'react'
 import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
+import { LINKS } from '@/constants'
 
 const list: {
   key: string
@@ -19,13 +20,13 @@ const list: {
   {
     key: 'github',
     Icon: GithubIcon,
-    href: 'https://github.com/peacecoin-protocol',
+    href: LINKS.github,
   },
-  { key: 'discord', Icon: DiscordIcon, href: 'https://discord.gg/DRWPZzxzfv' },
+  { key: 'discord', Icon: DiscordIcon, href: LINKS.discord },
   {
     key: 'whitePaper',
     Icon: WhitePaperIcon,
-    href: 'https://assets.peace-coin.org/white-paper/v2.2.pdf',
+    href: LINKS.whitePaper,
   },
 ]
 

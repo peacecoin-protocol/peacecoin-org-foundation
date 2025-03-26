@@ -5,6 +5,7 @@ import type { HTMLAttributes, ReactNode } from 'react'
 import logo from '@/assets/svg/logo-v.svg'
 import { BreakLine } from '@/components/functional/break-line'
 import { cn } from '@/lib/utils'
+import { LINKS } from '@/constants'
 
 type SNSLink = {
   href: string
@@ -14,7 +15,7 @@ type SNSLink = {
 
 const snsLinks: SNSLink[] = [
   {
-    href: 'https://x.com/peace_coin_fund',
+    href: LINKS.x,
     label: 'X',
     icon: (
       <svg
@@ -28,7 +29,7 @@ const snsLinks: SNSLink[] = [
     ),
   },
   {
-    href: 'https://www.facebook.com/PEACECOIN.PCE',
+    href: LINKS.facebook,
     label: 'Facebook',
     icon: (
       <svg
@@ -42,7 +43,7 @@ const snsLinks: SNSLink[] = [
     ),
   },
   {
-    href: 'https://www.linkedin.com/company/peace-coin',
+    href: LINKS.linkdin,
     label: 'LinkedIn',
     icon: (
       <svg
@@ -56,7 +57,7 @@ const snsLinks: SNSLink[] = [
     ),
   },
   {
-    href: 'https://github.com/peacecoin-protocol',
+    href: LINKS.github,
     label: 'GitHub',
     icon: (
       <svg
@@ -154,7 +155,7 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
               </li>
               <li>
                 <a
-                  href="https://crowdin.com/project/peace-coin"
+                  href={LINKS.crowdin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary transition-colors"

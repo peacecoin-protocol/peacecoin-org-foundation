@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { type GetTranslatedStatusOutput } from '@/schemas/crowdin'
-import { supportedLanguages } from '@/constants'
+import { LINKS, supportedLanguages } from '@/constants'
 import { cn } from '@/lib/utils'
 import { FilterIcon } from 'lucide-react'
 
@@ -210,7 +210,7 @@ export function LocaleMenu({
             <p>
               {t('language.footer')}
               <a
-                href="https://crowdin.com/project/peace-coin"
+                href={LINKS.crowdin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline text-primary ml-3 hover:no-underline"
