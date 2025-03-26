@@ -19,6 +19,7 @@ import './app.css'
 import { usecaseSchema, type Usecase } from './schemas'
 import { UseCasesProvider } from './hooks/use-usecases'
 import { generateDynamicRoutes } from './.server/route'
+import { supportedLanguages } from './constants'
 
 const loaderSchema = v.object({
   locale: v.string(),
@@ -63,8 +64,39 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/assets/favicon/favicon-96x96.png"
+          sizes="96x96"
+        />
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="/assets/favicon/favicon.svg"
+        />
+        <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/assets/favicon/apple-touch-icon.png"
+        />
+        <meta name="apple-mobile-web-app-title" content="PEACE COIN" />
+        <link rel="manifest" href="/assets/favicon/webmanifest.json" />
         {nonce && <meta property="csp-nonce" nonce={nonce} />}
         <script src="https://www.youtube.com/iframe_api" async />
+        {Object.keys(supportedLanguages).map((key) => {
+          const lang = key.toLowerCase()
+          return (
+            <link
+              key={lang}
+              rel="alternate"
+              hrefLang={lang}
+              href={lang === 'en' ? '/' : `/${lang}/`}
+            />
+          )
+        })}
+        <link rel="alternate" hrefLang="x-default" href="/" />
         <Meta />
         <Links />
       </head>

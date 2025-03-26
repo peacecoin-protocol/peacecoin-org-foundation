@@ -137,6 +137,7 @@ export default async function handleRequest(
       .map(([key, value]) => `${key} ${value.join(' ')}`)
       .join('; '),
   )
+  responseHeaders.set('Content-Language', lng)
   responseHeaders.delete('X-Powered-By')
 
   return new Response(body, {
