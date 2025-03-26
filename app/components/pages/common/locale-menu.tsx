@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { type GetTranslatedStatusOutput } from '@/schemas/crowdin'
-import { LINKS, supportedLanguages } from '@/constants'
+import { LINKS, REGX_LANG_FROM_PATHNAME, supportedLanguages } from '@/constants'
 import { cn } from '@/lib/utils'
 import { FilterIcon } from 'lucide-react'
 
@@ -73,7 +73,7 @@ export function LocaleMenu({
 
       // Extract the current locale prefix if it exists
       const pathWithoutLocale = currentPath.replace(
-        /^\/[a-z]{2}(-[a-z]{2})?\//,
+        REGX_LANG_FROM_PATHNAME,
         '/',
       )
 

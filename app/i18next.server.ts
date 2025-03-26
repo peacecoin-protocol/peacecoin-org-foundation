@@ -1,10 +1,13 @@
 import { RemixI18Next } from 'remix-i18next/server'
 import Backend, { type HttpBackendOptions } from 'i18next-http-backend'
 import i18n from '@/i18n'
+import { REGX_LANG_FROM_PATHNAME } from './constants'
 
 export const backend = new Backend()
 
 let baseUrl = 'https://peace-coin.org'
+
+const lowerSupportedLngs = i18n.supportedLngs.map((lng) => lng.toLowerCase())
 
 const i18next = new RemixI18Next({
   detection: {
@@ -13,15 +16,21 @@ const i18next = new RemixI18Next({
     async findLocale(request) {
       baseUrl = request.url
       const { pathname } = new URL(request.url)
-      const lang = pathname.split('/')[1]
-      const index1 = i18n.supportedLngs.indexOf(lang)
-      if (index1 !== -1) {
-        return lang
+      const langMatch = pathname.match(REGX_LANG_FROM_PATHNAME)
+
+      if (langMatch) {
+        const lang = langMatch[1].toLowerCase()
+
+        if (lowerSupportedLngs.includes(lang)) {
+          return lang
+        }
+
+        const baseLang = lang.split('-')[0]
+        if (lowerSupportedLngs.includes(baseLang)) {
+          return baseLang
+        }
       }
-      const index2 = i18n.supportedLngs.indexOf(lang.split('-')[0])
-      if (index2 !== -1) {
-        return i18n.supportedLngs[index2]
-      }
+
       return 'en'
     },
   },

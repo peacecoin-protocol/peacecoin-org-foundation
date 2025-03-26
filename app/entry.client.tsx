@@ -13,6 +13,7 @@ async function hydrate() {
     .use(Backend)
     .init({
       ...i18n,
+      lng: document.documentElement.lang,
       ns: getInitialNamespaces(),
       backend: { loadPath: '/locales/{{lng}}/{{ns}}.json' },
       detection: {

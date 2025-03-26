@@ -20,7 +20,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const title = t('metaTitle')
   return {
     title,
-    tokens: [...(locale === 'ja' ? tokensJp : tokens)].sort(
+    tokens: [...(locale.split('-')[0] === 'ja' ? tokensJp : tokens)].sort(
       () => Math.random() - 0.5,
     ),
     usageCountryCodes,
