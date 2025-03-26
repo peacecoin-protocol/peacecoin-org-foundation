@@ -81,10 +81,10 @@ export default function Concept() {
           <h2 className="text-lg md:text-5xl font-medium text-center mb-2 md:mb-16 [&>span]:text-primary">
             <Trans i18nKey="arigatoCreation.title" ns="concept" />
           </h2>
-          <div className="flex flex-col gap-10 md:relative md:h-[32rem] md:justify-center md:pr-[32rem]">
+          <div className="flex flex-col gap-10 lg:relative lg:min-h-[32rem] lg:justify-center lg:pr-[32rem]">
             <BreakLine
               component="h3"
-              className="text-[1.375rem] text-2xl font-bold leading-loose text-center md:text-left max-md:[&>br]:hidden"
+              className="text-2xl font-bold leading-relaxed text-center max-sm:[&>br]:hidden lg:text-2xl lg:leading-loose lg:text-left"
             >
               {t('arigatoCreation.subtitle')}
             </BreakLine>
@@ -93,7 +93,7 @@ export default function Concept() {
               width="836"
               height="940"
               alt="ARIGATO CREATION"
-              className="block w-full h-auto md:absolute md:top-0 md:right-0 md:w-auto md:h-full"
+              className="block w-full h-auto lg:absolute lg:top-0 lg:right-0 lg:w-1/2 xl:w-auto xl:h-full"
             />
             <p className="text-sm leading-[2.6]">
               {t('arigatoCreation.description1')}
