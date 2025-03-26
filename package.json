@@ -9,7 +9,7 @@
     "start": "wrangler dev",
     "typegen": "wrangler types",
     "typecheck": "react-router typegen && tsc -b",
-    "format": "prettier --write . --ignore-path .gitignore",
+    "format": "prettier --write .",
     "crowdin-import": "ts-node scripts/crowdin-import.ts"
   },
   "engines": {
