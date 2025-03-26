@@ -14,13 +14,18 @@ import { LocaleMenu } from './locale-menu'
 import { LocaleButton } from './locale-button'
 import { useUseCases } from '@/hooks/use-usecases'
 import { LocaleLink } from '@/components/ui/locale-link'
+import { LINKS } from '@/constants'
+import { OuterLink } from '@/components/ui/outer-link'
 
-function NavLink({ className, ...rest }: LinkProps) {
-  return (
-    <LocaleLink
-      {...rest}
-      className={cn('block py-1 text-foreground hover:text-primary', className)}
-    />
+function NavLink({ className, to, ...rest }: LinkProps) {
+  const mergedClassName = cn(
+    'block py-1 text-foreground hover:text-primary',
+    className,
+  )
+  return typeof to === 'string' && to.startsWith('http') ? (
+    <OuterLink {...rest} href={to} className={mergedClassName} />
+  ) : (
+    <LocaleLink {...rest} to={to} className={mergedClassName} />
   )
 }
 
@@ -173,7 +178,7 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
                       </NavLink>
                     </NavLinkItem>
                     <NavLinkItem>
-                      <NavLink to="/usage-scenes">
+                      <NavLink to={LINKS.crowdin}>
                         {t('navigation.translationProgram')}
                       </NavLink>
                     </NavLinkItem>
