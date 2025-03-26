@@ -12,7 +12,6 @@ import {
 } from './global-menu-accordion'
 import { LocaleMenu } from './locale-menu'
 import { LocaleButton } from './locale-button'
-import { useLocale } from '@/hooks/use-locale'
 import { useUseCases } from '@/hooks/use-usecases'
 import { LocaleLink } from '@/components/ui/locale-link'
 
@@ -49,14 +48,12 @@ export type GlobalMenuProps = {
 export function GlobalMenu({ open }: GlobalMenuProps) {
   const { t } = useTranslation('common')
   const [isDesktop, setIsDesktop] = useState(false)
-  const { load, list } = useLocale()
   const [isOpenLocale, setIsOpenLocale] = useState(false)
   const usecases = useUseCases()
 
   const handleTooggleLocaleMenu = useCallback(() => {
     setIsOpenLocale((prev) => !prev)
-    load()
-  }, [load])
+  }, [])
 
   useEffect(() => {
     const handleResize = () => {
@@ -197,7 +194,6 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
       </nav>
       <LocaleMenu
         className="fixed z-50 inset-0 pt-10"
-        list={list}
         open={isOpenLocale}
         initTransform={{ translateY: '2rem' }}
         onClose={handleTooggleLocaleMenu}

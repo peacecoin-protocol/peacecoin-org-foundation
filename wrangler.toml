@@ -5,8 +5,8 @@ compatibility_flags = ["nodejs_compat"]
 main = "./workers/app.ts"
 assets = { directory = "./build/client/" }
 
-[vars]
-CROWDIN_PROJECT_ID = "629106"
+[observability]
+enabled = true
 
 [[kv_namespaces]]
 binding = "KV"
@@ -15,8 +15,9 @@ id = "30b4166488744b9da52e3da65f926de0"
 [env.development]
 name = "pc-foundation-dev"
 
-[env.development.vars]
-CROWDIN_PROJECT_ID = "629106"
+
+[env.development.observability]
+enabled = true
 
 [[env.development.kv_namespaces]]
 binding = "KV"

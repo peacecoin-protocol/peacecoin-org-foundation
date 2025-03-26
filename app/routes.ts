@@ -45,5 +45,4 @@ export default [
       contentRoutes.filter((route) => route.path?.includes('/usage-scenes/')),
     ),
   ]),
-  ...prefix('api', [route('locales', 'routes/api/locales.ts')]),
 ] satisfies RouteConfig

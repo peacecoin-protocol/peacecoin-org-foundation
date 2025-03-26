@@ -3,7 +3,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import logoH from '@/assets/svg/logo-h.svg'
 import { cn } from '@/lib/utils'
-import { useLocale } from '@/hooks/use-locale'
 
 import { GlobalMenu } from './global-menu'
 import { LocaleMenu } from './locale-menu'
@@ -13,13 +12,11 @@ import { LocaleLink } from '@/components/ui/locale-link'
 
 function DesktopLocaleMenu() {
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const { load, list } = useLocale()
   const [isOpenLocale, setIsOpenLocale] = useState(false)
 
   const handleTooggle = useCallback(() => {
     setIsOpenLocale((prev) => !prev)
-    load()
-  }, [load])
+  }, [])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -39,7 +36,6 @@ function DesktopLocaleMenu() {
       <LocaleButton onClick={handleTooggle} />
       <LocaleMenu
         className="absolute right-0 mt-2 rounded-md shadow-lg w-[22.5rem]"
-        list={list}
         open={isOpenLocale}
         onClose={handleTooggle}
         initTransform={{ translateY: '-2rem' }}

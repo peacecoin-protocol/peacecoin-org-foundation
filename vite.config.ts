@@ -8,9 +8,16 @@ import remarkFrontmatter from 'remark-frontmatter'
 import remarkBreaks from 'remark-breaks'
 // import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import remarkReactRouerFrontmatter from './scripts/remark-react-router-frontmatter'
+import { getTranslatedProgress } from './scripts/crowdin'
 
 export default defineConfig({
   plugins: [
+    {
+      name: 'run-getTranslatedProgress',
+      buildStart: async () => {
+        await getTranslatedProgress()
+      },
+    },
     {
       enforce: 'pre',
       ...mdx({

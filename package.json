@@ -9,8 +9,7 @@
     "start": "wrangler dev",
     "typegen": "wrangler types",
     "typecheck": "react-router typegen && tsc -b",
-    "format": "prettier --write .",
-    "crowdin-import": "ts-node scripts/crowdin-import.ts"
+    "format": "prettier --write ."
   },
   "engines": {
     "node": ">=22.0.0"

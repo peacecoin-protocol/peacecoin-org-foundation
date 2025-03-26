@@ -7,8 +7,12 @@ import {
   type ComponentProps,
 } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import { type GetTranslatedStatusOutput } from '@/schemas/crowdin'
-import { LINKS, REGX_LANG_FROM_PATHNAME, supportedLanguages } from '@/constants'
+import {
+  LINKS,
+  REGX_LANG_FROM_PATHNAME,
+  supportedLanguages,
+  translatedProgress,
+} from '@/constants'
 import { cn } from '@/lib/utils'
 import { FilterIcon } from 'lucide-react'
 
@@ -28,7 +32,6 @@ export type LocaleMenuProps = Omit<
   ComponentProps<'div'>,
   'onDrag' | 'onDragEnd' | 'onDragStart' | 'onAnimationStart'
 > & {
-  list?: GetTranslatedStatusOutput | null
   open?: boolean
   initTransform?: TransformProperties
   onClose?: () => void
@@ -36,7 +39,6 @@ export type LocaleMenuProps = Omit<
 
 export function LocaleMenu({
   className,
-  list,
   open,
   initTransform,
   onClose,
@@ -48,11 +50,11 @@ export function LocaleMenu({
   const [browserDefaults, setBrowserDefaults] = useState<string[]>([])
   const locales = useMemo(
     () =>
-      list
-        ?.map(({ locale, approvalProgress, words }) => ({
+      translatedProgress
+        .map(({ locale, progress, total }) => ({
           locale,
-          approvalProgress,
-          words,
+          progress,
+          total,
           isBrowserDefault: isDefault(browserDefaults, locale),
         }))
         .sort((a, b) => {
@@ -60,7 +62,7 @@ export function LocaleMenu({
           if (!a.isBrowserDefault && b.isBrowserDefault) return 1
           return 0
         }) ?? [],
-    [browserDefaults, list],
+    [browserDefaults],
   )
 
   const handleLanguageChange = useCallback(
@@ -125,7 +127,7 @@ export function LocaleMenu({
           )}
           <div className="pt-3 pb-0 px-6 md:px-3">
             <h3 className="text-sm">
-              {t('language.filteredList', { val: list?.length ?? 0 })}
+              {t('language.filteredList', { val: translatedProgress.length })}
             </h3>
             <div className="mt-2 relative">
               <input
@@ -143,7 +145,7 @@ export function LocaleMenu({
             {locales?.length ? (
               <ul className="px-5 md:px-3 pt-0 pb-1">
                 {locales.map(
-                  ({ locale, approvalProgress, words, isBrowserDefault }) => (
+                  ({ locale, progress, total, isBrowserDefault }) => (
                     <li
                       key={locale}
                       className="py-2 border-b-2 last:border-b-0"
@@ -174,9 +176,9 @@ export function LocaleMenu({
                             </div>
                             <div>
                               {t('language.translated', {
-                                val: approvalProgress,
+                                val: progress,
                               })}
-                              ・{t('language.words', { val: words })}
+                              ・{t('language.words', { val: total })}
                             </div>
                           </div>
                           {locale === i18n.language && (
