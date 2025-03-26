@@ -13,6 +13,7 @@ import {
 import { LocaleMenu } from './locale-menu'
 import { LocaleButton } from './locale-button'
 import { useLocale } from '@/hooks/use-locale'
+import { useUseCases } from '@/hooks/use-usecases'
 
 function NavLink({ className, ...rest }: LinkProps) {
   return (
@@ -49,6 +50,7 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
   const [isDesktop, setIsDesktop] = useState(false)
   const { load, list } = useLocale()
   const [isOpenLocale, setIsOpenLocale] = useState(false)
+  const usecases = useUseCases()
 
   const handleTooggleLocaleMenu = useCallback(() => {
     setIsOpenLocale((prev) => !prev)
@@ -144,9 +146,13 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
                 </GlobalMenuAccordionTrigger>
                 <GlobalMenuAccordionContent>
                   <NavLinkList>
-                    <NavLinkItem>
-                      <NavLink to="/usecases/somic-coin001">Somic coin</NavLink>
-                    </NavLinkItem>
+                    {usecases.map((usecase) => (
+                      <NavLinkItem key={usecase.id}>
+                        <NavLink to={`/usecases/${usecase.id}`}>
+                          {usecase.tokenName}
+                        </NavLink>
+                      </NavLinkItem>
+                    ))}
                   </NavLinkList>
                 </GlobalMenuAccordionContent>
               </GlobalMenuAccordionItem>

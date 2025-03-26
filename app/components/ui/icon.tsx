@@ -1,6 +1,17 @@
 import { cn } from '@/lib/utils'
 import type { HTMLAttributes, SVGProps } from 'react'
 
+export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 15 28" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="m.7 28-.7-.7 13.5-13.3-13.5-13.3.7-.7 14.3 14z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
 export function CircleArrowIcon({
   className,
   ...rest
@@ -13,16 +24,7 @@ export function CircleArrowIcon({
       )}
       {...rest}
     >
-      <svg
-        viewBox="0 0 15 28"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-[12px] h-[22.4px] md:w-[15px] md:h-[28px]"
-      >
-        <path
-          d="m.7 28-.7-.7 13.5-13.3-13.5-13.3.7-.7 14.3 14z"
-          fill="currentColor"
-        />
-      </svg>
+      <ArrowIcon className="w-[12px] h-[22.4px] md:w-[15px] md:h-[28px]" />
     </i>
   )
 }

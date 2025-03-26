@@ -80,7 +80,7 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
   return (
     <footer className={cn('bg-background', className)} {...rest}>
       <div className="container mx-auto pt-12 pb-6 px-5">
-        <div className="flex flex-col gap-8 md:flex-row md:gap-16">
+        <div className="flex max-md:flex-col gap-8 md:gap-16">
           <div className="md:flex-1">
             <img
               src={logo}

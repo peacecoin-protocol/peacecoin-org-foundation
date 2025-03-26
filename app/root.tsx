@@ -1,3 +1,4 @@
+import * as v from 'valibot'
 import {
   isRouteErrorResponse,
   Links,
@@ -15,6 +16,15 @@ import i18next from '@/i18next.server'
 import type { Route } from './+types/root'
 
 import './app.css'
+import { usecaseSchema, type Usecase } from './schemas'
+import { UseCasesProvider } from './hooks/use-usecases'
+import { generateDynamicRoutes } from './.server/route'
+
+const loaderSchema = v.object({
+  locale: v.string(),
+  nonce: v.optional(v.string()),
+  usecases: v.array(usecaseSchema),
+})
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -30,12 +40,21 @@ export const links: Route.LinksFunction = () => [
 ]
 
 export async function loader({ request, context }: Route.LoaderArgs) {
-  const [locale] = await Promise.all([i18next.getLocale(request)])
-  return { locale, nonce: context.nonce }
+  const [locale, { routes }] = await Promise.all([
+    i18next.getLocale(request),
+    import('virtual:react-router/server-build'),
+  ])
+  return v.parse(loaderSchema, {
+    locale,
+    nonce: context.nonce,
+    usecases: generateDynamicRoutes<Usecase>('usecases', routes, locale).sort(
+      (a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt),
+    ),
+  })
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { locale, nonce } = useLoaderData<typeof loader>()
+  const { locale, nonce, usecases } = useLoaderData<typeof loader>()
   const { i18n } = useTranslation()
   useChangeLanguage(locale)
 
@@ -50,7 +69,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <UseCasesProvider value={usecases}>{children}</UseCasesProvider>
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>

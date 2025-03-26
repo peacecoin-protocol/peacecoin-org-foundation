@@ -1,6 +1,7 @@
 import * as v from 'valibot'
 
 export const usageSceneSchema = v.object({
+  id: v.string(),
   subtitle: v.string(),
   title: v.string(),
   coverImageUrl: v.string(),
@@ -10,7 +11,6 @@ export const usageSceneSchema = v.object({
   prevLabel: v.string(),
   nextPath: v.string(),
   nextLabel: v.string(),
-  content: v.string(),
 })
 
-export type UYsageScene = v.InferOutput<typeof usageSceneSchema>
+export type UsageScene = v.InferOutput<typeof usageSceneSchema>

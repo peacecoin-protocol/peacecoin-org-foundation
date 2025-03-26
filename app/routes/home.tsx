@@ -8,11 +8,14 @@ import {
   HomeUsecaseSection,
 } from '@/components/pages/home'
 import { usageCountryCodes, tokens, tokensJp } from '@/constants'
+import { generateDynamicRoutes } from '@/.server/route'
+import type { UsageScene } from '@/schemas'
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const [t, locale] = await Promise.all([
+  const [t, locale, { routes }] = await Promise.all([
     i18next.getFixedT(request, 'home'),
     i18next.getLocale(request),
+    import('virtual:react-router/server-build'),
   ])
   const title = t('metaTitle')
   return {
@@ -21,6 +24,11 @@ export async function loader({ request }: Route.LoaderArgs) {
       () => Math.random() - 0.5,
     ),
     usageCountryCodes,
+    usageScenes: generateDynamicRoutes<UsageScene>(
+      'usage-scenes',
+      routes,
+      locale,
+    ).sort((a, b) => a.subtitle.localeCompare(b.subtitle)),
   }
 }
 
@@ -33,7 +41,7 @@ export const handle = {
 }
 
 export default function Index({
-  loaderData: { tokens, usageCountryCodes },
+  loaderData: { tokens, usageCountryCodes, usageScenes },
 }: Route.ComponentProps) {
   return (
     <main className="grid gap-16 md:gap-[7.5rem]">
@@ -43,8 +51,8 @@ export default function Index({
         usageCountryCodes={usageCountryCodes}
         communitiesCount={tokens.length}
       />
-      <HomeUsecaseSection items={[]} />
-      <HomeUsageSceneSection />
+      <HomeUsecaseSection />
+      <HomeUsageSceneSection items={usageScenes} />
     </main>
   )
 }

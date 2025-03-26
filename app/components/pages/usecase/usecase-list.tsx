@@ -1,13 +1,18 @@
-import type { UsecaseMaster } from '@/schemas'
 import { UsecaseItem } from './usecase-item'
-import type { HTMLAttributes } from 'react'
+import { useMemo, type HTMLAttributes } from 'react'
 import { cn } from '@/lib/utils'
+import { useUseCases } from '@/hooks/use-usecases'
 
 export type UsecaseListProps = HTMLAttributes<HTMLUListElement> & {
-  items: UsecaseMaster[]
+  limit?: number
 }
 
-export function UsecaseList({ items, className, ...rest }: UsecaseListProps) {
+export function UsecaseList({ limit, className, ...rest }: UsecaseListProps) {
+  const usecases = useUseCases()
+  const items = useMemo(
+    () => (limit && limit > 0 ? usecases.slice(0, limit) : usecases),
+    [usecases, limit],
+  )
   return (
     <ul className={cn('flex flex-col gap-12', className)} {...rest}>
       {items.map((item) => (

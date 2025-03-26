@@ -58,7 +58,7 @@ export default function Developers() {
       <SectionTitle subtitle="Welcome to the PEACE COIN Docs">
         {t('title')}
       </SectionTitle>
-      <ul className="flex flex-col gap-10 md:flex-row">
+      <ul className="flex gap-10 max-md:flex-col">
         {list.map(({ key, Icon, href }) => (
           <li
             key={key}

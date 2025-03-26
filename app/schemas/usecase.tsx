@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-export const usecaseMasterSchema = v.object({
+export const usecaseSchema = v.object({
   id: v.string(),
   tokenName: v.string(),
   communityName: v.string(),
@@ -10,11 +10,6 @@ export const usecaseMasterSchema = v.object({
   category: v.string(),
   lang: v.string(),
   publishedAt: v.string(),
-  content: v.string(),
 })
 
-export const usecaseMetaSchema = v.omit(usecaseMasterSchema, ['content'])
-
-export type UsecaseMaster = v.InferOutput<typeof usecaseMasterSchema>
-
-export type UsecaseMeta = v.InferOutput<typeof usecaseMetaSchema>
+export type Usecase = v.InferOutput<typeof usecaseSchema>
