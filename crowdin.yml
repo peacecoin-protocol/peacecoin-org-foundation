@@ -1,3 +1,5 @@
 files:
   - source: /public/locales/en/*.json
     translation: /public/locales/%locale%/%file_name%.json
+  - source: /app/content/en/**/*.mdx
+    translation: /app/content/%locale%/**/%file_name%.mdx
