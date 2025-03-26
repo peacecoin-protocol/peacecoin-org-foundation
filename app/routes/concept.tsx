@@ -89,7 +89,7 @@ export default function Concept() {
               {t('arigatoCreation.subtitle')}
             </BreakLine>
             <img
-              src="/assets/images/concept/what-is-arigato-creation.png"
+              src="/assets/images/concept/what-is-arigato-creation.webp"
               width="836"
               height="940"
               alt="ARIGATO CREATION"

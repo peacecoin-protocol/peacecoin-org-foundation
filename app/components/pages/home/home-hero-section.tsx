@@ -63,7 +63,7 @@ export function HomeHeroSection({ tokens }: HomeHeroSectionProps) {
         {tokens.map((token) => (
           <img
             key={token.tokenAddress}
-            src={`/assets/images/tokens/${token.tokenAddress}.png`}
+            src={`/assets/images/tokens/${token.tokenAddress}.webp`}
             alt={token.name}
             width="90"
             height="90"
