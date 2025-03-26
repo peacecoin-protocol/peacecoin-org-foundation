@@ -70,7 +70,7 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
     <>
       <nav
         className={cn(
-          'fixed top-0 left-0 overflow-hidden z-10 w-full bg-white/80 backdrop-blur-sm transition-[height]',
+          'fixed top-0 left-0 overflow-hidden z-10 w-full bg-background/80 backdrop-blur-sm transition-[height]',
           open
             ? 'h-dvh duration-300 delay-100 ease-out'
             : 'h-0 duration-250 ease-in',
