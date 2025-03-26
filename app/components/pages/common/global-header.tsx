@@ -1,11 +1,5 @@
-import { Link, useLocation } from 'react-router'
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type HTMLAttributes,
-} from 'react'
+import { useLocation } from 'react-router'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import logoH from '@/assets/svg/logo-h.svg'
 import { cn } from '@/lib/utils'
@@ -15,6 +9,7 @@ import { GlobalMenu } from './global-menu'
 import { LocaleMenu } from './locale-menu'
 import { LocaleButton } from './locale-button'
 import { MenuButton } from './menu-button'
+import { LocaleLink } from '@/components/ui/locale-link'
 
 function DesktopLocaleMenu() {
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -46,6 +41,7 @@ function DesktopLocaleMenu() {
         className="absolute right-0 mt-2 rounded-md shadow-lg w-[22.5rem]"
         list={list}
         open={isOpenLocale}
+        onClose={handleTooggle}
         initTransform={{ translateY: '-2rem' }}
       />
     </div>
@@ -93,7 +89,7 @@ export function GlobalHeader() {
         )}
       >
         <div className="container mx-auto flex items-center gap-2 justify-between h-(--gh) px-6 max-md:pr-3">
-          <Link to="/">
+          <LocaleLink to="/">
             <img
               src={logoH}
               alt="PEACE COIN"
@@ -101,7 +97,7 @@ export function GlobalHeader() {
               height="44"
               className="h-11 w-auto"
             />
-          </Link>
+          </LocaleLink>
           <div className="flex-1" />
           <MenuButton open={menuOpen} onClick={toggleMenu} />
           <DesktopLocaleMenu />

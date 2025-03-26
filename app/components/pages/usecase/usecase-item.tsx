@@ -1,6 +1,6 @@
 import type { Usecase } from '@/schemas'
-import { Link } from 'react-router'
 import { UsecaseTitle } from './usecase-title'
+import { LocaleLink } from '@/components/ui/locale-link'
 
 export type UsecaseItemProps = Usecase
 
@@ -13,7 +13,7 @@ export function UsecaseItem({
   thumbnailUrl,
 }: UsecaseItemProps) {
   return (
-    <Link
+    <LocaleLink
       to={`/usecases/${id}`}
       className="flex max-lg:flex-col lg:items-center lg:justify-between rounded-md bg-background p-6 md:p-12 items-center justify-between gap-8 lg:gap-12 transition-shadow hover:shadow-lg"
     >
@@ -30,6 +30,6 @@ export function UsecaseItem({
         width="480"
         height="360"
       />
-    </Link>
+    </LocaleLink>
   )
 }

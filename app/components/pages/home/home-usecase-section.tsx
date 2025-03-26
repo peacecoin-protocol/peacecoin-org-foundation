@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { SectionTitle } from '@/components/composite/section-title'
 import { Button } from '@/components/ui/button'
-import { Link } from 'react-router'
 import { UsecaseList } from '../usecase/usecase-list'
+import { LocaleLink } from '@/components/ui/locale-link'
 
 export function HomeUsecaseSection() {
   const { t } = useTranslation('home', {
@@ -14,7 +14,7 @@ export function HomeUsecaseSection() {
         <SectionTitle subtitle="Use Case">{t('title')}</SectionTitle>
         <UsecaseList limit={3} />
         <Button asChild size="lg">
-          <Link to="/usecases">{t('more')}</Link>
+          <LocaleLink to="/usecases">{t('more')}</LocaleLink>
         </Button>
       </div>
     </section>

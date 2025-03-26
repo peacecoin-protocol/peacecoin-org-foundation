@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import type { ComponentProps } from 'react'
-import { Link } from 'react-router'
+import { LocaleLink } from '../ui/locale-link'
 
 type Item = {
   href: string
@@ -36,7 +36,7 @@ export function PageBreadcrumb({ list, ...rest }: PageBreadcrumbProps) {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link to={first.href}>{first.label}</Link>
+            <LocaleLink to={first.href}>{first.label}</LocaleLink>
           </BreadcrumbLink>
         </BreadcrumbItem>
         {dropMenuItems.length > 0 && (
@@ -51,7 +51,7 @@ export function PageBreadcrumb({ list, ...rest }: PageBreadcrumbProps) {
                 <DropdownMenuContent align="start">
                   {dropMenuItems.map(({ href, label }) => (
                     <DropdownMenuItem key={href}>
-                      <Link to={href}>{label}</Link>
+                      <LocaleLink to={href}>{label}</LocaleLink>
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>
@@ -64,7 +64,7 @@ export function PageBreadcrumb({ list, ...rest }: PageBreadcrumbProps) {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link to={parent.href}>{parent.label}</Link>
+                <LocaleLink to={parent.href}>{parent.label}</LocaleLink>
               </BreadcrumbLink>
             </BreadcrumbItem>
           </>

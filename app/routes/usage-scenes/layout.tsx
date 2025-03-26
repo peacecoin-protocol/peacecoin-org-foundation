@@ -1,5 +1,5 @@
 import * as v from 'valibot'
-import { Link, Outlet, useMatches } from 'react-router'
+import { Outlet, useMatches } from 'react-router'
 import { MDXProvider } from '@mdx-js/react'
 import { usageSceneSchema } from '@/schemas'
 import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
@@ -8,6 +8,7 @@ import { SectionTitle } from '@/components/composite/section-title'
 import { ArrowIcon } from '@/components/ui/icon'
 import { BreakLine } from '@/components/functional/break-line'
 import baseComponents from '@/components/pages/common/mdx-components'
+import { LocaleLink } from '@/components/ui/locale-link'
 
 const itemSchema = v.omit(usageSceneSchema, ['id'])
 
@@ -58,7 +59,7 @@ export default function UsageScenesDetailLayout() {
           </MDXProvider>
         </div>
         <footer className="flex items-center justify-between border-t pt-10 md:pt-16 gap-10 text-primary font-semibold leading-snug text-sm md:text-2xl">
-          <Link
+          <LocaleLink
             to={data.prevPath}
             className="flex items-center justify-start gap-4 max-md:flex-1 md:p-6 md:hover:bg-primary/7 md:rounded-2xl md:-ml-6"
           >
@@ -69,9 +70,9 @@ export default function UsageScenesDetailLayout() {
             >
               {data.prevLabel}
             </BreakLine>
-          </Link>
+          </LocaleLink>
           <i className="max-md:hidden md:flex-1" />
-          <Link
+          <LocaleLink
             to={data.nextPath}
             className="flex items-center justify-end gap-4 max-md:flex-1 md:p-6 md:hover:bg-primary/7 md:rounded-2xl md:-mr-6"
           >
@@ -82,7 +83,7 @@ export default function UsageScenesDetailLayout() {
               {data.nextLabel}
             </BreakLine>
             <ArrowIcon className="w-4 h-auto" />
-          </Link>
+          </LocaleLink>
         </footer>
       </article>
     </main>

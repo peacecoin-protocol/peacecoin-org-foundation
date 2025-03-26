@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
-import { Link } from 'react-router'
 import { SectionTitle } from '@/components/composite/section-title'
 import { BreakLine } from '@/components/functional/break-line'
+import { LocaleLink } from '@/components/ui/locale-link'
 
 export function HomeConceptSection() {
   const { t } = useTranslation('home', {
@@ -27,7 +27,7 @@ export function HomeConceptSection() {
         {t('description')}
       </BreakLine>
       <Button asChild size="lg">
-        <Link to="/concept">{t('detail')}</Link>
+        <LocaleLink to="/concept">{t('detail')}</LocaleLink>
       </Button>
     </section>
   )

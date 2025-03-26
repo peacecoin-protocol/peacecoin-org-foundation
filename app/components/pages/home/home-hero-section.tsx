@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
-import { Link } from 'react-router'
 import { useEffect, useRef, useState } from 'react'
 import type { CommunityToken } from '@/schemas'
 import { BreakLine } from '@/components/functional/break-line'
+import { LocaleLink } from '@/components/ui/locale-link'
 
 export type HomeHeroSectionProps = {
   tokens: CommunityToken[]
@@ -55,7 +55,7 @@ export function HomeHeroSection({ tokens }: HomeHeroSectionProps) {
         </div>
         <div>
           <Button asChild size="lg">
-            <Link to="/developers">{t('forDeveloper')}</Link>
+            <LocaleLink to="/developers">{t('forDeveloper')}</LocaleLink>
           </Button>
         </div>
       </div>

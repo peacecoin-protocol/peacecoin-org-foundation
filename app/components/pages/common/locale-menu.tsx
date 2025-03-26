@@ -18,6 +18,7 @@ import {
   type TransformProperties,
 } from 'framer-motion'
 import { MenuButton } from './menu-button'
+import { OuterLink } from '@/components/ui/outer-link'
 
 function isDefault(list: string[], locale: string) {
   return list.includes(locale) || list.includes(locale.split('-')[0])
@@ -72,18 +73,19 @@ export function LocaleMenu({
 
       // Extract the current locale prefix if it exists
       const pathWithoutLocale = currentPath.replace(
-        /^\/[a-z]{2}(-[A-Z]{2})?/,
-        '',
+        /^\/[a-z]{2}(-[a-z]{2})?\//,
+        '/',
       )
 
       // Create the new path with the selected locale
-      const localePart = locale === 'en' ? '' : `/${locale}`
+      const localePart = locale === 'en' ? '' : `/${locale.toLowerCase()}`
       const newPath = `${localePart}${pathWithoutLocale || '/'}`
 
       // Navigate to the new path
+      onClose?.()
       navigate(newPath)
     },
-    [i18n, location.pathname, navigate],
+    [i18n, location.pathname, navigate, onClose],
   )
 
   useEffect(() => {
@@ -116,7 +118,7 @@ export function LocaleMenu({
         >
           {onClose && (
             <MenuButton
-              className="absolute top-4 right-3"
+              className="absolute top-4 right-3 md:hidden"
               open
               onClick={onClose}
             />
@@ -209,14 +211,12 @@ export function LocaleMenu({
           <div className="px-6 md:px-5 py-4 border-t-2 border-primary bg-primary/7 text-foreground text-xs">
             <p>
               {t('language.footer')}
-              <a
+              <OuterLink
                 href={LINKS.crowdin}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="underline text-primary ml-3 hover:no-underline"
               >
                 {t('language.more')}
-              </a>
+              </OuterLink>
             </p>
           </div>
         </motion.div>

@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactNode } from 'react'
-import { Link, type LinkProps } from 'react-router'
+import type { LinkProps } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { useCallback, useEffect, useState } from 'react'
@@ -14,10 +14,11 @@ import { LocaleMenu } from './locale-menu'
 import { LocaleButton } from './locale-button'
 import { useLocale } from '@/hooks/use-locale'
 import { useUseCases } from '@/hooks/use-usecases'
+import { LocaleLink } from '@/components/ui/locale-link'
 
 function NavLink({ className, ...rest }: LinkProps) {
   return (
-    <Link
+    <LocaleLink
       {...rest}
       className={cn('block py-1 text-foreground hover:text-primary', className)}
     />
@@ -108,26 +109,26 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
                     </NavLinkItem>
                     <NavLinkItem>
                       <div className="flex items-center gap-1">
-                        <Link
+                        <LocaleLink
                           to="/usage-scenes/01"
                           className="hover:text-primary transition-colors"
                         >
                           {t('navigation.usageScene')} 01
-                        </Link>
+                        </LocaleLink>
                         <span className="text-primary">・</span>
-                        <Link
+                        <LocaleLink
                           to="/usage-scenes/02"
                           className="hover:text-primary transition-colors"
                         >
                           02
-                        </Link>
+                        </LocaleLink>
                         <span className="text-primary">・</span>
-                        <Link
+                        <LocaleLink
                           to="/usage-scenes/03"
                           className="hover:text-primary transition-colors"
                         >
                           03
-                        </Link>
+                        </LocaleLink>
                       </div>
                     </NavLinkItem>
                   </NavLinkList>

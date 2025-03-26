@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import { SectionTitle } from '@/components/composite/section-title'
-import { Link } from 'react-router'
 import { BreakLine } from '@/components/functional/break-line'
 import { CircleArrowIcon } from '@/components/ui/icon'
 import type { ComponentProps } from 'react'
 import type { UsageScene } from '@/schemas'
 import { cn } from '@/lib/utils'
+import { LocaleLink } from '@/components/ui/locale-link'
 
 export type HomeUsageSceneSectionProps = ComponentProps<'section'> & {
   items: UsageScene[]
@@ -32,7 +32,7 @@ export function HomeUsageSceneSection({
       <ul className="flex max-md:flex-col md:items-start md:justify-between gap-10 md:gap-8">
         {items.map((item) => (
           <li key={item.id} className="md:flex-1">
-            <Link
+            <LocaleLink
               to={`/usage-scenes/${item.id}`}
               className="flex flex-col items-center gap-2 md:gap-6 transition-all hover:shadow-md hover:bg-primary/7 md:p-6 rounded-2xl"
             >
@@ -51,7 +51,7 @@ export function HomeUsageSceneSection({
               </BreakLine>
               <p className="text-sm leading-[1.8] my-2">{item.description}</p>
               <CircleArrowIcon />
-            </Link>
+            </LocaleLink>
           </li>
         ))}
       </ul>

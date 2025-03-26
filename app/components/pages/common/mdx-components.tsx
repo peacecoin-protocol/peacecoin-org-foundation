@@ -1,7 +1,9 @@
 import { Button } from '@/components/ui/button'
+import { LocaleLink } from '@/components/ui/locale-link'
+import { OuterLink } from '@/components/ui/outer-link'
 import { cn } from '@/lib/utils'
 import type { ComponentProps, PropsWithChildren } from 'react'
-import { Link, type LinkProps } from 'react-router'
+import type { LinkProps } from 'react-router'
 
 const components = {
   h2({ children, ...props }: ComponentProps<'h2'>) {
@@ -84,23 +86,21 @@ const components = {
     }
 
     return href.startsWith('/') ? (
-      <Link
+      <LocaleLink
         className="text-primary underline hover:no-underline"
         to={href}
         {...props}
       >
         {children}
-      </Link>
+      </LocaleLink>
     ) : (
-      <a
+      <OuterLink
         className="text-primary underline hover:no-underline"
         href={href}
         {...props}
-        target="_blank"
-        rel="noopener noreferrer"
       >
         {children}
-      </a>
+      </OuterLink>
     )
   },
   Link(props: LinkProps) {
@@ -109,7 +109,11 @@ const components = {
         asChild
         className="border-primary border-1 text-primary bg-background hover:text-background"
       >
-        <Link {...props} className="" />
+        {typeof props.to === 'string' && props.to.startsWith('https://') ? (
+          <OuterLink href={props.to} {...props} />
+        ) : (
+          <LocaleLink {...props} />
+        )}
       </Button>
     )
   },

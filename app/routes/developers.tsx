@@ -11,6 +11,7 @@ import {
 import type { FC, SVGProps } from 'react'
 import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
 import { LINKS } from '@/constants'
+import { OuterLink } from '@/components/ui/outer-link'
 
 const list: {
   key: string
@@ -72,14 +73,9 @@ export default function Developers() {
               </span>
             </h2>
             <p className="text-sm leading-[1.8]">{t(`${key}.description`)}</p>
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
-            >
+            <OuterLink href={href} className="group">
               <CircleArrowIcon className="transition-colors group-hover:text-primary-foreground group-hover:bg-primary" />
-            </a>
+            </OuterLink>
           </li>
         ))}
       </ul>

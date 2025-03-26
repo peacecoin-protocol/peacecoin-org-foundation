@@ -1,4 +1,3 @@
-import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import type { HTMLAttributes, ReactNode } from 'react'
 
@@ -6,6 +5,8 @@ import logo from '@/assets/svg/logo-v.svg'
 import { BreakLine } from '@/components/functional/break-line'
 import { cn } from '@/lib/utils'
 import { LINKS } from '@/constants'
+import { OuterLink } from '@/components/ui/outer-link'
+import { LocaleLink } from '@/components/ui/locale-link'
 
 type SNSLink = {
   href: string
@@ -102,42 +103,42 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
             <h3 className="text-primary font-bold mb-4">{t('learnAbout')}</h3>
             <ul className="space-y-3">
               <li>
-                <Link
+                <LocaleLink
                   to="/concept"
                   className="hover:text-primary transition-colors"
                 >
                   {t('navigation.concept')}
-                </Link>
+                </LocaleLink>
               </li>
               <li className="flex items-center gap-1">
-                <Link
+                <LocaleLink
                   to="/usage-scenes/01"
                   className="hover:text-primary transition-colors"
                 >
                   {t('navigation.usageScene')} 01
-                </Link>
+                </LocaleLink>
                 <span className="text-primary">・</span>
-                <Link
+                <LocaleLink
                   to="/usage-scenes/02"
                   className="hover:text-primary transition-colors"
                 >
                   02
-                </Link>
+                </LocaleLink>
                 <span className="text-primary">・</span>
-                <Link
+                <LocaleLink
                   to="/usage-scenes/03"
                   className="hover:text-primary transition-colors"
                 >
                   03
-                </Link>
+                </LocaleLink>
               </li>
               <li>
-                <Link
+                <LocaleLink
                   to="/usecases"
                   className="hover:text-primary transition-colors"
                 >
                   {t('navigation.useCase')}
-                </Link>
+                </LocaleLink>
               </li>
             </ul>
           </div>
@@ -146,22 +147,20 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
             <h3 className="text-primary font-bold mb-4">{t('participate')}</h3>
             <ul className="space-y-3">
               <li>
-                <Link
+                <LocaleLink
                   to="/developers"
                   className="hover:text-primary transition-colors"
                 >
                   {t('navigation.developers')}
-                </Link>
+                </LocaleLink>
               </li>
               <li>
-                <a
+                <OuterLink
                   href={LINKS.crowdin}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="hover:text-primary transition-colors"
                 >
                   {t('navigation.translationProgram')}
-                </a>
+                </OuterLink>
               </li>
             </ul>
           </div>
@@ -172,16 +171,14 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
         <div className="container mx-auto">
           <div className="flex justify-center gap-8">
             {snsLinks.map(({ href, label, icon }) => (
-              <a
+              <OuterLink
                 key={href}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="text-primary-foreground hover:text-primary-foreground/50 transition-colors"
                 aria-label={label}
               >
                 {icon}
-              </a>
+              </OuterLink>
             ))}
           </div>
         </div>
