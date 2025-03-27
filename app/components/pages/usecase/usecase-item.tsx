@@ -29,6 +29,7 @@ export function UsecaseItem({
         className="w-full h-auto lg:w-1/3 lg:min-w-[25rem] object-cover bg-foreground/5"
         width="480"
         height="360"
+        loading="lazy"
       />
     </LocaleLink>
   )

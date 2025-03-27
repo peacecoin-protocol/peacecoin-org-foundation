@@ -94,6 +94,7 @@ export default function Concept() {
               height="940"
               alt="ARIGATO CREATION"
               className="block w-full h-auto lg:absolute lg:top-0 lg:right-0 lg:w-1/2 xl:w-auto xl:h-full"
+              loading="lazy"
             />
             <p className="text-sm leading-[2.6]">
               {t('arigatoCreation.description1')}
@@ -116,6 +117,7 @@ export default function Concept() {
           height="588"
           alt={t('vision.altText')}
           className="w-full h-auto block my-16 max-md:hidden"
+          loading="lazy"
         />
         <video
           className="w-full h-auto block aspect-square my-6 md:hidden"

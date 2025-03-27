@@ -21,6 +21,7 @@ const components = {
         width="480"
         height="360"
         className="block object-cover bg-foreground/5 max-md:aspect-square w-full h-auto"
+        loading="lazy"
         {...props}
       />
     )

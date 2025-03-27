@@ -149,6 +149,7 @@ const components = {
           height="256"
           src={src}
           alt={alt}
+          loading="lazy"
         />
       </div>
     )

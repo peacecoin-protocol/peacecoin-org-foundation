@@ -42,6 +42,7 @@ export function HomeUsageSceneSection({
                 height="310"
                 alt={item.title}
                 className="w-[20rem] max-w-full h-auto"
+                loading="lazy"
               />
               <BreakLine
                 component="h2"

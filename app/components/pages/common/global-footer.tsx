@@ -90,6 +90,7 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
               width="320"
               height="156"
               className="h-[6rem] w-auto mb-6 block"
+              loading="lazy"
             />
             <BreakLine
               component="p"
