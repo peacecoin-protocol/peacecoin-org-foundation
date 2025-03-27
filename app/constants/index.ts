@@ -259,6 +259,6 @@ export const LINKS = {
   facebook: 'https://www.facebook.com/PEACECOIN.PCE',
   linkdin: 'https://www.linkedin.com/company/peace-coin',
   github: 'https://github.com/peacecoin-protocol',
-  discord: 'https://discord.gg/DRWPZzxzfv',
+  discord: 'https://discord.gg/fXmkg4xY',
   whitePaper: 'https://assets.peace-coin.org/docs/white-paper-v2.2.pdf',
 } as const
