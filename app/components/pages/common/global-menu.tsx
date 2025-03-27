@@ -2,7 +2,7 @@ import type { PropsWithChildren, ReactNode } from 'react'
 import type { LinkProps } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import {
   GlobalMenuAccordion,
@@ -16,6 +16,7 @@ import { useUseCases } from '@/hooks/use-usecases'
 import { LocaleLink } from '@/components/ui/locale-link'
 import { LINKS } from '@/constants'
 import { OuterLink } from '@/components/ui/outer-link'
+import { useIsMobile } from '@/hooks/use-is-mobile'
 
 function NavLink({ className, to, ...rest }: LinkProps) {
   const mergedClassName = cn(
@@ -52,21 +53,12 @@ export type GlobalMenuProps = {
 
 export function GlobalMenu({ open }: GlobalMenuProps) {
   const { t } = useTranslation('common')
-  const [isDesktop, setIsDesktop] = useState(false)
   const [isOpenLocale, setIsOpenLocale] = useState(false)
   const usecases = useUseCases()
+  const isMobile = useIsMobile()
 
   const handleTooggleLocaleMenu = useCallback(() => {
     setIsOpenLocale((prev) => !prev)
-  }, [])
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 768)
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize, { passive: true })
-    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   return (
@@ -82,7 +74,7 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
         <div className="flex flex-col container mx-auto p-6 pt-(--gh) h-full">
           <div className="overflow-y-auto hidden-scrollbar flex-grow md:flex md:justify-center md:space-x-24 md:pt-[9rem]">
             <GlobalMenuAccordion
-              {...(isDesktop
+              {...(!isMobile
                 ? {
                     type: 'multiple',
                     defaultValue: ['learnAbout', 'useCase', 'participate'],

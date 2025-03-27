@@ -7,7 +7,7 @@ import {
   HomeUsageSceneSection,
   HomeUsecaseSection,
 } from '@/components/pages/home'
-import { usageCountryCodes, tokens, tokensJp } from '@/constants'
+import { usageCountryNames, tokens, tokensJp } from '@/constants'
 import { generateDynamicRoutes } from '@/.server/route'
 import type { UsageScene } from '@/schemas'
 
@@ -23,7 +23,7 @@ export async function loader({ request }: Route.LoaderArgs) {
     tokens: [...(locale.split('-')[0] === 'ja' ? tokensJp : tokens)].sort(
       () => Math.random() - 0.5,
     ),
-    usageCountryCodes,
+    usageCountryNames,
     usageScenes: generateDynamicRoutes<UsageScene>(
       'usage-scenes',
       routes,
@@ -41,14 +41,14 @@ export const handle = {
 }
 
 export default function Index({
-  loaderData: { tokens, usageCountryCodes, usageScenes },
+  loaderData: { tokens, usageCountryNames, usageScenes },
 }: Route.ComponentProps) {
   return (
     <main className="grid gap-16 md:gap-[7.5rem]">
       <HomeHeroSection tokens={tokens} />
       <HomeConceptSection />
       <HomeMapSection
-        usageCountryCodes={usageCountryCodes}
+        usageCountryNames={usageCountryNames}
         communitiesCount={tokens.length}
       />
       <HomeUsecaseSection />
