@@ -2,7 +2,7 @@ import { useEffect, useRef, type ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
 
 type TokenNameDisplayProps = ComponentProps<'div'> & {
-  name: string
+  name?: string
 }
 
 export function TokenNameDisplay({
@@ -49,13 +49,15 @@ export function TokenNameDisplay({
     }
 
     ;(async () => {
-      root.textContent = prevNameRef.current
       if (prevNameRef.current.length) {
+        root.textContent = prevNameRef.current
         await deleteChars(300 / prevNameRef.current.length)
+        await new Promise((resolve) => setTimeout(resolve, 100))
       }
-      await new Promise((resolve) => setTimeout(resolve, 100))
-      await inputChars(name, 500 / name.length)
-      prevNameRef.current = name
+      if (name?.length) {
+        await inputChars(name, 500 / name.length)
+        prevNameRef.current = name
+      }
     })()
 
     return () => {
