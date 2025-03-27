@@ -49,6 +49,11 @@ export function TokenSlider({
       const containerWidth = root.offsetWidth
       const tokenSize = Math.ceil(root.offsetHeight / 2)
       const tokenGap = Math.ceil(tokenSize / 3)
+
+      if (!containerWidth || !tokenSize || !tokenGap) {
+        return
+      }
+
       startTransition(() => {
         setTokenConfig((prev) => {
           const renderCount =
