@@ -1,9 +1,11 @@
-import { useMemo } from 'react'
+import { usePageTransition } from '@/hooks/use-page-transition'
+import { useCallback, useMemo, type MouseEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, type LinkProps } from 'react-router'
 
 export function LocaleLink({ children, to, ...props }: LinkProps) {
   const { i18n } = useTranslation()
+  const { navigateWithTransition } = usePageTransition()
   const lang = i18n.language
   const completeTo = useMemo(() => {
     const pathSet = new Set<string>()
@@ -31,8 +33,22 @@ export function LocaleLink({ children, to, ...props }: LinkProps) {
     }
   }, [lang, to])
 
+  const handleClick = useCallback(
+    (e: MouseEvent) => {
+      e.preventDefault()
+      navigateWithTransition(completeTo)
+    },
+    [completeTo, navigateWithTransition],
+  )
+
   return (
-    <Link {...props} to={completeTo} hrefLang={lang}>
+    <Link
+      {...props}
+      to={completeTo}
+      prefetch="viewport"
+      hrefLang={lang}
+      onClick={handleClick}
+    >
       {children}
     </Link>
   )

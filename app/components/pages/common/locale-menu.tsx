@@ -6,7 +6,7 @@ import {
   useMemo,
   type ComponentProps,
 } from 'react'
-import { useLocation, useNavigate } from 'react-router'
+import { useLocation } from 'react-router'
 import {
   LINKS,
   REGX_LANG_FROM_PATHNAME,
@@ -23,6 +23,7 @@ import {
 } from 'framer-motion'
 import { MenuButton } from './menu-button'
 import { OuterLink } from '@/components/ui/outer-link'
+import { usePageTransition } from '@/hooks/use-page-transition'
 
 function isDefault(list: string[], locale: string) {
   return list.includes(locale) || list.includes(locale.split('-')[0])
@@ -46,7 +47,7 @@ export function LocaleMenu({
 }: LocaleMenuProps) {
   const { i18n, t } = useTranslation('common')
   const location = useLocation()
-  const navigate = useNavigate()
+  const { navigateWithTransition } = usePageTransition()
   const [browserDefaults, setBrowserDefaults] = useState<string[]>([])
   const locales = useMemo(
     () =>
@@ -85,9 +86,9 @@ export function LocaleMenu({
 
       // Navigate to the new path
       onClose?.()
-      navigate(newPath)
+      navigateWithTransition(newPath)
     },
-    [i18n, location.pathname, navigate, onClose],
+    [i18n, location.pathname, navigateWithTransition, onClose],
   )
 
   useEffect(() => {

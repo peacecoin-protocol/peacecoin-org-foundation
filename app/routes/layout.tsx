@@ -1,17 +1,31 @@
 import { Outlet } from 'react-router'
+
+import { PageTransitionProvider } from '@/hooks/use-page-transition'
 import { KVVideo } from '@/components/pages/common/kv-video'
 import { GlobalHeader } from '@/components/pages/common/global-header'
 import { GlobalFooter } from '@/components/pages/common/global-footer'
+import { cn } from '@/lib/utils'
 
 export default function Layout() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <KVVideo />
-      <GlobalHeader />
-      <div className="flex-grow relative mb-16 md:mb-[7.5rem]">
-        <Outlet />
-      </div>
-      <GlobalFooter className="relative" />
-    </div>
+    <PageTransitionProvider>
+      {({ isTransitioning, nextPath }) => (
+        <>
+          <KVVideo pathname={nextPath} />
+          <GlobalHeader pathname={nextPath} />
+          <div
+            className={cn(
+              'relative flex flex-col min-h-screen gap-16 md:gap-[7.5rem] transition-opacity duration-300 ease-in-out',
+              isTransitioning ? 'opacity-0' : 'opacity-100',
+            )}
+          >
+            <div className="flex-grow">
+              <Outlet />
+            </div>
+            <GlobalFooter />
+          </div>
+        </>
+      )}
+    </PageTransitionProvider>
   )
 }

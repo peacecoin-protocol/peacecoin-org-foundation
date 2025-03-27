@@ -1,5 +1,10 @@
-import { useLocation } from 'react-router'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ComponentProps,
+} from 'react'
 
 import logoH from '@/assets/svg/logo-h.svg'
 import { cn } from '@/lib/utils'
@@ -44,10 +49,17 @@ function DesktopLocaleMenu() {
   )
 }
 
-export function GlobalHeader() {
+export type GlobalHeaderProps = ComponentProps<'header'> & {
+  pathname?: string
+}
+
+export function GlobalHeader({
+  pathname,
+  className,
+  ...rest
+}: GlobalHeaderProps) {
   const [scrolling, setScrolling] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
 
   const toggleMenu = useCallback(() => {
     setMenuOpen((prev) => !prev)
@@ -65,7 +77,7 @@ export function GlobalHeader() {
 
   useEffect(() => {
     setMenuOpen(false)
-  }, [location.pathname])
+  }, [pathname])
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : 'hidden auto'
@@ -82,7 +94,9 @@ export function GlobalHeader() {
           scrolling &&
             !menuOpen &&
             `shadow-[0_0.25rem_0.5rem_-0.1rem_rgba(0,0,0,0.1)]`,
+          className,
         )}
+        {...rest}
       >
         <div className="container mx-auto flex items-center gap-2 justify-between h-(--gh) px-6 max-md:pr-3">
           <LocaleLink to="/">
