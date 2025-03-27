@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useRef, type HTMLAttributes } from 'react'
+import { useEffect, useRef, type ComponentProps } from 'react'
 
 declare global {
   interface Window {
@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-export type YouTubeProps = HTMLAttributes<HTMLDivElement> & {
+export type YouTubeProps = ComponentProps<'div'> & {
   videoId: string
   onLoaded?: () => void
 }

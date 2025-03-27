@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import type { HTMLAttributes, ReactNode } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 
 import logo from '@/assets/svg/logo-v.svg'
 import { BreakLine } from '@/components/functional/break-line'
@@ -73,7 +73,7 @@ const snsLinks: SNSLink[] = [
   },
 ]
 
-export type FooterProps = HTMLAttributes<HTMLElement>
+export type FooterProps = ComponentProps<'footer'>
 
 export function GlobalFooter({ className, ...rest }: FooterProps) {
   const { t } = useTranslation('common')

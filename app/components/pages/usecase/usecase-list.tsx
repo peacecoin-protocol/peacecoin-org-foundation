@@ -1,9 +1,9 @@
 import { UsecaseItem } from './usecase-item'
-import { useMemo, type HTMLAttributes } from 'react'
+import { useMemo, type ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
 import { useUseCases } from '@/hooks/use-usecases'
 
-export type UsecaseListProps = HTMLAttributes<HTMLUListElement> & {
+export type UsecaseListProps = ComponentProps<'ul'> & {
   limit?: number
 }
 

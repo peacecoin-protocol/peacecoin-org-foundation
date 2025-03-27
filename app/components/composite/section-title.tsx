@@ -1,8 +1,8 @@
-import type { HTMLAttributes, ReactNode } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 import { BreakLine } from '../functional/break-line'
 import { cn } from '@/lib/utils'
 
-export type SectionTitleProps = HTMLAttributes<HTMLDivElement> & {
+export type SectionTitleProps = ComponentProps<'div'> & {
   subtitle?: ReactNode
   children: string
 }

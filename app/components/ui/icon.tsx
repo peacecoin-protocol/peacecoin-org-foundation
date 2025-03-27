@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import type { HTMLAttributes, SVGProps } from 'react'
+import type { ComponentProps, SVGProps } from 'react'
 
 export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -12,10 +12,7 @@ export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-export function CircleArrowIcon({
-  className,
-  ...rest
-}: HTMLAttributes<HTMLDivElement>) {
+export function CircleArrowIcon({ className, ...rest }: ComponentProps<'i'>) {
   return (
     <i
       className={cn(

@@ -4,7 +4,7 @@ import type { Route } from './+types/concept'
 import { SectionTitle } from '@/components/composite/section-title'
 import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
 import { BreakLine } from '@/components/functional/break-line'
-import type { HTMLAttributes, PropsWithChildren } from 'react'
+import type { ComponentProps, PropsWithChildren } from 'react'
 import { cn } from '@/lib/utils'
 
 function SubTitle({ children }: { children: string }) {
@@ -22,7 +22,7 @@ function Description({
   children,
   className,
   ...rest
-}: PropsWithChildren<HTMLAttributes<HTMLParagraphElement>>) {
+}: PropsWithChildren<ComponentProps<'p'>>) {
   return (
     <p
       className={cn(
