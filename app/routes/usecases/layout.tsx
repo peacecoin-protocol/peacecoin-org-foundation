@@ -20,7 +20,7 @@ const components = {
         alt={alt}
         width="480"
         height="360"
-        className="block object-cover bg-foreground/5 max-md:aspect-square w-full h-auto"
+        className="block object-contain w-full h-auto"
         loading="lazy"
         {...props}
       />
