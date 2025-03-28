@@ -253,6 +253,9 @@ export const tokensJp: CommunityToken[] = [
   { tokenAddress: 'yuzury', name: `ゆずり～` },
 ]
 
+export const BASE_URL =
+  import.meta.env.VITE_BASE_URL || 'https://www.peace-coin.org'
+
 export const ASSET_URL = 'https://assets.peace-coin.org'
 
 export const LINKS = {

@@ -10,6 +10,7 @@ import {
 import { usageCountryNames, tokens, tokensJp } from '@/constants'
 import { generateDynamicRoutes } from '@/.server/route'
 import type { UsageScene } from '@/schemas'
+import { generateMeta } from 'scripts/seo'
 
 export async function loader({ request }: Route.LoaderArgs) {
   const [t, locale, { routes }] = await Promise.all([
@@ -17,9 +18,9 @@ export async function loader({ request }: Route.LoaderArgs) {
     i18next.getLocale(request),
     import('virtual:react-router/server-build'),
   ])
-  const title = t('metaTitle')
   return {
-    title,
+    title: t('meta.title'),
+    description: t('meta.description'),
     tokens: [...(locale.split('-')[0] === 'ja' ? tokensJp : tokens)].sort(
       () => Math.random() - 0.5,
     ),
@@ -32,8 +33,11 @@ export async function loader({ request }: Route.LoaderArgs) {
   }
 }
 
-export function meta({ data }: Route.MetaArgs) {
-  return [{ title: data.title }]
+export function meta({ data: { title, description } }: Route.MetaArgs) {
+  return generateMeta({
+    title,
+    description,
+  })
 }
 
 export const handle = {

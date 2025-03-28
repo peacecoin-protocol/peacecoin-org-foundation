@@ -46,6 +46,7 @@ const remarkReactRouerFrontmatter: Plugin<
                 {
                   type: 'ExportNamedDeclaration',
                   specifiers: [],
+                  attributes: [],
                   declaration: {
                     type: 'VariableDeclaration',
                     kind: 'const',

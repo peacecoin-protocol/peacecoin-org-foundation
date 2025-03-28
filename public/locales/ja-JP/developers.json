@@ -1,6 +1,9 @@
 {
+  "meta": {
+    "title": "開発者向け",
+    "description": "コードでつながる、PEACE COINの未来"
+  },
   "title": "コードでつながる、PEACE COINの未来",
-  "metaTitle": "開発者向け",
   "github": {
     "title": "GitHub",
     "description": "誰でも自由に開発・改良できるPEACE COINのオープンソース版をGitHubで公開しています。"

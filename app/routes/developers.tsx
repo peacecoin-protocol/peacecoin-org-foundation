@@ -12,6 +12,7 @@ import type { FC, SVGProps } from 'react'
 import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
 import { LINKS } from '@/constants'
 import { OuterLink } from '@/components/ui/outer-link'
+import { generateMeta } from 'scripts/seo'
 
 const list: {
   key: string
@@ -32,13 +33,18 @@ const list: {
 ]
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const t = await i18next.getFixedT(request, 'developers')
-  const title = t('metaTitle')
-  return { title }
+  const [t] = await Promise.all([i18next.getFixedT(request, 'developers')])
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+  }
 }
 
-export function meta({ data }: Route.MetaArgs) {
-  return [{ title: data.title }]
+export function meta({ data: { title, description } }: Route.MetaArgs) {
+  return generateMeta({
+    title,
+    description,
+  })
 }
 
 export const handle = {

@@ -1,5 +1,8 @@
 {
-  "metaTitle": "PEACE COIN Foundation",
+  "meta": {
+    "title": "Fundação do Protocolo PEACE COIN",
+    "description": "AVANCE O CAPITALISMO PARA O PRÓXIMO ESTÁGIO USANDO TECNOLOGIA BLOCKCHAIN."
+  },
   "hero": {
     "title": "Thanks-Driven\nEconomy",
     "forDeveloper": "Docs Para Desenvolvedores"

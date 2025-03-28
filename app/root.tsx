@@ -19,9 +19,11 @@ import './app.css'
 import { usecaseSchema, type Usecase } from './schemas'
 import { UseCasesProvider } from './hooks/use-usecases'
 import { generateDynamicRoutes } from './.server/route'
-import { supportedLanguages } from './constants'
+import { BASE_URL, LINKS, supportedLanguages } from './constants'
 
 const loaderSchema = v.object({
+  siteName: v.string(),
+  url: v.string(),
   locale: v.string(),
   nonce: v.optional(v.string()),
   usecases: v.array(usecaseSchema),
@@ -41,11 +43,15 @@ export const links: Route.LinksFunction = () => [
 ]
 
 export async function loader({ request, context }: Route.LoaderArgs) {
-  const [locale, { routes }] = await Promise.all([
+  const [t, locale, { routes }] = await Promise.all([
+    i18next.getFixedT('common'),
     i18next.getLocale(request),
     import('virtual:react-router/server-build'),
   ])
+  const url = new URL(request.url)
   return v.parse(loaderSchema, {
+    siteName: t('siteName'),
+    url: `${url.origin}${url.pathname}`,
     locale,
     nonce: context.nonce,
     usecases: generateDynamicRoutes<Usecase>('usecases', routes, locale).sort(
@@ -55,8 +61,10 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { locale, nonce, usecases } = useLoaderData<typeof loader>()
+  const { locale, nonce, usecases, siteName, url } =
+    useLoaderData<typeof loader>()
   const { i18n } = useTranslation()
+  const xAccount = new URL(LINKS.x).pathname.replace(/^\//g, '')
   useChangeLanguage(locale)
 
   return (
@@ -92,12 +100,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
               key={lang}
               rel="alternate"
               hrefLang={lang}
-              href={lang === 'en' ? '/' : `/${lang}/`}
+              href={lang === 'en' ? BASE_URL : `${BASE_URL}/${lang}/`}
             />
           )
         })}
-        <link rel="alternate" hrefLang="x-default" href="/" />
+        <link rel="alternate" hrefLang="x-default" href={BASE_URL} />
         <Meta />
+        <meta property="og:url" content={url} />
+        <meta property="og:site_name" content={siteName} />
+        <meta
+          property="og:image"
+          content={`${BASE_URL}/assets/images/og.png`}
+        />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:image"
+          content={`${BASE_URL}/assets/images/og.png`}
+        />
+        <meta property="twitter:site" content={`@${xAccount}`} />
+        <meta property="twitter:url" content={url} />
         <Links />
       </head>
       <body>

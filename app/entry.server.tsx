@@ -55,6 +55,10 @@ const contentSecurityPolicy = (nonce?: string) => ({
     'https://fonts.googleapis.com', // Google Fonts のスタイルシート
   ],
   'upgrade-insecure-requests': [], // HTTPS を強制
+  'media-src': [
+    "'self'",
+    'https://assets.peace-coin.org', // YouTube 埋め込み用メディア
+  ],
 })
 
 export default async function handleRequest(
@@ -138,6 +142,10 @@ export default async function handleRequest(
       .join('; '),
   )
   responseHeaders.set('Content-Language', lng)
+  responseHeaders.set(
+    'Cache-Control',
+    `public, max-age=1209600, stale-while-revalidate=86400`,
+  )
   responseHeaders.delete('X-Powered-By')
 
   return new Response(body, {

@@ -1,5 +1,8 @@
 {
-  "metaTitle": "PEACE COIN Foundation",
+  "meta": {
+    "title": "PEACE COIN Foundation",
+    "description": "ADVANCE CAPITALISM TO THE NEXT STAGE BY USING BLOCKCHAIN TECHNOLOGY."
+  },
   "hero": {
     "title": "Thanks-Driven\nEconomy",
     "forDeveloper": "Docs For Developer"

@@ -1,5 +1,8 @@
 {
-  "metaTitle": "ピースコイン・ファウンデーション",
+  "meta": {
+    "title": "ピースコイン・プロトコル・ファウンデーション",
+    "description": "ブロックチェーン技術で資本主義を次のステージへ。"
+  },
   "hero": {
     "title": "Thanks-Driven\nEconomy",
     "forDeveloper": "開発者向けドキュメント"

@@ -6,6 +6,7 @@ import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
 import { BreakLine } from '@/components/functional/break-line'
 import type { ComponentProps, PropsWithChildren } from 'react'
 import { cn } from '@/lib/utils'
+import { generateMeta } from 'scripts/seo'
 
 function SubTitle({ children }: { children: string }) {
   return (
@@ -37,13 +38,18 @@ function Description({
 }
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const t = await i18next.getFixedT(request, 'concept')
-  const title = t('metaTitle')
-  return { title }
+  const [t] = await Promise.all([i18next.getFixedT(request, 'concept')])
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+  }
 }
 
-export function meta({ data }: Route.MetaArgs) {
-  return [{ title: data.title }]
+export function meta({ data: { title, description } }: Route.MetaArgs) {
+  return generateMeta({
+    title,
+    description,
+  })
 }
 
 export const handle = {

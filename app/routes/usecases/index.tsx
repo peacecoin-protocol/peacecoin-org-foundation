@@ -4,15 +4,21 @@ import type { Route } from './+types/index'
 import { SectionTitle } from '@/components/composite/section-title'
 import { UsecaseList } from '@/components/pages/usecase/usecase-list'
 import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
+import { generateMeta } from 'scripts/seo'
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const t = await i18next.getFixedT(request, 'usecases')
-  const title = t('metaTitle')
-  return { title }
+  const [t] = await Promise.all([i18next.getFixedT(request, 'usecases')])
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+  }
 }
 
-export function meta({ data }: Route.MetaArgs) {
-  return [{ title: data.title }]
+export function meta({ data: { title, description } }: Route.MetaArgs) {
+  return generateMeta({
+    title,
+    description,
+  })
 }
 
 export const handle = {

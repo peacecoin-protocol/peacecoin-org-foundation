@@ -1,6 +1,9 @@
 {
+  "meta": {
+    "title": "For Developers",
+    "description": "Connect through code to the future of PEACE COIN"
+  },
   "title": "Connect through code to the future of PEACE COIN",
-  "metaTitle": "For Developers",
   "github": {
     "title": "GitHub",
     "description": "We have published an open-source version of PEACE COIN on GitHub that anyone can freely develop and improve."

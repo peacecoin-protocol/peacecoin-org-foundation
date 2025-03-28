@@ -9,6 +9,15 @@ import remarkBreaks from 'remark-breaks'
 // import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import remarkReactRouerFrontmatter from './scripts/remark-react-router-frontmatter'
 import { getTranslatedProgress } from './scripts/crowdin'
+import { generateMeta } from './scripts/seo'
+
+function toOneLine(str: string) {
+  return str
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .join(' ')
+}
 
 export default defineConfig({
   plugins: [
@@ -28,17 +37,11 @@ export default defineConfig({
             remarkReactRouerFrontmatter,
             {
               meta(frontmatter: Record<string, string>) {
-                return [
-                  { title: `${frontmatter.title} | MySite` },
-                  {
-                    name: 'description',
-                    content: frontmatter.description,
-                  },
-                  {
-                    property: 'og:title',
-                    content: `${frontmatter.title} | MySite`,
-                  },
-                ]
+                return generateMeta({
+                  title: toOneLine(frontmatter.title),
+                  description: toOneLine(frontmatter.description),
+                  type: 'article',
+                })
               },
               handle(frontmatter: Record<string, string>) {
                 return frontmatter
