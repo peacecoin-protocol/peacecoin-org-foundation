@@ -1,16 +1,17 @@
-import { YouTube } from '@/components/composite/youtube'
-import { cn } from '@/lib/utils'
 import {
   useCallback,
   useEffect,
   useRef,
   useState,
-  type HTMLAttributes,
+  type ComponentProps,
+  type CSSProperties,
 } from 'react'
-import { useLocation } from 'react-router'
+import { cn } from '@/lib/utils'
+import { ASSET_URL, REGX_LANG_FROM_PATHNAME } from '@/constants'
 
-function getOpacity(pathname: string) {
-  switch (pathname) {
+function getOpacity(pathname?: string) {
+  const pathWithoutLocale = pathname?.replace(REGX_LANG_FROM_PATHNAME, '/')
+  switch (pathWithoutLocale) {
     case '/':
       return 1
     case '/developers':
@@ -21,22 +22,23 @@ function getOpacity(pathname: string) {
   }
 }
 
-export type KVVideoProps = HTMLAttributes<HTMLDivElement>
+export type KVVideoProps = ComponentProps<'div'> & {
+  pathname?: string
+}
 
-export function KVVideo({ className, style, ...rest }: KVVideoProps) {
-  const location = useLocation()
+export function KVVideo({ pathname, className, style, ...rest }: KVVideoProps) {
   const [loaded, setLoaded] = useState(false)
-  const [opacity, setOpacity] = useState(getOpacity(location.pathname))
+  const [opacity, setOpacity] = useState(getOpacity(pathname))
   const rootRef = useRef<HTMLDivElement>(null)
-  // const videoRef = useRef<HTMLVideoElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   const handleInitialized = useCallback(() => {
     setLoaded(true)
   }, [])
 
   useEffect(() => {
-    setOpacity(getOpacity(location.pathname))
-  }, [location.pathname])
+    setOpacity(getOpacity(pathname))
+  }, [pathname])
 
   useEffect(() => {
     const root = rootRef.current
@@ -45,43 +47,45 @@ export function KVVideo({ className, style, ...rest }: KVVideoProps) {
       return
     }
 
-    // const video = videoRef.current
+    const video = videoRef.current
 
-    // if (!root || !video || !opacity) {
-    //   if (video?.paused === false) {
-    //     video.pause()
-    //   }
-    //   return
-    // }
+    if (!root || !video || !opacity) {
+      if (video?.paused === false) {
+        video.pause()
+      }
+      return
+    }
 
-    // const observer = new IntersectionObserver(
-    //   ([entry]) => {
-    //     if (entry.isIntersecting) {
-    //       if (video.paused) {
-    //         video.play()
-    //       }
-    //     } else if (!video.paused) {
-    //       video.pause()
-    //     }
-    //   },
-    //   {
-    //     rootMargin: '0px',
-    //     threshold: 0.5,
-    //   },
-    // )
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (video.paused) {
+            video.play()
+          }
+        } else if (!video.paused) {
+          video.pause()
+        }
+      },
+      {
+        rootMargin: '0px',
+        threshold: 0.5,
+      },
+    )
 
     const listener = () => {
       const offset = Math.max(0, window.scrollY) * 0.5
       root.style.transform = `translateY(${offset}px)`
     }
 
-    // observer.observe(root)
+    setLoaded(video.readyState === 4)
+    observer.observe(root)
     window.addEventListener('scroll', listener, { passive: true })
     listener()
 
     return () => {
       window.removeEventListener('scroll', listener)
-      // observer.disconnect()
+      root.style.transform = ''
+      observer.disconnect()
     }
   }, [opacity])
 
@@ -98,34 +102,35 @@ export function KVVideo({ className, style, ...rest }: KVVideoProps) {
       {...rest}
       ref={rootRef}
     >
-      <YouTube
+      <div
         className={cn(
           // common
-          'aspect-video absolute outline-0',
+          'aspect-video absolute',
           // sp
-          'max-md:origin-bottom-left max-md:transform-(--sp-transform) max-md:h-[100vw] max-md:w-auto max-md:left-0 max-md:bottom-0',
+          'max-md:origin-bottom-left max-md:transform-(--sp-transform) max-md:h-[100vw] max-md:max-w-dvh max-md:w-auto max-md:left-0 max-md:bottom-0',
           // desktop
-          'md:w-auto md:h-full md:bottom-0 md:right-0',
+          'md:w-auto md:h-full md:bottom-0 md:right-0 md:max-w-dvw',
         )}
         style={
           {
             '--sp-transform': 'rotate(90deg) translateX(-100%)',
-          } as React.CSSProperties
+          } as CSSProperties
         }
-        videoId="w6Hjdms-DCI"
-        onLoaded={handleInitialized}
-      />
-      {/* <video
-        className="w-auto h-full absolute top-0 right-0"
-        loop
-        muted
-        playsInline
-        onLoadedData={handleInitialized}
-        poster="/assets/images/kv-video-poster.webp"
-        ref={videoRef}
       >
-        <source src="/assets/video/kv.mp4" type="video/mp4" />
-      </video> */}
+        <video
+          className="block w-full h-full object-cover object-center outline-0"
+          loop
+          muted
+          playsInline
+          onLoadedData={handleInitialized}
+          poster="/assets/images/kv-video-poster.webp"
+          disablePictureInPicture
+          disableRemotePlayback
+          ref={videoRef}
+        >
+          <source src={`${ASSET_URL}/videos/kv.mp4`} type="video/mp4" />
+        </video>
+      </div>
       <i className="absolute left-0 right-0 bottom-0 h-[25%] bg-gradient-to-b from-transparent to-background" />
     </div>
   )
