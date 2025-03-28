@@ -37,6 +37,7 @@ const contentSecurityPolicy = (nonce?: string) => ({
     nonce ? `'nonce-${nonce}'` : "'unsafe-inline'",
     'https://www.googletagmanager.com', // Google Analytics 用スクリプト
     'https://www.youtube.com', // YouTube 埋め込み用スクリプト
+    'https://static.cloudflareinsights.com', // Cloudflare Insights
   ],
   'frame-src': [
     "'self'",
