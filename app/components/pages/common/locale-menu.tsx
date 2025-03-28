@@ -5,6 +5,8 @@ import {
   useEffect,
   useMemo,
   type ComponentProps,
+  type ChangeEvent,
+  startTransition,
 } from 'react'
 import { useLocation } from 'react-router'
 import {
@@ -49,22 +51,35 @@ export function LocaleMenu({
   const location = useLocation()
   const { navigateWithTransition } = usePageTransition()
   const [browserDefaults, setBrowserDefaults] = useState<string[]>([])
-  const locales = useMemo(
-    () =>
-      translatedProgress
-        .map(({ locale, progress, total }) => ({
-          locale,
-          progress,
-          total,
-          isBrowserDefault: isDefault(browserDefaults, locale),
-        }))
-        .sort((a, b) => {
-          if (a.isBrowserDefault && !b.isBrowserDefault) return -1
-          if (!a.isBrowserDefault && b.isBrowserDefault) return 1
-          return 0
-        }) ?? [],
-    [browserDefaults],
-  )
+  const [filterText, setFilterText] = useState('')
+
+  const locales = useMemo(() => {
+    const searchTerm = filterText.toLowerCase()
+    return translatedProgress
+      .map(({ locale, progress, total }) => ({
+        locale,
+        progress,
+        total,
+        isBrowserDefault: isDefault(browserDefaults, locale),
+      }))
+      .filter(({ locale }) => {
+        if (!filterText) return true
+
+        const localeName = (
+          supportedLanguages[locale as 'en'] || locale
+        ).toLowerCase()
+        const localeValue = locale.toLowerCase()
+
+        return (
+          localeName.includes(searchTerm) || localeValue.includes(searchTerm)
+        )
+      })
+      .sort((a, b) => {
+        if (a.isBrowserDefault && !b.isBrowserDefault) return -1
+        if (!a.isBrowserDefault && b.isBrowserDefault) return 1
+        return 0
+      })
+  }, [browserDefaults, filterText])
 
   const handleLanguageChange = useCallback(
     (locale: string) => {
@@ -89,6 +104,15 @@ export function LocaleMenu({
       navigateWithTransition(newPath)
     },
     [i18n, location.pathname, navigateWithTransition, onClose],
+  )
+
+  const handleChangeFilterText = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      startTransition(() => {
+        setFilterText(e.target.value)
+      })
+    },
+    [],
   )
 
   useEffect(() => {
@@ -128,13 +152,14 @@ export function LocaleMenu({
           )}
           <div className="pt-3 pb-0 px-6 md:px-3">
             <h3 className="text-sm">
-              {t('language.filteredList', { val: translatedProgress.length })}
+              {t('language.filteredList', { val: locales.length })}
             </h3>
             <div className="mt-2 relative">
               <input
                 type="text"
                 placeholder={t('language.filterPlaceholder')}
                 className="w-full text-sm pl-3 py-2 pr-10 bg-background border border-input rounded-sm"
+                onChange={handleChangeFilterText}
               />
               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                 <FilterIcon className="size-4 text-foreground/50" />
