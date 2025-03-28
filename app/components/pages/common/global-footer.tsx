@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import type { ComponentProps, ReactNode } from 'react'
 
-import logo from '@/assets/svg/logo-v.svg'
 import { BreakLine } from '@/components/functional/break-line'
 import { cn } from '@/lib/utils'
 import { LINKS } from '@/constants'
 import { OuterLink } from '@/components/ui/outer-link'
 import { LocaleLink } from '@/components/ui/locale-link'
+import { PeaceCoinVerticalIcon } from '@/components/ui/icon'
 
 type SNSLink = {
   href: string
@@ -84,14 +84,7 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
       <div className="container mx-auto pt-12 pb-6 px-5">
         <div className="flex max-md:flex-col gap-8 md:gap-16">
           <div className="md:flex-1">
-            <img
-              src={logo}
-              alt="PEACE COIN"
-              width="320"
-              height="156"
-              className="h-[6rem] w-auto mb-6 block"
-              loading="lazy"
-            />
+            <PeaceCoinVerticalIcon className="h-[6rem] w-auto mb-6 block" />
             <BreakLine
               component="p"
               className="text-xs md:text-base leading-[1.8]"

@@ -6,7 +6,6 @@ import {
   type ComponentProps,
 } from 'react'
 
-import logoH from '@/assets/svg/logo-h.svg'
 import { cn } from '@/lib/utils'
 
 import { GlobalMenu } from './global-menu'
@@ -14,6 +13,7 @@ import { LocaleMenu } from './locale-menu'
 import { LocaleButton } from './locale-button'
 import { MenuButton } from './menu-button'
 import { LocaleLink } from '@/components/ui/locale-link'
+import { PeaceCoinHorizontalIcon } from '@/components/ui/icon'
 
 function DesktopLocaleMenu() {
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -100,13 +100,7 @@ export function GlobalHeader({
       >
         <div className="container mx-auto flex items-center gap-2 justify-between h-(--gh) px-6 max-md:pr-3">
           <LocaleLink to="/">
-            <img
-              src={logoH}
-              alt="PEACE COIN"
-              width="217"
-              height="44"
-              className="h-11 w-auto"
-            />
+            <PeaceCoinHorizontalIcon className="h-11 w-auto" />
           </LocaleLink>
           <div className="flex-1" />
           <MenuButton open={menuOpen} onClick={toggleMenu} />
