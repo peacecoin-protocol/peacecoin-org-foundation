@@ -2,15 +2,12 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react'
-import {
-  useLocation,
-  useNavigate,
-  useNavigation,
-  type NavigateFunction,
-} from 'react-router'
+import { useLocation, useNavigate, type NavigateFunction } from 'react-router'
 
 type PageTransitionState = {
   isTransitioning: boolean
@@ -33,20 +30,23 @@ export function PageTransitionProvider({
   duration = 200,
 }: PageTransitionProviderProps) {
   const location = useLocation()
-  const navigation = useNavigation()
   const navigate = useNavigate()
   const [nextPath, setNextPath] = useState(location.pathname)
+  const fromLinkPathRef = useRef(nextPath)
   const isTransitioning =
-    Boolean(navigation.location) || location.pathname !== nextPath
+    location.pathname !== nextPath && fromLinkPathRef.current === nextPath
+
   const navigateWithTransition: NavigateFunction = useCallback(
     async (...args) => {
       const to = args[0]
       switch (typeof to) {
         case 'string':
+          fromLinkPathRef.current = to
           setNextPath(to)
           break
         case 'object':
           if (to.pathname) {
+            fromLinkPathRef.current = to.pathname
             setNextPath(to.pathname)
           }
           break
@@ -61,6 +61,21 @@ export function PageTransitionProvider({
     },
     [duration, navigate],
   )
+
+  // Handle browser back/forward navigation
+  useEffect(() => {
+    const handler = () => {
+      const currentPath = window.location.pathname
+      if (currentPath !== fromLinkPathRef.current) {
+        fromLinkPathRef.current = currentPath
+        setNextPath(currentPath)
+      }
+    }
+    window.addEventListener('popstate', handler)
+    return () => {
+      window.removeEventListener('popstate', handler)
+    }
+  }, [])
 
   const contextValue = useMemo(
     () => ({
