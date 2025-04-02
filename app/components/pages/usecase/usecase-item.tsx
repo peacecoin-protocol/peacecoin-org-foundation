@@ -15,7 +15,7 @@ export function UsecaseItem({
   return (
     <LocaleLink
       to={`/usecases/${id}`}
-      className="flex max-lg:flex-col lg:items-center lg:justify-between rounded-md bg-background p-6 md:p-12 items-center justify-between gap-8 lg:gap-12 transition-shadow hover:shadow-lg"
+      className="flex max-lg:flex-col lg:items-center lg:justify-between rounded-md bg-background p-6 md:p-12 items-center justify-between gap-8 lg:gap-12 transition-shadow duration-300 ease-out hover:shadow-hover"
     >
       <UsecaseTitle
         tokenName={tokenName}

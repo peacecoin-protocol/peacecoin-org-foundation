@@ -34,7 +34,7 @@ export function HomeUsageSceneSection({
           <li key={item.id} className="md:flex-1">
             <LocaleLink
               to={`/usage-scenes/${item.id}`}
-              className="flex flex-col items-center gap-2 md:gap-6 transition-all hover:shadow-md hover:bg-primary/7 md:p-6 rounded-2xl"
+              className="flex flex-col items-center gap-2 md:gap-6 transition-all duration-300 ease-out hover:shadow-hover hover:bg-card md:p-6 rounded-2xl"
             >
               <img
                 src={item.coverImageUrl}

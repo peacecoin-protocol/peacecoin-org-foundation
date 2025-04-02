@@ -40,7 +40,7 @@ function DesktopLocaleMenu() {
     <div className="relative max-md:hidden -mr-4" ref={dropdownRef}>
       <LocaleButton onClick={handleTooggle} />
       <LocaleMenu
-        className="absolute right-0 mt-2 rounded-md shadow-lg w-[22.5rem]"
+        className="absolute right-0 mt-2 rounded-md shadow-hover w-[22.5rem]"
         open={isOpenLocale}
         onClose={handleTooggle}
         initTransform={{ translateY: '-2rem' }}
@@ -86,7 +86,7 @@ export function GlobalHeader({ className, state, ...rest }: GlobalHeaderProps) {
     <>
       <header
         className={cn(
-          'fixed z-20 top-0 left-0 w-full bg-background transition-all md:top-5 md:left-5 md:w-[calc(100%-2.5rem)] md:rounded-full',
+          'fixed z-20 top-0 left-0 w-full bg-background transition-all duration-300 ease-out md:top-5 md:left-5 md:w-[calc(100%-2.5rem)] md:rounded-full',
           menuOpen
             ? 'bg-transparent duration-250 delay-100'
             : 'md:shadow-[0_0_2.5rem_0_rgba(0,0,0,0.09)] duration-150',

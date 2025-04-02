@@ -61,7 +61,7 @@ export default function UsageScenesDetailLayout() {
         <footer className="flex items-center justify-between border-t pt-10 md:pt-16 gap-10 text-primary font-semibold leading-snug text-sm md:text-2xl">
           <LocaleLink
             to={data.prevPath}
-            className="flex items-center justify-start gap-4 max-md:flex-1 md:p-6 md:hover:bg-primary/7 md:rounded-2xl md:-ml-6"
+            className="flex items-center justify-start gap-4 max-md:flex-1 md:p-6 md:hover:bg-card md:rounded-2xl md:-ml-6"
           >
             <ArrowIcon className="w-4 h-auto rotate-180" />
             <BreakLine
@@ -74,7 +74,7 @@ export default function UsageScenesDetailLayout() {
           <i className="max-md:hidden md:flex-1" />
           <LocaleLink
             to={data.nextPath}
-            className="flex items-center justify-end gap-4 max-md:flex-1 md:p-6 md:hover:bg-primary/7 md:rounded-2xl md:-mr-6"
+            className="flex items-center justify-end gap-4 max-md:flex-1 md:p-6 md:hover:bg-card md:rounded-2xl md:-mr-6"
           >
             <BreakLine
               component="span"

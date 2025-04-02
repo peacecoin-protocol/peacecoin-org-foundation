@@ -42,7 +42,7 @@ export function HomeHeroSection({ tokens }: HomeHeroSectionProps) {
   }, [])
 
   return (
-    <section ref={sectionRef} className="h-dvh flex flex-col">
+    <section ref={sectionRef} className="h-svh flex flex-col">
       <div className="flex-1 container mx-auto flex flex-col justify-center gap-5 md:gap-7 px-6 pt-(--gh) max-md:pb-[30vw]">
         <BreakLine
           component="h1"

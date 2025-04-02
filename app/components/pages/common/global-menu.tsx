@@ -18,9 +18,15 @@ import { LINKS } from '@/constants'
 import { OuterLink } from '@/components/ui/outer-link'
 import { useIsMobile } from '@/hooks/use-is-mobile'
 
+const linkButtonClassName =
+  'hover:text-primary transition-colors duration-300 ease-out'
+const accordionItemClassName =
+  'md:flex-1 transition-[translate,opacity] duration-500 transform'
+
 function NavLink({ className, to, ...rest }: LinkProps) {
   const mergedClassName = cn(
-    'block py-1 text-foreground hover:text-primary',
+    'block py-1 text-foreground',
+    linkButtonClassName,
     className,
   )
   return typeof to === 'string' && to.startsWith('http') ? (
@@ -56,7 +62,6 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
   const [isOpenLocale, setIsOpenLocale] = useState(false)
   const usecases = useUseCases()
   const isMobile = useIsMobile()
-
   const handleTooggleLocaleMenu = useCallback(() => {
     setIsOpenLocale((prev) => !prev)
   }, [])
@@ -89,7 +94,7 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
               <GlobalMenuAccordionItem
                 value="learnAbout"
                 className={cn(
-                  'md:flex-1 transition-[translate,opacity] duration-500 transform',
+                  accordionItemClassName,
                   open ? 'delay-200' : 'opacity-0 -translate-y-10',
                 )}
               >
@@ -105,21 +110,21 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
                       <div className="flex items-center gap-1">
                         <LocaleLink
                           to="/usage-scenes/01"
-                          className="hover:text-primary transition-colors"
+                          className={linkButtonClassName}
                         >
                           {t('navigation.usageScene')} 01
                         </LocaleLink>
                         <span className="text-primary">・</span>
                         <LocaleLink
                           to="/usage-scenes/02"
-                          className="hover:text-primary transition-colors"
+                          className={linkButtonClassName}
                         >
                           02
                         </LocaleLink>
                         <span className="text-primary">・</span>
                         <LocaleLink
                           to="/usage-scenes/03"
-                          className="hover:text-primary transition-colors"
+                          className={linkButtonClassName}
                         >
                           03
                         </LocaleLink>
@@ -132,7 +137,7 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
               <GlobalMenuAccordionItem
                 value="useCase"
                 className={cn(
-                  'md:flex-1 transition-[translate,opacity] duration-500 transform',
+                  accordionItemClassName,
                   open ? 'delay-300' : 'opacity-0 -translate-y-10',
                 )}
               >
@@ -155,7 +160,7 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
               <GlobalMenuAccordionItem
                 value="participate"
                 className={cn(
-                  'md:flex-1 transition-[translate,opacity] duration-500 transform',
+                  accordionItemClassName,
                   open ? 'delay-400' : 'opacity-0 -translate-y-10',
                 )}
               >

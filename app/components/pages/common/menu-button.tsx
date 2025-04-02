@@ -11,7 +11,7 @@ export function MenuButton({ className, open, ...rest }: MenuButtonProps) {
   return (
     <button
       className={cn(
-        'size-12 relative rounded-full transition-colors hover:cursor-pointer hover:bg-primary/5',
+        'size-12 relative rounded-full transition-colors duration-300 ease-out hover:cursor-pointer hover:bg-primary/5',
         open ? 'text-primary' : 'text-foreground',
         className,
       )}

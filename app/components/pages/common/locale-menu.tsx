@@ -236,7 +236,7 @@ export function LocaleMenu({
             )}
           </div>
 
-          <div className="px-6 md:px-5 py-4 border-t-2 border-primary bg-primary/7 text-foreground text-xs">
+          <div className="px-6 md:px-5 py-4 border-t-2 border-primary bg-card text-foreground text-xs">
             <p>
               {t('language.footer')}
               <OuterLink

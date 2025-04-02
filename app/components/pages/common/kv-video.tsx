@@ -92,7 +92,7 @@ export function KVVideo({ pathname, className, style, ...rest }: KVVideoProps) {
   return (
     <div
       className={cn(
-        'absolute top-0 left-0 w-full h-lvh overflow-hidden pointer-events-none opacity-0 transition-opacity duration-500',
+        'absolute top-0 left-0 w-full h-svh overflow-hidden pointer-events-none opacity-0 transition-opacity duration-500',
         className,
       )}
       style={{
@@ -107,7 +107,7 @@ export function KVVideo({ pathname, className, style, ...rest }: KVVideoProps) {
           // common
           'aspect-video absolute',
           // sp
-          'max-md:origin-bottom-left max-md:transform-(--sp-transform) max-md:h-[100vw] max-md:max-w-dvh max-md:w-auto max-md:left-0 max-md:bottom-0',
+          'max-md:origin-bottom-left max-md:transform-(--sp-transform) max-md:h-[100vw] max-md:max-w-svh max-md:w-auto max-md:left-0 max-md:bottom-0',
           // desktop
           'md:w-auto md:h-full md:bottom-0 md:right-0 md:max-w-dvw',
         )}

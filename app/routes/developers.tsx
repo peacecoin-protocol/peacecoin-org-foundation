@@ -70,7 +70,7 @@ export default function Developers() {
         {list.map(({ key, Icon, href }) => (
           <li
             key={key}
-            className="bg-primary/7 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center gap-6"
+            className="bg-card backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center gap-6"
           >
             <h2 className="flex items-center justify-center gap-2">
               <Icon className="text-foreground size-8" />
@@ -80,7 +80,7 @@ export default function Developers() {
             </h2>
             <p className="text-sm leading-[1.8]">{t(`${key}.description`)}</p>
             <OuterLink href={href} className="group">
-              <CircleArrowIcon className="transition-colors group-hover:text-primary-foreground group-hover:bg-primary" />
+              <CircleArrowIcon className="transition-colors duration-300 ease-out group-hover:text-primary-foreground group-hover:bg-primary" />
             </OuterLink>
           </li>
         ))}

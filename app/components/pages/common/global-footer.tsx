@@ -77,6 +77,8 @@ export type FooterProps = ComponentProps<'footer'>
 export function GlobalFooter({ className, ...rest }: FooterProps) {
   const { t } = useTranslation('common')
   const currentYear = new Date().getFullYear()
+  const linkButtonClassName =
+    'hover:text-primary transition-colors duration-300 ease-out'
 
   return (
     <footer className={cn('bg-background', className)} {...rest}>
@@ -95,40 +97,34 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
             <h3 className="text-primary font-bold mb-4">{t('learnAbout')}</h3>
             <ul className="space-y-3">
               <li>
-                <LocaleLink
-                  to="/concept"
-                  className="hover:text-primary transition-colors"
-                >
+                <LocaleLink to="/concept" className={linkButtonClassName}>
                   {t('navigation.concept')}
                 </LocaleLink>
               </li>
               <li className="flex items-center gap-1">
                 <LocaleLink
                   to="/usage-scenes/01"
-                  className="hover:text-primary transition-colors"
+                  className={linkButtonClassName}
                 >
                   {t('navigation.usageScene')} 01
                 </LocaleLink>
                 <span className="text-primary">・</span>
                 <LocaleLink
                   to="/usage-scenes/02"
-                  className="hover:text-primary transition-colors"
+                  className={linkButtonClassName}
                 >
                   02
                 </LocaleLink>
                 <span className="text-primary">・</span>
                 <LocaleLink
                   to="/usage-scenes/03"
-                  className="hover:text-primary transition-colors"
+                  className={linkButtonClassName}
                 >
                   03
                 </LocaleLink>
               </li>
               <li>
-                <LocaleLink
-                  to="/usecases"
-                  className="hover:text-primary transition-colors"
-                >
+                <LocaleLink to="/usecases" className={linkButtonClassName}>
                   {t('navigation.useCase')}
                 </LocaleLink>
               </li>
@@ -139,18 +135,12 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
             <h3 className="text-primary font-bold mb-4">{t('participate')}</h3>
             <ul className="space-y-3">
               <li>
-                <LocaleLink
-                  to="/developers"
-                  className="hover:text-primary transition-colors"
-                >
+                <LocaleLink to="/developers" className={linkButtonClassName}>
                   {t('navigation.developers')}
                 </LocaleLink>
               </li>
               <li>
-                <OuterLink
-                  href={LINKS.crowdin}
-                  className="hover:text-primary transition-colors"
-                >
+                <OuterLink href={LINKS.crowdin} className={linkButtonClassName}>
                   {t('navigation.translationProgram')}
                 </OuterLink>
               </li>
@@ -166,7 +156,7 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
               <OuterLink
                 key={href}
                 href={href}
-                className="text-primary-foreground hover:text-primary-foreground/50 transition-colors"
+                className="text-primary-foreground hover:text-primary-foreground/50 transition-colors duration-300 ease-out"
                 aria-label={label}
               >
                 {icon}

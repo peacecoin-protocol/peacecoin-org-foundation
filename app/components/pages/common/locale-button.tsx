@@ -22,7 +22,7 @@ export function LocaleButton({ className, ...props }: LocaleButtonProps) {
   return (
     <button
       className={cn(
-        'flex items-center gap-1.5 font-medium py-2 px-4 rounded-full transition-colors hover:cursor-pointer hover:bg-primary/5',
+        'flex items-center gap-1.5 font-medium py-2 px-4 rounded-full transition-colors duration-300 ease-out hover:cursor-pointer hover:bg-primary/5',
         className,
       )}
       {...props}

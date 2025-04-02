@@ -9,7 +9,7 @@ const components = {
   h2({ children, ...props }: ComponentProps<'h2'>) {
     return (
       <h2
-        className="text-primary font-medium text-2xl md:md:text-4xl mt-10 mb-8 md:mt-16 md:mb-12 first:mt-0 last:mb-0"
+        className="text-primary font-bold text-2xl md:md:text-4xl mt-10 mb-8 md:mt-16 md:mb-12 first:mt-0 last:mb-0"
         {...props}
       >
         {children}
@@ -18,7 +18,7 @@ const components = {
   },
   h3: ({ children, ...props }: ComponentProps<'h3'>) => (
     <h3
-      className="font-medium text-xl md:text-2xl mt-8 mb-6 md:mt-14 md:mb-10 first:mt-0 last:mb-0"
+      className="font-bold text-xl md:text-2xl mt-8 mb-6 md:mt-14 md:mb-10 first:mt-0 last:mb-0"
       {...props}
     >
       {children}
@@ -138,7 +138,7 @@ const components = {
     )
   },
   PrimaryMat({ children }: PropsWithChildren) {
-    return <div className="bg-primary/7 p-6 md:p-8 rounded-2xl">{children}</div>
+    return <div className="bg-card p-6 md:p-8 rounded-2xl">{children}</div>
   },
   AppIcon({ src, alt }: { src: string; alt: string }) {
     return (

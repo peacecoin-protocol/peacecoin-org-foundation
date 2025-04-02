@@ -83,7 +83,7 @@ export default function Concept() {
         <Description>
           <BreakLine>{t('description4')}</BreakLine>
         </Description>
-        <div className="bg-primary/7 rounded-md px-6 py-8 md:p-16">
+        <div className="bg-card rounded-md px-6 py-8 md:p-16">
           <h2 className="text-lg md:text-5xl font-medium text-center mb-2 md:mb-16 [&>span]:text-primary">
             <Trans i18nKey="arigatoCreation.title" ns="concept" />
           </h2>

@@ -20,9 +20,9 @@ export function UsecaseTitle({
         <div className="text-sm lg:text-base">{communityName}</div>
         <i className="absolute left-0 bottom-[-1px] w-[5rem] h-[1px] bg-secondary" />
       </div>
-      <h2 className="font-medium text-2xl leading-snug lg:text-4xl">{title}</h2>
+      <h2 className="font-bold text-2xl leading-snug lg:text-4xl">{title}</h2>
       <div>
-        <p className="inline-flex items-center justify-center px-9 h-9 text-sm text-primary font-bold bg-primary/7 border border-primary rounded-full">
+        <p className="inline-flex items-center justify-center px-9 h-9 text-sm text-primary font-semibold bg-card border border-primary rounded-full">
           {category}
         </p>
       </div>

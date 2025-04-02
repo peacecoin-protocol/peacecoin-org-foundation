@@ -33,7 +33,7 @@ function GlobalMenuAccordionTrigger({
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         className={cn(
-          'flex flex-1 items-center justify-between text-left font-medium transition-all outline-none md:pointer-events-none md:cursor-default [&[data-state=open]>div>svg:first-child]:hidden [&[data-state=open]>div>svg:last-child]:block',
+          'flex flex-1 items-center justify-between text-left font-medium outline-none md:pointer-events-none md:cursor-default [&[data-state=open]>div>svg:first-child]:hidden [&[data-state=open]>div>svg:last-child]:block',
           className,
         )}
         {...props}
@@ -58,7 +58,7 @@ function GlobalMenuAccordionContent({
   return (
     <AccordionPrimitive.Content
       className={cn(
-        'overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down md:h-auto md:overflow-visible md:animate-none md:data-[state=closed]:animate-none',
+        'overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down md:h-auto md:overflow-visible md:animate-none md:data-[state=closed]:animate-none',
         className,
       )}
       {...props}
