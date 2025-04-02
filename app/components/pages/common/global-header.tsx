@@ -50,14 +50,13 @@ function DesktopLocaleMenu() {
 }
 
 export type GlobalHeaderProps = ComponentProps<'header'> & {
-  pathname?: string
+  state: {
+    pathname?: string
+    isSamePathname: boolean
+  }
 }
 
-export function GlobalHeader({
-  pathname,
-  className,
-  ...rest
-}: GlobalHeaderProps) {
+export function GlobalHeader({ className, state, ...rest }: GlobalHeaderProps) {
   const [scrolling, setScrolling] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -77,7 +76,7 @@ export function GlobalHeader({
 
   useEffect(() => {
     setMenuOpen(false)
-  }, [pathname])
+  }, [state])
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : 'hidden auto'

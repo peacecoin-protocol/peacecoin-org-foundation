@@ -9,10 +9,16 @@ import {
 } from 'react'
 import { useLocation, useNavigate, type NavigateFunction } from 'react-router'
 
+type NextState = {
+  nextPath?: string
+  isSamePathname: boolean
+  args?: Parameters<NavigateFunction>
+}
+
 type PageTransitionState = {
   isTransitioning: boolean
-  nextPath?: string
   navigateWithTransition: NavigateFunction
+  state: NextState
 }
 
 type PageTransitionProviderProps = {
@@ -22,6 +28,9 @@ type PageTransitionProviderProps = {
 
 const PageTransitionContext = createContext<PageTransitionState>({
   isTransitioning: false,
+  state: {
+    isSamePathname: false,
+  },
   navigateWithTransition: () => {},
 })
 
@@ -31,35 +40,39 @@ export function PageTransitionProvider({
 }: PageTransitionProviderProps) {
   const location = useLocation()
   const navigate = useNavigate()
-  const [nextPath, setNextPath] = useState(location.pathname)
-  const fromLinkPathRef = useRef(nextPath)
+  const [nextState, setNextState] = useState<NextState>({
+    nextPath: location.pathname,
+    isSamePathname: false,
+  })
+  const fromLinkPathRef = useRef(nextState.nextPath)
   const isTransitioning =
-    location.pathname !== nextPath && fromLinkPathRef.current === nextPath
+    location.pathname !== nextState.nextPath &&
+    fromLinkPathRef.current === nextState.nextPath
 
   const navigateWithTransition: NavigateFunction = useCallback(
     async (...args) => {
       const to = args[0]
+
       switch (typeof to) {
         case 'string':
           fromLinkPathRef.current = to
-          setNextPath(to)
           break
         case 'object':
           if (to.pathname) {
             fromLinkPathRef.current = to.pathname
-            setNextPath(to.pathname)
           }
           break
         default:
           break
       }
 
-      await new Promise<void>((resolve) =>
-        setTimeout(() => resolve(), duration),
-      )
-      await navigate(...(args as Parameters<NavigateFunction>))
+      setNextState((prev) => ({
+        nextPath: fromLinkPathRef.current,
+        isSamePathname: prev.nextPath === fromLinkPathRef.current,
+        args: args as Parameters<NavigateFunction>,
+      }))
     },
-    [duration, navigate],
+    [],
   )
 
   // Handle browser back/forward navigation
@@ -68,7 +81,10 @@ export function PageTransitionProvider({
       const currentPath = window.location.pathname
       if (currentPath !== fromLinkPathRef.current) {
         fromLinkPathRef.current = currentPath
-        setNextPath(currentPath)
+        setNextState({
+          nextPath: currentPath,
+          isSamePathname: false,
+        })
       }
     }
     window.addEventListener('popstate', handler)
@@ -77,13 +93,35 @@ export function PageTransitionProvider({
     }
   }, [])
 
+  useEffect(() => {
+    const { isSamePathname, args } = nextState
+
+    if (isSamePathname) {
+      document.scrollingElement?.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+      return
+    }
+
+    if (!args) {
+      return
+    }
+
+    const timerId = setTimeout(navigate, duration, ...args)
+
+    return () => {
+      clearTimeout(timerId)
+    }
+  }, [duration, navigate, nextState])
+
   const contextValue = useMemo(
     () => ({
+      state: nextState,
       isTransitioning,
-      nextPath,
       navigateWithTransition,
     }),
-    [isTransitioning, nextPath, navigateWithTransition],
+    [isTransitioning, navigateWithTransition, nextState],
   )
 
   return (
