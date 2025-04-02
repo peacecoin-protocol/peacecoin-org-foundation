@@ -170,7 +170,7 @@ export function UsageCountryMap({ usageCountryNames }: UsageCountryMap) {
     }
 
     // Constants for better readability and optimization
-    const FRICTION_COEFFICIENT = 0.95
+    const FRICTION_COEFFICIENT = 0.98
     const VELOCITY_AMPLIFIER = 15
     const MIN_VELOCITY_THRESHOLD = 0.1
     const ANIMATION_DIVISOR = 15
@@ -374,7 +374,11 @@ export function UsageCountryMap({ usageCountryNames }: UsageCountryMap) {
         ref={tooltipRef}
         className={cn(
           'absolute pointer-events-none transition-opacity duration-200 bottom-4 left-1/2 -translate-x-1/2 md:-translate-y-1/2 md:bottom-auto',
-          'border-primary bg-background text-primary px-3 py-1 rounded-md text-sm shadow-md whitespace-nowrap',
+          'border-primary bg-background text-primary rounded-md shadow-md whitespace-nowrap',
+          // sp
+          'px-4 py-2',
+          // desktop
+          'md:px-3 md:py-1 md:text-sm',
           visibleTooltip ? 'opacity-100' : 'opacity-0',
         )}
       >
