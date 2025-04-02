@@ -1,9 +1,12 @@
 import * as v from 'valibot'
 import { Outlet, useMatches } from 'react-router'
 import { MDXProvider } from '@mdx-js/react'
-import { usageSceneSchema } from '@/schemas'
-import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
 import { useTranslation } from 'react-i18next'
+
+import { cn } from '@/lib/utils'
+import { usageSceneSchema } from '@/schemas'
+
+import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
 import { SectionTitle } from '@/components/composite/section-title'
 import { ArrowIcon } from '@/components/ui/icon'
 import { BreakLine } from '@/components/functional/break-line'
@@ -15,6 +18,11 @@ const itemSchema = v.omit(usageSceneSchema, ['id'])
 const components = {
   ...baseComponents,
 }
+
+const paginationClassName = cn(
+  'flex items-center gap-4 max-md:flex-1 md:p-6 md:rounded-2xl',
+  'transition-all duration-300 ease-out md:hover:shadow-hover md:hover:bg-card',
+)
 
 export default function UsageScenesDetailLayout() {
   const { t } = useTranslation('common')
@@ -58,11 +66,8 @@ export default function UsageScenesDetailLayout() {
             <Outlet />
           </MDXProvider>
         </div>
-        <footer className="flex items-center justify-between border-t pt-10 md:pt-16 gap-10 text-primary font-semibold leading-snug text-sm md:text-2xl">
-          <LocaleLink
-            to={data.prevPath}
-            className="flex items-center justify-start gap-4 max-md:flex-1 md:p-6 md:hover:bg-card md:rounded-2xl md:-ml-6"
-          >
+        <footer className="flex items-center justify-between border-t pt-10 md:pt-16 gap-10 text-primary font-semibold leading-snug text-sm md:text-2xl md:-mx-6">
+          <LocaleLink to={data.prevPath} className={paginationClassName}>
             <ArrowIcon className="w-4 h-auto rotate-180" />
             <BreakLine
               component="span"
@@ -72,10 +77,7 @@ export default function UsageScenesDetailLayout() {
             </BreakLine>
           </LocaleLink>
           <i className="max-md:hidden md:flex-1" />
-          <LocaleLink
-            to={data.nextPath}
-            className="flex items-center justify-end gap-4 max-md:flex-1 md:p-6 md:hover:bg-card md:rounded-2xl md:-mr-6"
-          >
+          <LocaleLink to={data.nextPath} className={paginationClassName}>
             <BreakLine
               component="span"
               className="flex-1 md:px-6 max-md:[&>br]:hidden md:text-center"
