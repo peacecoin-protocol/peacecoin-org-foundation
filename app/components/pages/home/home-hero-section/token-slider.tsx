@@ -90,18 +90,6 @@ export function TokenSlider({
       return
     }
 
-    const completedCount = tokens.length + visibleArray.length
-    const completedTokens = [...tokens]
-
-    while (completedTokens.length >= completedCount) {
-      completedTokens.push(
-        ...tokens.slice(
-          0,
-          Math.min(completedCount - completedTokens.length, tokens.length),
-        ),
-      )
-    }
-
     let rafId: number
     let visibleTokens: CommunityToken[]
     let startTimestamp = performance.now()
@@ -113,7 +101,10 @@ export function TokenSlider({
 
     function updateVisibleTokens() {
       const index = currentStartTokenIndexRef.current
-      visibleTokens = tokens.slice(index, index + visibleArray.length)
+      visibleTokens = visibleArray.map((_, i) => {
+        const actualIndex = (index + i) % tokens.length
+        return tokens[actualIndex]
+      })
       onActiveTokenChange?.(visibleTokens[Math.floor(visibleTokens.length / 2)])
     }
 
