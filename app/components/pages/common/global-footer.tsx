@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import type { ComponentProps, ReactNode } from 'react'
 
-import { BreakLine } from '@/components/functional/break-line'
 import { cn } from '@/lib/utils'
 import { LINKS } from '@/constants'
 import { OuterLink } from '@/components/ui/outer-link'
@@ -85,12 +84,11 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
         <div className="flex max-md:flex-col gap-8 md:gap-16">
           <div className="md:flex-1">
             <PeaceCoinVerticalIcon className="h-[6rem] w-auto mb-6 block" />
-            <BreakLine
-              component="p"
-              className="text-xs md:text-base leading-[1.8]"
-            >
-              {t('catchphrase')}
-            </BreakLine>
+            <p className="text-xs md:text-base leading-[1.8]">
+              ADVANCE CAPITALISM TO THE NEXT STAGE
+              <br />
+              BY USING BLOCKCHAIN TECHNOLOGY.
+            </p>
           </div>
 
           <div>
