@@ -20,11 +20,13 @@ import { usecaseSchema, type Usecase } from './schemas'
 import { UseCasesProvider } from './hooks/use-usecases'
 import { generateDynamicRoutes } from './.server/route'
 import { BASE_URL, LINKS, supportedLanguages } from './constants'
+import { PageTransitionProvider } from './hooks/use-page-transition'
+import { KVVideo } from './components/pages/common/kv-video'
+import { GlobalHeader } from './components/pages/common/global-header'
+import { GlobalFooter } from './components/pages/common/global-footer'
 
 const loaderSchema = v.object({
-  siteName: v.string(),
   url: v.string(),
-  locale: v.string(),
   nonce: v.optional(v.string()),
   usecases: v.array(usecaseSchema),
 })
@@ -43,16 +45,13 @@ export const links: Route.LinksFunction = () => [
 ]
 
 export async function loader({ request, context }: Route.LoaderArgs) {
-  const [t, locale, { routes }] = await Promise.all([
-    i18next.getFixedT('common'),
+  const [locale, { routes }] = await Promise.all([
     i18next.getLocale(request),
     import('virtual:react-router/server-build'),
   ])
   const url = new URL(request.url)
   return v.parse(loaderSchema, {
-    siteName: t('siteName'),
     url: `${url.origin}${url.pathname}`,
-    locale,
     nonce: context.nonce,
     usecases: generateDynamicRoutes<Usecase>('usecases', routes, locale).sort(
       (a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt),
@@ -61,10 +60,12 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { locale, nonce, usecases, siteName, url } =
-    useLoaderData<typeof loader>()
-  const { i18n } = useTranslation()
+  const { nonce, usecases = [], url } = useLoaderData<typeof loader>() || {}
+  const { i18n, t } = useTranslation()
+  const siteName = t('siteName')
+  const locale = i18n.language
   const xAccount = new URL(LINKS.x).pathname.replace(/^\//g, '')
+
   useChangeLanguage(locale)
 
   return (
@@ -106,19 +107,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
         })}
         <link rel="alternate" hrefLang="x-default" href={BASE_URL} />
         <Meta />
-        <meta property="og:url" content={url} />
-        <meta property="og:site_name" content={siteName} />
-        <meta
-          property="og:image"
-          content={`${BASE_URL}/assets/images/og.png`}
-        />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:image"
-          content={`${BASE_URL}/assets/images/og.png`}
-        />
-        <meta property="twitter:site" content={`@${xAccount}`} />
-        <meta property="twitter:url" content={url} />
+        {url && (
+          <>
+            <meta property="og:url" content={url} />
+            <meta property="og:site_name" content={siteName} />
+            <meta
+              property="og:image"
+              content={`${BASE_URL}/assets/images/og.png`}
+            />
+            <meta property="twitter:card" content="summary_large_image" />
+            <meta
+              property="twitter:image"
+              content={`${BASE_URL}/assets/images/og.png`}
+            />
+            <meta property="twitter:site" content={`@${xAccount}`} />
+            <meta property="twitter:url" content={url} />
+          </>
+        )}
         <Links />
       </head>
       <body>
@@ -151,14 +156,27 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
+    <PageTransitionProvider>
+      {({ state }) => (
+        <>
+          <KVVideo pathname="/error" />
+          <GlobalHeader state={state} />
+          <div className="relative flex flex-col min-h-screen gap-16 md:gap-[7.5rem] pt-(--gh)  md:pt-[calc(var(--gh)+3.5rem)]">
+            <div className="flex-grow container mx-auto px-8 py-8 bg-card rounded-2xl">
+              <h1 className="text-4xl font-bold text-red-400 mb-4">
+                {message}
+              </h1>
+              <p>{details}</p>
+              {stack && (
+                <pre className="mt-6 w-full overflow-x-auto hidden-scrollbar text-red-500">
+                  <code>{stack}</code>
+                </pre>
+              )}
+            </div>
+            <GlobalFooter />
+          </div>
+        </>
       )}
-    </main>
+    </PageTransitionProvider>
   )
 }

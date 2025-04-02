@@ -50,7 +50,7 @@ function DesktopLocaleMenu() {
 }
 
 export type GlobalHeaderProps = ComponentProps<'header'> & {
-  state: {
+  state?: {
     pathname?: string
     isSamePathname: boolean
   }

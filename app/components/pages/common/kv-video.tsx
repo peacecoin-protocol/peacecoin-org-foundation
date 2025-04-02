@@ -16,6 +16,7 @@ function getOpacity(pathname?: string) {
       return 1
     case '/developers':
     case '/concept':
+    case '/error':
       return 0.5
     default:
       return 0
