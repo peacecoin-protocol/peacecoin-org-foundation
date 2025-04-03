@@ -38,7 +38,7 @@ export default function UseCases() {
         ]}
       />
       <section className="container mx-auto grid gap-10 md:gap-16">
-        <SectionTitle subtitle="Use Case">{t('title')}</SectionTitle>
+        <SectionTitle subtitle="Use Cases">{t('title')}</SectionTitle>
         <UsecaseList />
       </section>
     </main>

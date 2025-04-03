@@ -11,7 +11,7 @@ export function HomeUsecaseSection() {
   return (
     <section className="bg-card py-16 md:py-[7.5rem]">
       <div className="flex flex-col items-center justify-center gap-12 md:gap-16 container mx-auto px-6">
-        <SectionTitle subtitle="Use Case">{t('title')}</SectionTitle>
+        <SectionTitle subtitle="Use Cases">{t('title')}</SectionTitle>
         <UsecaseList limit={3} />
         <Button asChild size="lg">
           <LocaleLink to="/usecases">{t('more')}</LocaleLink>
