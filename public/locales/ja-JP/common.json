@@ -1,5 +1,5 @@
 {
-  "siteName": "ピースコイン・ファウンデーション",
+  "siteName": "ピースコイン・プロトコル・ファウンデーション",
   "navigation": {
     "home": "ホーム",
     "concept": "PEACE COINとは",
@@ -14,7 +14,6 @@
   },
   "learnAbout": "PEACE COINを知る",
   "participate": "PEACE COINへの参加",
-  "catchphrase": "ブロックチェーン技術で\n資本主義を次のステージへ。",
   "copyright": "PEACE COIN ORG.",
   "language": {
     "label": "言語 JA",

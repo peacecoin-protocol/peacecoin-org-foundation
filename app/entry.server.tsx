@@ -36,6 +36,12 @@ const contentSecurityPolicy = (nonce?: string) => ({
     "'self'",
     nonce ? `'nonce-${nonce}'` : "'unsafe-inline'",
     'https://www.googletagmanager.com', // Google Analytics 用スクリプト
+    'https://www.youtube.com', // YouTube 埋め込み用スクリプト
+    'https://static.cloudflareinsights.com', // Cloudflare Insights
+  ],
+  'frame-src': [
+    "'self'",
+    'https://www.youtube.com', // YouTube 埋め込み用フレーム
   ],
   'style-src': [
     "'self'",
@@ -50,6 +56,10 @@ const contentSecurityPolicy = (nonce?: string) => ({
     'https://fonts.googleapis.com', // Google Fonts のスタイルシート
   ],
   'upgrade-insecure-requests': [], // HTTPS を強制
+  'media-src': [
+    "'self'",
+    'https://assets.peace-coin.org', // YouTube 埋め込み用メディア
+  ],
 })
 
 export default async function handleRequest(
@@ -104,6 +114,7 @@ export default async function handleRequest(
     </I18nextProvider>,
     {
       signal: controller.signal,
+      nonce,
       onError(error: unknown) {
         responseStatusCode = 500
         // Log streaming rendering errors from inside the shell.  Don't log
@@ -132,6 +143,8 @@ export default async function handleRequest(
       .map(([key, value]) => `${key} ${value.join(' ')}`)
       .join('; '),
   )
+  responseHeaders.set('Content-Language', lng)
+  responseHeaders.set('Last-Modified', new Date().toUTCString())
   responseHeaders.delete('X-Powered-By')
 
   return new Response(body, {

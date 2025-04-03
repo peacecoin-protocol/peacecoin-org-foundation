@@ -9,8 +9,7 @@
     "start": "wrangler dev",
     "typegen": "wrangler types",
     "typecheck": "react-router typegen && tsc -b",
-    "format": "prettier --write . --ignore-path .gitignore",
-    "crowdin-import": "ts-node scripts/crowdin-import.ts"
+    "format": "prettier --write ."
   },
   "engines": {
     "node": ">=22.0.0"
@@ -27,6 +26,8 @@
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.0",
+    "@mdx-js/rollup": "^3.1.0",
+    "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-dropdown-menu": "^2.1.6",
     "@radix-ui/react-slot": "^1.1.2",
     "@react-router/cloudflare": "^7.1.5",
@@ -34,34 +35,30 @@
     "dayjs": "^1.11.13",
     "framer-motion": "^12.3.1",
     "i18next": "^24.2.2",
-    "i18next-browser-languagedetector": "^8.0.2",
     "i18next-http-backend": "^3.0.2",
+    "i18next-resources-to-backend": "^1.2.1",
     "isbot": "^5.1.17",
-    "jotai": "^2.11.3",
     "lucide-react": "^0.483.0",
-    "marked": "^15.0.7",
+    "mdast": "^2.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.4.0",
-    "react-markdown": "^10.1.0",
     "react-router": "^7.1.5",
     "remark-breaks": "^4.0.0",
-    "remark-gfm": "^4.0.0",
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^5.1.0",
     "remix-i18next": "^7.0.2",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
-    "uuid": "^11.0.5",
     "valibot": "^1.0.0-beta.15"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^0.1.14",
     "@cloudflare/workers-types": "^4.20241112.0",
     "@eslint/compat": "^1.2.6",
-    "@mdx-js/rollup": "^3.1.0",
     "@react-router/dev": "^7.1.5",
     "@tailwindcss/vite": "^4.0.0",
-    "@types/marked": "^5.0.2",
-    "@types/node": "^22.13.1",
+    "@types/node": "^22.14.0",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1",
     "autoprefixer": "^10.4.20",
@@ -83,8 +80,5 @@
     "vite": "^6.2.2",
     "vite-tsconfig-paths": "^5.1.4",
     "wrangler": "^3.114.2"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.34.4"
   }
 }

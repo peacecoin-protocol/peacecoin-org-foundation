@@ -1,10 +1,10 @@
 {
-  "siteName": "PEACE COIN Foundation",
+  "siteName": "PEACE COIN Protocol Foundation",
   "navigation": {
     "home": "Home",
     "concept": "About PEACE COIN",
-    "usageScene": "Use Cases",
-    "useCase": "Implementation Cases",
+    "usageScene": "Usage Scenes",
+    "useCase": "Use Cases",
     "developers": "For Developers",
     "translationProgram": "Translation Program",
     "about": "About Us",
@@ -14,7 +14,6 @@
   },
   "learnAbout": "Learn about PEACE COIN",
   "participate": "Participate in PEACE COIN",
-  "catchphrase": "ADVANCE CAPITALISM TO THE NEXT STAGE\n BY USING BLOCKCHAIN TECHNOLOGY.",
   "copyright": "PEACE COIN ORG.",
   "language": {
     "label": "Languages EN",

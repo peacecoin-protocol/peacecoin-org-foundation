@@ -1,4 +1,4 @@
-// import { randomUUID } from 'node:crypto'
+import { randomUUID } from 'node:crypto'
 import type { ExecutionContext } from '@cloudflare/workers-types'
 import type { AppLoadContext } from 'react-router'
 
@@ -24,6 +24,6 @@ type GetLoadContextArgs = {
 export function getLoadContext({ context }: GetLoadContextArgs) {
   return {
     cloudflare: context.cloudflare,
-    // nonce: randomUUID(),
+    nonce: randomUUID(),
   }
 }

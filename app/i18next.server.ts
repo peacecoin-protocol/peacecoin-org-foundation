@@ -1,55 +1,58 @@
 import { RemixI18Next } from 'remix-i18next/server'
-import Backend, { type HttpBackendOptions } from 'i18next-http-backend'
+import resourcesToBackend from 'i18next-resources-to-backend'
 import i18n from '@/i18n'
+import { REGX_LANG_FROM_PATHNAME } from './constants'
+import type { ResourceKey, ResourceLanguage } from 'i18next'
 
-export const backend = new Backend()
+const resourceMap = Object.entries(
+  import.meta.glob('../public/locales/**/*.json', {
+    eager: true,
+    import: 'default',
+  }),
+).reduce((resourceMap, [file, data]) => {
+  const path = file.replace('../public/locales/', '').replace('.json', '')
+  const [language, namespace] = path.split('/')
+  if (!resourceMap.has(language)) {
+    resourceMap.set(language, {
+      [namespace]: data as ResourceKey,
+    })
+  } else {
+    resourceMap.get(language)![namespace] = data as ResourceKey
+  }
+  return resourceMap
+}, new Map<string, ResourceLanguage>())
 
-let baseUrl = 'https://peace-coin.org'
+export const backend = resourcesToBackend(
+  Object.fromEntries(resourceMap.entries()),
+)
+
+const lowerSupportedLngs = i18n.supportedLngs.map((lng) => lng.toLowerCase())
 
 const i18next = new RemixI18Next({
   detection: {
     supportedLanguages: i18n.supportedLngs,
     fallbackLanguage: i18n.fallbackLng,
     async findLocale(request) {
-      baseUrl = request.url
       const { pathname } = new URL(request.url)
-      const lang = pathname.split('/')[1]
-      const index1 = i18n.supportedLngs.indexOf(lang)
-      if (index1 !== -1) {
-        return lang
+      const langMatch = pathname.match(REGX_LANG_FROM_PATHNAME)
+
+      if (langMatch) {
+        const lang = langMatch[1].toLowerCase()
+
+        if (lowerSupportedLngs.includes(lang)) {
+          return lang
+        }
+
+        const baseLang = lang.split('-')[0]
+        if (lowerSupportedLngs.includes(baseLang)) {
+          return baseLang
+        }
       }
-      const index2 = i18n.supportedLngs.indexOf(lang.split('-')[0])
-      if (index2 !== -1) {
-        return i18n.supportedLngs[index2]
-      }
+
       return 'en'
     },
   },
-  i18next: {
-    ...i18n,
-    backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
-      request(_config, path, _payload, callback) {
-        if (path.includes('translation.json')) {
-          return callback(null, {
-            status: 200,
-            data: {},
-          })
-        }
-        const url = new URL(path, baseUrl)
-        fetch(url)
-          .then(async (res) => {
-            callback(null, {
-              status: res.status,
-              data: (await res.json()) as Record<string, string>,
-            })
-          })
-          .catch((error) => {
-            callback(error, null)
-          })
-      },
-    } satisfies HttpBackendOptions,
-  },
+  i18next: i18n,
   plugins: [backend],
 })
 

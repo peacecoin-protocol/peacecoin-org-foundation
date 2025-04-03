@@ -1,36 +1,40 @@
 import type { CommunityToken } from '@/schemas'
 
+export * from './crowdin'
+
+export const REGX_LANG_FROM_PATHNAME = /^\/([a-z]{2}(?:-[a-z]{2})?)(?:\/|$)/i
+
 export const supportedLanguages = {
   en: 'English',
   'ja-JP': '日本語',
   'pt-PT': 'Português',
 } as const
 
-export const usageCountryCodes = [
-  'JP',
-  'PH',
-  'US',
-  'KH',
-  'TW',
-  'KR',
-  'VN',
-  'TZ',
-  'NG',
-  'NL',
-  'GE',
-  'EE',
-  'SG',
-  'DE',
-  'FI',
-  'FR',
-  'PT',
-  'ES',
-  'IT',
-  'ID',
-  'MM',
-  'HK',
-  'MX',
-  'BR',
+export const usageCountryNames = [
+  'Japan',
+  'Philippines',
+  'United States',
+  'Cambodia',
+  'Taiwan',
+  'South Korea',
+  'Vietnam',
+  'Tanzania',
+  'Nigeria',
+  'Netherlands',
+  'Georgia',
+  'Estonia',
+  'Singapore',
+  'Germany',
+  'Finland',
+  'France',
+  'Portugal',
+  'Spain',
+  'Italy',
+  'Indonesia',
+  'Myanmar',
+  'Hong Kong',
+  'Mexico',
+  'Brazil',
 ] as const
 
 export const tokens: CommunityToken[] = [
@@ -97,10 +101,6 @@ export const tokens: CommunityToken[] = [
   { tokenAddress: 'orb', name: `Orbray COIN` },
   { tokenAddress: 'pan', name: `COMPANIA COIN` },
   { tokenAddress: 'path', name: `PATH COIN` },
-  { tokenAddress: 'pce', name: `PEACE COIN` },
-  { tokenAddress: 'pcel', name: `PEACE COIN（Non inc・dec）` },
-  { tokenAddress: 'pcet', name: `TRIAL PEACE COIN` },
-  { tokenAddress: 'ppc', name: `People Power Coin` },
   { tokenAddress: 'pri', name: `PRIMECOIN` },
   { tokenAddress: 'pwt', name: `Play week Token` },
   { tokenAddress: 'rar', name: `raracoin` },
@@ -202,13 +202,9 @@ export const tokensJp: CommunityToken[] = [
   { tokenAddress: 'npr', name: `ヌプリ` },
   { tokenAddress: 'nwellc', name: `neutral well coin` },
   { tokenAddress: 'ocr', name: `オーガニックシトラスリレーションズ` },
-  { tokenAddress: 'orb', name: `オーブレ―コイン` },
+  { tokenAddress: 'orb', name: `オーブレーコイン` },
   { tokenAddress: 'pan', name: `カンパニア コイン` },
   { tokenAddress: 'path', name: `パスコイン` },
-  { tokenAddress: 'pce', name: `ピースコイン` },
-  { tokenAddress: 'pcel', name: `ピースコイン（増減なし）` },
-  { tokenAddress: 'pcet', name: `PEACE CON 体験コイン` },
-  { tokenAddress: 'ppc', name: `ピープルパワーコイン` },
   { tokenAddress: 'pri', name: `プライムコイン` },
   { tokenAddress: 'pwt', name: `プレイウィークトークン` },
   { tokenAddress: 'rar', name: `ららこいん` },
@@ -248,3 +244,18 @@ export const tokensJp: CommunityToken[] = [
   { tokenAddress: 'yuru', name: `ゆーるコイン` },
   { tokenAddress: 'yuzury', name: `ゆずり～` },
 ]
+
+export const BASE_URL =
+  import.meta.env.VITE_BASE_URL || 'https://www.peace-coin.org'
+
+export const ASSET_URL = 'https://assets.peace-coin.org'
+
+export const LINKS = {
+  crowdin: 'https://crowdin.com/project/peace-coin',
+  x: 'https://x.com/peace_coin_fund',
+  facebook: 'https://www.facebook.com/PEACECOIN.PCE',
+  linkdin: 'https://www.linkedin.com/company/peace-coin',
+  github: 'https://github.com/peacecoin-protocol',
+  discord: 'https://discord.gg/fXmkg4xY',
+  whitePaper: 'https://peace-coin.gitbook.io/peace-coin/introduction',
+} as const

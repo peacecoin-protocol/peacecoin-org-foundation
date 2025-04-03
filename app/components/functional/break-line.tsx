@@ -15,8 +15,7 @@ export function BreakLine<T extends ElementType = 'div'>({
 
   const children = str.split('\n').map((line, i, lines) => (
     <Fragment key={i}>
-      {line}
-      {i < lines.length - 1 && <br />}
+      {line} {i < lines.length - 1 && <br />}
     </Fragment>
   ))
 

@@ -1,12 +1,15 @@
 {
-  "metaTitle": "PEACE COIN Foundation",
+  "meta": {
+    "title": "PEACE COIN Foundation",
+    "description": "ADVANCE CAPITALISM TO THE NEXT STAGE BY USING BLOCKCHAIN TECHNOLOGY."
+  },
   "hero": {
     "title": "Thanks-Driven\nEconomy",
-    "forDeveloper": "PEACE COIN Docs For Developer"
+    "forDeveloper": "Docs For Developer"
   },
   "concept": {
-    "title": "A community currency platform\nthat circulates social capital",
-    "description": "On the PEACE COIN platform, circulation is considered most important.\nBy expressing and circulating the diverse values held by each individual and community,\nthe sustainability of society is enhanced.",
+    "title": "A Community Currency platform\n that circulates Social Capital",
+    "description": "At the PEACE COIN platform, we believe that circulation is key.",
     "detail": "About PEACE COIN"
   },
   "map": {
@@ -21,22 +24,10 @@
     "caption": "Green: Countries and Regions where PEACE COIN has been used"
   },
   "usecase": {
-    "title": "Implementation Cases",
-    "more": "View all implementation cases"
+    "title": "Community Stories",
+    "more": "View All Use Cases Here"
   },
   "usage-scene": {
-    "title": "Discover innovative solutions\nthat PEACE COIN resolves",
-    "01": {
-      "title": "Anyone can easily create\na community currency",
-      "description": "The 'design, issuance, and management' of community currencies, which were traditionally difficult to create, can now be easily done by anyone."
-    },
-    "02": {
-      "title": "Enhance community\nengagement",
-      "description": "By promoting the exchange of services and products within the community, engagement can be naturally enhanced."
-    },
-    "03": {
-      "title": "Provide rewards for\nunpaid work",
-      "description": "With a new approach, it becomes possible to express gratitude for unpaid work in a 'visible form'."
-    }
+    "title": "Discover the innovative solutions\n offered by PEACE COIN"
   }
 }

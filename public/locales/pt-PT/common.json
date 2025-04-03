@@ -1,10 +1,10 @@
 {
-  "siteName": "PEACE COIN Foundation",
+  "siteName": "Fundação do Protocolo PEACE COIN",
   "navigation": {
     "home": "Início",
     "concept": "Sobre PEACE COIN",
     "usageScene": "Cenários de Uso",
-    "useCase": "Casos de Implementação",
+    "useCase": "Casos de Uso",
     "developers": "Para Desenvolvedores",
     "translationProgram": "Programa de Tradução",
     "about": "Sobre Nós",
@@ -14,7 +14,6 @@
   },
   "learnAbout": "Conheça o PEACE COIN",
   "participate": "Participe no PEACE COIN",
-  "catchphrase": "AVANCE O CAPITALISMO PARA O PRÓXIMO ESTÁGIO\n USANDO TECNOLOGIA BLOCKCHAIN.",
   "copyright": "PEACE COIN ORG.",
   "language": {
     "label": "Idiomas PT",

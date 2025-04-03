@@ -1,16 +1,24 @@
 import { useTranslation } from 'react-i18next'
 import i18next from '@/i18next.server'
 import type { Route } from './+types/index'
-import { LocaleMenu } from '@/components/composite/locale-menu'
+import { SectionTitle } from '@/components/composite/section-title'
+import { UsecaseList } from '@/components/pages/usecase/usecase-list'
+import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
+import { generateMeta } from 'scripts/seo'
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const t = await i18next.getFixedT(request, 'usecases')
-  const title = t('title')
-  return { title }
+  const [t] = await Promise.all([i18next.getFixedT(request, 'usecases')])
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+  }
 }
 
-export function meta({ data }: Route.MetaArgs) {
-  return [{ title: data.title }]
+export function meta({ data: { title, description } }: Route.MetaArgs) {
+  return generateMeta({
+    title,
+    description,
+  })
 }
 
 export const handle = {
@@ -20,17 +28,19 @@ export const handle = {
 export default function UseCases() {
   const { t } = useTranslation('usecases')
   const { t: commonT } = useTranslation('common')
-
   return (
-    <main className="container mx-auto p-4">
-      <LocaleMenu />
-      <h1 className="text-3xl font-bold mb-4">{t('title')}</h1>
-      <p className="mb-4">{t('description')}</p>
-
-      {/* List of use cases will be displayed here */}
-      <div className="grid grid-cols-1 md:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-        {/* Use case cards will be rendered here */}
-      </div>
+    <main className="pt-(--gh) grid gap-16 md:gap-[7.5rem] md:pt-[calc(var(--gh)+3.5rem)]">
+      <PageBreadcrumb
+        className="container mx-auto px-6"
+        list={[
+          { label: commonT('navigation.home'), href: '/' },
+          { label: commonT('navigation.useCase'), href: '/usecases' },
+        ]}
+      />
+      <section className="container mx-auto grid gap-10 md:gap-16">
+        <SectionTitle subtitle="Use Cases">{t('title')}</SectionTitle>
+        <UsecaseList />
+      </section>
     </main>
   )
 }

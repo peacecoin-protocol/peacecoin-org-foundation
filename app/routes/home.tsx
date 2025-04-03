@@ -6,26 +6,38 @@ import {
   HomeMapSection,
   HomeUsageSceneSection,
   HomeUsecaseSection,
-} from '@/components/home'
-import { usageCountryCodes, tokens, tokensJp } from '@/constants'
+} from '@/components/pages/home'
+import { usageCountryNames, tokens, tokensJp } from '@/constants'
+import { generateDynamicRoutes } from '@/.server/route'
+import type { UsageScene } from '@/schemas'
+import { generateMeta } from 'scripts/seo'
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const [t, locale] = await Promise.all([
+  const [t, locale, { routes }] = await Promise.all([
     i18next.getFixedT(request, 'home'),
     i18next.getLocale(request),
+    import('virtual:react-router/server-build'),
   ])
-  const title = t('metaTitle')
   return {
-    title,
-    tokens: [...(locale === 'ja' ? tokensJp : tokens)].sort(
+    title: t('meta.title'),
+    description: t('meta.description'),
+    tokens: [...(locale.split('-')[0] === 'ja' ? tokensJp : tokens)].sort(
       () => Math.random() - 0.5,
     ),
-    usageCountryCodes,
+    usageCountryNames,
+    usageScenes: generateDynamicRoutes<UsageScene>(
+      'usage-scenes',
+      routes,
+      locale,
+    ).sort((a, b) => a.subtitle.localeCompare(b.subtitle)),
   }
 }
 
-export function meta({ data }: Route.MetaArgs) {
-  return [{ title: data.title }]
+export function meta({ data: { title, description } }: Route.MetaArgs) {
+  return generateMeta({
+    title,
+    description,
+  })
 }
 
 export const handle = {
@@ -33,18 +45,18 @@ export const handle = {
 }
 
 export default function Index({
-  loaderData: { tokens, usageCountryCodes },
+  loaderData: { tokens, usageCountryNames, usageScenes },
 }: Route.ComponentProps) {
   return (
-    <main>
+    <main className="grid gap-16 md:gap-[7.5rem]">
       <HomeHeroSection tokens={tokens} />
       <HomeConceptSection />
       <HomeMapSection
-        usageCountryCodes={usageCountryCodes}
+        usageCountryNames={usageCountryNames}
         communitiesCount={tokens.length}
       />
-      <HomeUsecaseSection items={[]} />
-      <HomeUsageSceneSection />
+      <HomeUsecaseSection />
+      <HomeUsageSceneSection items={usageScenes} />
     </main>
   )
 }
