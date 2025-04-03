@@ -144,10 +144,7 @@ export default async function handleRequest(
       .join('; '),
   )
   responseHeaders.set('Content-Language', lng)
-  // responseHeaders.set(
-  //   'Cache-Control',
-  //   `public, max-age=1209600, stale-while-revalidate=86400`,
-  // )
+  responseHeaders.set('Last-Modified', new Date().toUTCString())
   responseHeaders.delete('X-Powered-By')
 
   return new Response(body, {
