@@ -114,6 +114,7 @@ export default async function handleRequest(
     </I18nextProvider>,
     {
       signal: controller.signal,
+      nonce,
       onError(error: unknown) {
         responseStatusCode = 500
         // Log streaming rendering errors from inside the shell.  Don't log
@@ -143,10 +144,10 @@ export default async function handleRequest(
       .join('; '),
   )
   responseHeaders.set('Content-Language', lng)
-  responseHeaders.set(
-    'Cache-Control',
-    `public, max-age=1209600, stale-while-revalidate=86400`,
-  )
+  // responseHeaders.set(
+  //   'Cache-Control',
+  //   `public, max-age=1209600, stale-while-revalidate=86400`,
+  // )
   responseHeaders.delete('X-Powered-By')
 
   return new Response(body, {

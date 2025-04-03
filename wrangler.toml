@@ -3,6 +3,7 @@ name = "pc-foundation"
 compatibility_date = "2025-03-10"
 main = "./workers/app.ts"
 assets = { directory = "./build/client/" }
+compatibility_flags = ["nodejs_compat"]
 
 [vars]
 VITE_BASE_URL = 'https://www.peace-coin.org'

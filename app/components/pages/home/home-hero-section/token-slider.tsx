@@ -133,6 +133,13 @@ export function TokenSlider({
       }
     }
 
+    tokenRefs.current.forEach((el) => {
+      if (el) {
+        el.style.width = `${tokenConfig.size}px`
+        el.style.height = `${tokenConfig.size}px`
+      }
+    })
+
     updateVisibleTokens()
     tick(startTimestamp)
 
@@ -154,10 +161,6 @@ export function TokenSlider({
             tokenRefs.current[index] = el
           }}
           className="bg-contain bg-center bg-no-repeat absolute top-1/2 left-0"
-          style={{
-            width: `${tokenConfig.size}px`,
-            height: `${tokenConfig.size}px`,
-          }}
         />
       ))}
     </div>

@@ -93,7 +93,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="apple-mobile-web-app-title" content="PEACE COIN" />
         <link rel="manifest" href="/assets/favicon/webmanifest.json" />
         {nonce && <meta property="csp-nonce" nonce={nonce} />}
-        <script src="https://www.youtube.com/iframe_api" async />
+        <script nonce={nonce} src="https://www.youtube.com/iframe_api" async />
         {Object.keys(supportedLanguages).map((key) => {
           const lang = key.toLowerCase()
           return (

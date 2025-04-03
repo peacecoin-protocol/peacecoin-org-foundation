@@ -58,7 +58,7 @@
     "@eslint/compat": "^1.2.6",
     "@react-router/dev": "^7.1.5",
     "@tailwindcss/vite": "^4.0.0",
-    "@types/node": "^22.13.1",
+    "@types/node": "^22.14.0",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1",
     "autoprefixer": "^10.4.20",

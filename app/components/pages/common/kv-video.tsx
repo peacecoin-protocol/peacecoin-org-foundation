@@ -1,11 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type ComponentProps,
-  type CSSProperties,
-} from 'react'
+import { useEffect, useRef, type ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
 import { ASSET_URL, REGX_LANG_FROM_PATHNAME } from '@/constants'
 
@@ -27,30 +20,24 @@ export type KVVideoProps = ComponentProps<'div'> & {
   pathname?: string
 }
 
-export function KVVideo({ pathname, className, style, ...rest }: KVVideoProps) {
-  const [loaded, setLoaded] = useState(false)
-  const [opacity, setOpacity] = useState(getOpacity(pathname))
+export function KVVideo({ pathname, className, ...rest }: KVVideoProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
-
-  const handleInitialized = useCallback(() => {
-    setLoaded(true)
-  }, [])
+  const opacityRef = useRef(0)
 
   useEffect(() => {
-    setOpacity(getOpacity(pathname))
+    const root = rootRef.current
+    opacityRef.current = getOpacity(pathname)
+    if (root) {
+      root.style.opacity = `${opacityRef.current}`
+    }
   }, [pathname])
 
   useEffect(() => {
     const root = rootRef.current
-
-    if (!root) {
-      return
-    }
-
     const video = videoRef.current
 
-    if (!root || !video || !opacity) {
+    if (!root || !video || !opacityRef.current) {
       if (video?.paused === false) {
         video.pause()
       }
@@ -78,7 +65,6 @@ export function KVVideo({ pathname, className, style, ...rest }: KVVideoProps) {
       root.style.transform = `translateY(${offset}px)`
     }
 
-    setLoaded(video.readyState === 4)
     observer.observe(root)
     window.addEventListener('scroll', listener, { passive: true })
     listener()
@@ -88,18 +74,14 @@ export function KVVideo({ pathname, className, style, ...rest }: KVVideoProps) {
       root.style.transform = ''
       observer.disconnect()
     }
-  }, [opacity])
+  }, [])
 
   return (
     <div
       className={cn(
-        'absolute top-0 left-0 w-full h-svh overflow-hidden pointer-events-none opacity-0 transition-opacity duration-500',
+        'absolute top-0 left-0 w-svw h-svh overflow-hidden pointer-events-none opacity-0 transition-opacity duration-500',
         className,
       )}
-      style={{
-        opacity: `${loaded ? opacity : 0}`,
-        ...style,
-      }}
       {...rest}
       ref={rootRef}
     >
@@ -108,22 +90,17 @@ export function KVVideo({ pathname, className, style, ...rest }: KVVideoProps) {
           // common
           'aspect-video absolute',
           // sp
-          'max-md:origin-bottom-left max-md:transform-(--sp-transform) max-md:h-[100vw] max-md:max-w-svh max-md:w-auto max-md:left-0 max-md:bottom-0',
+          'max-md:origin-bottom-left max-md:transform-(--kv-sp-transform) max-md:h-[100vw] max-md:max-w-svh max-md:w-auto max-md:left-0 max-md:bottom-0',
           // desktop
           'md:w-auto md:h-full md:bottom-0 md:right-0 md:max-w-dvw',
         )}
-        style={
-          {
-            '--sp-transform': 'rotate(90deg) translateX(-100%)',
-          } as CSSProperties
-        }
       >
         <video
           className="block w-full h-full object-cover object-center outline-0"
+          autoPlay
           loop
           muted
           playsInline
-          onLoadedData={handleInitialized}
           poster="/assets/images/kv-video-poster.webp"
           disablePictureInPicture
           disableRemotePlayback

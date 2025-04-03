@@ -88,6 +88,7 @@
   --color1: oklch(0.342 0.224 270); /* #1c00a9 */
   --color2: oklch(0.958 0 89.9); /* #f1f1f1 */
   --ghh: 5.5rem; /* global header height */
+  --kv-sp-transform: rotate(90deg) translateX(-100%); /* key bg video sp transform */
 }
 
 .dark {
