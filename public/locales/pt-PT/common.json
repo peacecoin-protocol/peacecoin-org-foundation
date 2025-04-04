@@ -1,38 +1,38 @@
 {
-  "siteName": "Fundação do Protocolo PEACE COIN",
+  "siteName": "PEACE COIN Protocol Foundation",
   "navigation": {
-    "home": "Início",
-    "concept": "Sobre PEACE COIN",
-    "usageScene": "Cenários de Uso",
-    "useCase": "Casos de Uso",
-    "developers": "Para Desenvolvedores",
-    "translationProgram": "Programa de Tradução",
-    "about": "Sobre Nós",
-    "privacyPolicy": "Política de Privacidade",
-    "termsOfUse": "Termos de Uso",
-    "cookiePolicy": "Política de Cookies"
+    "home": "Home",
+    "concept": "About PEACE COIN",
+    "usageScene": "Usage Scenes",
+    "useCase": "Use Cases",
+    "developers": "For Developers",
+    "translationProgram": "Translation Program",
+    "about": "About Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "cookiePolicy": "Cookie Policy"
   },
-  "learnAbout": "Conheça o PEACE COIN",
-  "participate": "Participe no PEACE COIN",
+  "learnAbout": "Learn about PEACE COIN",
+  "participate": "Participate in PEACE COIN",
   "copyright": "PEACE COIN ORG.",
   "language": {
-    "label": "Idiomas PT",
-    "filteredList": "Lista de filtros ({{val, number}} Idiomas)",
-    "filterPlaceholder": "Escreva para filtrar",
-    "browserDefault": "Navegador padrão",
-    "translated": "{{val, number}}% traduzido",
-    "words": "{{val, number}} palavras",
+    "label": "Languages EN",
+    "filteredList": "Filter list ({{val, number}} Languages)",
+    "filterPlaceholder": "Type to filter",
+    "browserDefault": "BROWSER DEFAULT",
+    "translated": "{{val, number}}% translated",
+    "words": "{{val, number}} words",
     "locales": {
-      "ja-JP": "Japonês",
-      "en": "Inglês",
-      "pt-PT": "Português (Portugal)"
+      "ja-JP": "JAPANESE",
+      "en": "ENGLISH",
+      "pt-PT": "PORTUGUESE"
     },
-    "footer": "Ajude-nos a traduzir o peace-coin.org.",
-    "more": "Saber mais",
-    "loading": "Carregando..."
+    "footer": "Help us translate peace-coin.org.",
+    "more": "Learn more",
+    "loading": "Loading..."
   },
   "pagination": {
-    "previous": "Anterior",
-    "next": "Próximo"
+    "previous": "Previous",
+    "next": "Next"
   }
 }
