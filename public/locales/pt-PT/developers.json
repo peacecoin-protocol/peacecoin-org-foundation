@@ -1,19 +1,19 @@
 {
   "meta": {
-    "title": "Para Desenvolvedores",
-    "description": "Conecte-se através do código ao futuro do PEACE COIN"
+    "title": "For Developers",
+    "description": "PEACE COIN’s Future — Powered by Code, Connected by Community"
   },
-  "title": "Conecte-se através do código ao futuro do PEACE COIN",
+  "title": "PEACE COIN’s Future — Powered by Code, Connected by Community",
   "github": {
     "title": "GitHub",
-    "description": "Publicamos uma versão de código aberto do PEACE COIN no GitHub que qualquer pessoa pode desenvolver e melhorar livremente."
+    "description": "The open-source version of PEACE COIN is available on GitHub for anyone to freely develop, improve, and contribute."
   },
   "discord": {
     "title": "Discord",
-    "description": "Nossa comunidade oficial no Discord onde você pode desenvolver, operar e trocar ideias sobre o PEACE COIN."
+    "description": "Join our official Discord community to collaborate on development, share ideas, and help shape the future of PEACE COIN."
   },
   "whitePaper": {
     "title": "White Paper",
-    "description": "Publicamos um White Paper oficial que explica o conceito, a tecnologia e a visão do PEACE COIN."
+    "description": "Discover the core concepts, technology, and vision behind PEACE COIN in our official White Paper."
   }
 }
