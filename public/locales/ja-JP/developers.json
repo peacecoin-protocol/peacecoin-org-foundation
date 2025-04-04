@@ -1,19 +1,19 @@
 {
   "meta": {
-    "title": "開発者向け",
-    "description": "コードでつながる、PEACE COINの未来"
+    "title": "For Developers",
+    "description": "PEACE COIN’s Future — Powered by Code, Connected by Community"
   },
-  "title": "コードでつながる、PEACE COINの未来",
+  "title": "PEACE COIN’s Future — Powered by Code, Connected by Community",
   "github": {
     "title": "GitHub",
-    "description": "誰でも自由に開発・改良できるPEACE COINのオープンソース版をGitHubで公開しています。"
+    "description": "The open-source version of PEACE COIN is available on GitHub for anyone to freely develop, improve, and contribute."
   },
   "discord": {
     "title": "Discord",
-    "description": "PEACE COINの開発・運営・アイデア交換ができる公式Discordコミュニティです。"
+    "description": "Join our official Discord community to collaborate on development, share ideas, and help shape the future of PEACE COIN."
   },
   "whitePaper": {
-    "title": "ホワイトペーパー",
-    "description": "PEACE COINのコンセプト・技術・ビジョンを解説した公式White Paper を公開しています。"
+    "title": "White Paper",
+    "description": "Discover the core concepts, technology, and vision behind PEACE COIN in our official White Paper."
   }
 }

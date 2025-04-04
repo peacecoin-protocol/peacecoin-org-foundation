@@ -1,33 +1,33 @@
 {
   "meta": {
-    "title": "Fundação do Protocolo PEACE COIN",
-    "description": "AVANCE O CAPITALISMO PARA O PRÓXIMO ESTÁGIO USANDO TECNOLOGIA BLOCKCHAIN."
+    "title": "PEACE COIN Foundation",
+    "description": "ADVANCE CAPITALISM TO THE NEXT STAGE BY USING BLOCKCHAIN TECHNOLOGY."
   },
   "hero": {
     "title": "Thanks-Driven\nEconomy",
-    "forDeveloper": "Docs Para Desenvolvedores"
+    "forDeveloper": "Docs For Developer"
   },
   "concept": {
-    "title": "Uma plataforma de moeda comunitária\nque faz circular o capital social",
-    "description": "Na plataforma PEACE COIN, a circulação é considerada o mais importante.\nAo expressar e fazer circular os diversos valores detidos por cada indivíduo e comunidade,\na sustentabilidade da sociedade é reforçada.",
-    "detail": "Sobre o PEACE COIN"
+    "title": "A Community Currency platform\n that circulates Social Capital",
+    "description": "At the PEACE COIN platform, we believe that circulation is key.",
+    "detail": "About PEACE COIN"
   },
   "map": {
     "countries": {
-      "title": "Países",
-      "unit": "países/regiões"
+      "title": "Countries",
+      "unit": "countries/regions"
     },
     "communities": {
-      "title": "Comunidades",
+      "title": "Communities",
       "unit": ""
     },
-    "caption": "Verde: Países e regiões onde foi utilizada a PEACE COIN"
+    "caption": "Green: Countries and Regions where PEACE COIN has been used"
   },
   "usecase": {
-    "title": "Casos de Implementação",
-    "more": "Ver todos os casos de implementação"
+    "title": "Community Stories",
+    "more": "View All Use Cases Here"
   },
   "usage-scene": {
-    "title": "Descubra soluções inovadoras\nque o PEACE COIN resolve"
+    "title": "Discover the innovative solutions\n offered by PEACE COIN"
   }
 }

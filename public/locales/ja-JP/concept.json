@@ -1,28 +1,28 @@
 {
   "meta": {
-    "title": "コンセプト",
-    "description": "コミュニティの共助を引出すために"
+    "title": "Concept",
+    "description": "Bringing Out Mutual Support Within Communities"
   },
-  "title": "コミュニティの共助を引出すために",
-  "description1": "コミュニティの活動は共助の力で成り立っています。\nしかし、行動を起こしても金銭的価値につながりにくいため、\n長続きせずに終わりがちです。\nボランタリーなコミュニティであっても、最終的には資本主義的な問題にぶつかり、\n資本が集まるところに決定権も集まります。\nこれによりコミュニティ内の流動性や活力が損なわれます。\nコミュニティ通貨は、地域社会など様々なコミュニティ内での共助や貢献を可視化し、\n評価する手段を提供します。",
-  "subtitle1": "通常のお金では測れない\nソーシャルキャピタルの価値を表現することが可能に",
-  "description2": "具体的にはPEACE COINではARIGATO CREATIONというアルゴリズムにより、コミュニティ内での流通を促進します。\nまた、コミュニティ通貨はガバナンスのツールとしても機能し、\n消費と投票が一致する形でメンバーが直接的な影響を及ぼせるようになります。",
-  "description3": "しかし、こういった通貨をゼロから作るのは大変です。\nPEACE COINは、ソーシャルキャピタルをコミュニティ通貨によってデジタル資産化するためのプラットフォームです。\nコミュニティ内のソーシャルキャピタルを可視化し、コミュニティ内での貢献や相互支援を促します。\nユーザーは、お互いのソーシャルキャピタルを評価することにより、コミュニティ内外での価値交換を促進することができます。",
-  "description4": "PEACE COINはまた、透明性と公平性をもたらす新たなガバナンスモデルを提案し、\n全ての参加者がコミュニティの発展に対して実質的な影響力を持つことを目指しています。",
+  "title": "Bringing Out Mutual Support Within Communities",
+  "description1": "Community activities are built on the power of mutual support.\nHowever, such efforts often struggle to translate into monetary value,\nmaking it difficult for them to be sustained over time.\n\nEven in voluntary communities, people eventually face capitalist realities—\ndecision-making power tends to concentrate where financial resources are gathered.\nThis can lead to a loss of vitality and fluidity within the community.\n\nCommunity Currencies offer a way to visualize and value mutual support and contributions\nwithin local communities and other collective spaces.",
+  "subtitle1": "Expressing the Value of Social Capital\n That Traditional Money Cannot Measure",
+  "description2": "At the heart of PEACE COIN is the ARIGATO CREATION algorithm, which promotes healthy circulation within communities.\nCommunity Currencies on the PEACE COIN platform also function as tools for governance.\nBy aligning spending with voting power, community members can have a direct and meaningful influence on decision-making processes.",
+  "description3": "Creating a currency like this from scratch is usually a complex task.\nThat’s why PEACE COIN exists: a platform designed to turn Social Capital into digital assets through Community Currencies.\nIt enables communities to visualize Social Capital and strengthen mutual support and contributions within the community.\nBy evaluating each other’s Social Capital, users can facilitate value exchange both within and beyond the community.",
+  "description4": "Furthermore, PEACE COIN proposes a new model of governance based on transparency and fairness,\naiming to empower every participant to have a genuine say in shaping the future of their community.",
   "arigatoCreation": {
-    "title": "<span>ARIGATO CREATION</span> とは",
-    "subtitle": "価値提供者への支払いをすることで\n増大するPEACE COIN独自の\nアルゴリズムです",
-    "description1": "使用されないトークンを減少させることによりトークンの流通速度が増し、トークンを使用するインセンティブが高まることで、経済活動の活性化を促進します。",
-    "description2": "増大・減少するトークンを使うことにより、個人間だけでなく、企業や家庭、地域社会といった幅広いコミュニティの経済活性が起こるだけでなく、ソーシャルキャピタルやアンペイドワークと呼ばれるボランティアや家事労働などの、「まだ評価されていない価値」の可視化・価値化・流動化を実現します。"
+    "title": "What is <span>ARIGATO CREATION</span>",
+    "subtitle": "It is PEACE COIN's unique algorithm\nthat increases when payments\nare made to value providers",
+    "description1": "By decreasing unused tokens, the velocity of token circulation increases, enhancing the incentive to use tokens, which promotes economic activity.",
+    "description2": "By using tokens that increase and decrease, not only does it stimulate economic activity across a wide range of communities, from individuals to companies, households, and local societies, but it also realizes the visualization, valuation, and liquidity of 'values not yet evaluated,' such as social capital and unpaid work like volunteering and household labor."
   },
   "vision": {
-    "title": "多様性を認め合える、豊かな社会をつくる",
-    "altText": "感謝が循環する社会",
-    "description1": "PEACE COIN（ピースコイン）プラットフォームが目指す「豊かな」社会とは、\n多様な価値が循環している社会です。",
-    "description2": "それぞれの個人やコミュニティが持つ独自の貢献や価値を認め合い循環させることが、\n社会の持続可能性を高めることにつながります。\nこの共通認識は、経済的な豊かさに加え、精神的なゆとりや生きがいをもたらします。\nPEACE COINのアルゴリズムによって、\nバランス（調和）の取れた稼ぎ方・使い方を実現する新たな経済活動の形態を提案します。",
-    "subtitle1": "PEACE COINによる新しい価値観は、\n貯蓄よりも共助と繋がりを重視するアプローチです",
-    "description3": "PEACE COINは、ただ貯めることに焦点を当てるのではなく、使うことの価値と意味を再定義します。\n貯蓄が増えても実は不安は減らないという、これまでの資本主義社会とは異なり、\n共助や貢献を促進しコミュニティと繋がることによって、その不安を逆に減少させることができます。\nこの逆説的なアプローチは、人々が従来の金銭的な価値観だけではなく、\nより深い人間関係や社会的な繋がりの重要性を体験するきっかけを提供します。",
-    "subtitle2": "PEACE COINは、\n人々の社会貢献的な行動を再評価します",
-    "description4": "PEACE COINを受け取るサービス提供者は、従来のコストパフォーマンス重視から、\n持続可能なサービスや目の前の人を大切にする価値観へとシフトします。\nこれにより、利他的な行動が促進され、供給者としての役割が再評価されます。\nPEACE COINを多く支払うことで、人間関係や信頼が深まり、社会的な繋がりが強化されます。\nこれらの行動は、経済活動を一歩進め、\nより充実したコミュニティ形成を促進しようという想いがPEACE COINの根底にあります。"
+    "title": "Creating a Rich Society Where Diversity is Mutually Recognized",
+    "altText": "A society where gratitude circulates",
+    "description1": "The 'rich' society that the PEACE COIN platform aims for is\na society where diverse values circulate.",
+    "description2": "Recognizing and circulating the unique contributions and values of each individual and community\nleads to enhancing the sustainability of society.\nThis common understanding brings not only economic richness but also mental composure and purpose in life.\nThrough PEACE COIN's algorithm, we propose a new form of economic activity\nthat realizes balanced (harmonious) ways of earning and spending.",
+    "subtitle1": "PEACE COIN's new value system is an approach\nthat prioritizes mutual aid and connections over savings",
+    "description3": "PEACE COIN redefines the value and meaning of spending, rather than focusing solely on saving.\nUnlike conventional capitalist societies where increased savings don't actually reduce anxiety,\nPEACE COIN can reduce that anxiety by promoting mutual aid and contributions, connecting with the community.\nThis paradoxical approach provides an opportunity for people to experience the importance of\ndeeper human relationships and social connections, beyond traditional monetary values.",
+    "subtitle2": "PEACE COIN reevaluates\npeople's socially contributive actions",
+    "description4": "Service providers who receive PEACE COIN shift from traditional cost-performance focus to\nvalues that prioritize sustainable services and the people in front of them.\nThis promotes altruistic behavior and reevaluates the role as a provider.\nPaying more PEACE COIN deepens human relationships and trust, strengthening social connections.\nThese actions take economic activity a step further,\nwith the underlying desire to promote more fulfilling community formation at the core of PEACE COIN."
   }
 }
