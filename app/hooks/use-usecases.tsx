@@ -1,24 +1,24 @@
-import type { Usecase } from '@/schemas'
+import type { Content } from '@/schemas'
 import { createContext, useContext } from 'react'
 
-type UseCasesState = Usecase[]
+type ContentState = Content[]
 
-const UseCasesContext = createContext<UseCasesState>([])
+const ContentContext = createContext<ContentState>([])
 
-export function UseCasesProvider({
+export function ContentProvider({
   children,
   value,
 }: {
-  value: UseCasesState
+  value: ContentState
   children: React.ReactNode
 }) {
   return (
-    <UseCasesContext.Provider value={value}>
+    <ContentContext.Provider value={value}>
       {children}
-    </UseCasesContext.Provider>
+    </ContentContext.Provider>
   )
 }
 
-export function useUseCases() {
-  return useContext(UseCasesContext)
+export function useContent() {
+  return useContext(ContentContext)
 }

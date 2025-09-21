@@ -1,18 +1,18 @@
 import { cn } from '@/lib/utils'
-import type { Usecase } from '@/schemas'
+import type { Content } from '@/schemas'
 import type { ComponentProps } from 'react'
 
-export type UsecaseTitleProps = ComponentProps<'div'> &
-  Pick<Usecase, 'tokenName' | 'communityName' | 'title' | 'category'>
+export type ContentTitleProps = ComponentProps<'div'> &
+  Pick<Content, 'tokenName' | 'communityName' | 'title' | 'category'>
 
-export function UsecaseTitle({
+export function ContentTitle({
   tokenName,
   communityName,
   title,
   category,
   className,
   ...rest
-}: UsecaseTitleProps) {
+}: ContentTitleProps) {
   return (
     <div className={cn('flex flex-col flex-1 gap-6', className)} {...rest}>
       <div className="border-b border-primary font-semibold pb-4 relative leading-none">

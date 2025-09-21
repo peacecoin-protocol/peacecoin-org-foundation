@@ -5,7 +5,7 @@ import {
   HomeHeroSection,
   HomeMapSection,
   HomeUsageSceneSection,
-  HomeUsecaseSection,
+  HomeContentSection,
 } from '@/components/pages/home'
 import { usageCountryNames, tokens, tokensJp } from '@/constants'
 import { generateDynamicRoutes } from '@/.server/route'
@@ -55,7 +55,7 @@ export default function Index({
         usageCountryNames={usageCountryNames}
         communitiesCount={tokens.length}
       />
-      <HomeUsecaseSection />
+      <HomeContentSection />
       <HomeUsageSceneSection items={usageScenes} />
     </main>
   )

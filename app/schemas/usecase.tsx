@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-export const usecaseSchema = v.object({
+export const contentSchema = v.object({
   id: v.string(),
   tokenName: v.string(),
   communityName: v.string(),
@@ -12,4 +12,4 @@ export const usecaseSchema = v.object({
   publishedAt: v.string(),
 })
 
-export type Usecase = v.InferOutput<typeof usecaseSchema>
+export type Content = v.InferOutput<typeof contentSchema>
