@@ -34,7 +34,7 @@ export default function Content() {
         className="container mx-auto px-6"
         list={[
           { label: commonT('navigation.home'), href: '/' },
-          { label: commonT('navigation.Content'), href: '/content' },
+          { label: commonT('navigation.content'), href: '/content' },
         ]}
       />
       <section className="container mx-auto grid gap-10 md:gap-16">
