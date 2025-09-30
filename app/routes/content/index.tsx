@@ -38,7 +38,7 @@ export default function Content() {
         ]}
       />
       <section className="container mx-auto grid gap-10 md:gap-16">
-        <SectionTitle subtitle="Use Cases">{t('title')}</SectionTitle>
+        <SectionTitle subtitle="Content">{t('title')}</SectionTitle>
         <ContentList />
       </section>
     </main>
