@@ -16,7 +16,7 @@ import i18next from '@/i18next.server'
 import type { Route } from './+types/root'
 
 import './app.css'
-import { contentSchema, type content } from './schemas'
+import { contentSchema, type Content } from './schemas'
 import { ContentProvider } from './hooks/use-content'
 import { generateDynamicRoutes } from './.server/route'
 import { BASE_URL, LINKS, supportedLanguages } from './constants'
