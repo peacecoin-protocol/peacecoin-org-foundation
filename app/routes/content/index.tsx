@@ -2,12 +2,12 @@ import { useTranslation } from 'react-i18next'
 import i18next from '@/i18next.server'
 import type { Route } from './+types/index'
 import { SectionTitle } from '@/components/composite/section-title'
-import { UsecaseList } from '@/components/pages/usecase/usecase-list'
+import { ContentList } from '@/components/pages/content/content-list'
 import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
 import { generateMeta } from 'scripts/seo'
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const [t] = await Promise.all([i18next.getFixedT(request, 'usecases')])
+  const [t] = await Promise.all([i18next.getFixedT(request, 'content')])
   return {
     title: t('meta.title'),
     description: t('meta.description'),
@@ -22,11 +22,11 @@ export function meta({ data: { title, description } }: Route.MetaArgs) {
 }
 
 export const handle = {
-  i18n: ['common', 'usecases'],
+  i18n: ['common', 'content'],
 }
 
-export default function UseCases() {
-  const { t } = useTranslation('usecases')
+export default function Content() {
+  const { t } = useTranslation('content')
   const { t: commonT } = useTranslation('common')
   return (
     <main className="pt-(--gh) grid gap-16 md:gap-[7.5rem] md:pt-[calc(var(--gh)+3.5rem)]">
@@ -34,12 +34,12 @@ export default function UseCases() {
         className="container mx-auto px-6"
         list={[
           { label: commonT('navigation.home'), href: '/' },
-          { label: commonT('navigation.useCase'), href: '/usecases' },
+          { label: commonT('navigation.content'), href: '/content' },
         ]}
       />
       <section className="container mx-auto grid gap-10 md:gap-16">
-        <SectionTitle subtitle="Use Cases">{t('title')}</SectionTitle>
-        <UsecaseList />
+        <SectionTitle subtitle="Content">{t('title')}</SectionTitle>
+        <ContentList />
       </section>
     </main>
   )

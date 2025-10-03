@@ -1,23 +1,23 @@
-import type { Usecase } from '@/schemas'
-import { UsecaseTitle } from './usecase-title'
+import type { Content } from '@/schemas'
+import { ContentTitle } from './content-title'
 import { LocaleLink } from '@/components/ui/locale-link'
 
-export type UsecaseItemProps = Usecase
+export type ContentItemProps = Content
 
-export function UsecaseItem({
+export function ContentItem({
   id,
   tokenName,
   communityName,
   title,
   category,
   thumbnailUrl,
-}: UsecaseItemProps) {
+}: ContentItemProps) {
   return (
     <LocaleLink
-      to={`/usecases/${id}`}
+      to={`/content/${id}`}
       className="flex max-lg:flex-col lg:items-center lg:justify-between rounded-md bg-background p-6 md:p-12 items-center justify-between gap-8 lg:gap-12 transition-shadow duration-300 ease-out hover:shadow-hover"
     >
-      <UsecaseTitle
+      <ContentTitle
         tokenName={tokenName}
         communityName={communityName}
         title={title}

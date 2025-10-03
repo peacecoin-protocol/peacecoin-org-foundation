@@ -12,7 +12,7 @@ import {
 } from './global-menu-accordion'
 import { LocaleMenu } from './locale-menu'
 import { LocaleButton } from './locale-button'
-import { useUseCases } from '@/hooks/use-usecases'
+import { useContent } from '@/hooks/use-content'
 import { LocaleLink } from '@/components/ui/locale-link'
 import { LINKS } from '@/constants'
 import { OuterLink } from '@/components/ui/outer-link'
@@ -60,7 +60,7 @@ export type GlobalMenuProps = {
 export function GlobalMenu({ open }: GlobalMenuProps) {
   const { t } = useTranslation('common')
   const [isOpenLocale, setIsOpenLocale] = useState(false)
-  const usecases = useUseCases()
+  const content = useContent()
   const isMobile = useIsMobile()
   const handleTooggleLocaleMenu = useCallback(() => {
     setIsOpenLocale((prev) => !prev)
@@ -82,7 +82,7 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
               {...(!isMobile
                 ? {
                     type: 'multiple',
-                    defaultValue: ['learnAbout', 'useCase', 'participate'],
+                    defaultValue: ['learnAbout', 'content', 'participate'],
                   }
                 : {
                     type: 'single',
@@ -135,21 +135,21 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
               </GlobalMenuAccordionItem>
 
               <GlobalMenuAccordionItem
-                value="useCase"
+                value="content"
                 className={cn(
                   accordionItemClassName,
                   open ? 'delay-300' : 'opacity-0 -translate-y-10',
                 )}
               >
                 <GlobalMenuAccordionTrigger>
-                  {t('navigation.useCase')}
+                  {t('navigation.content')}
                 </GlobalMenuAccordionTrigger>
                 <GlobalMenuAccordionContent>
                   <NavLinkList>
-                    {usecases.map((usecase) => (
-                      <NavLinkItem key={usecase.id}>
-                        <NavLink to={`/usecases/${usecase.id}`}>
-                          {usecase.tokenName}
+                    {content.map((content) => (
+                      <NavLinkItem key={content.id}>
+                        <NavLink to={`/content/${content.id}`}>
+                          {content.tokenName}
                         </NavLink>
                       </NavLinkItem>
                     ))}

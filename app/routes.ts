@@ -30,7 +30,7 @@ const staticRoutes = [
   index('routes/home.tsx'),
   route('developers', 'routes/developers.tsx'),
   route('concept', 'routes/concept.tsx'),
-  route('usecases', 'routes/usecases/index.tsx'),
+  route('content', 'routes/content/index.tsx'),
   // route('about', 'routes/about.tsx'),
   // route('privacy-policy', 'routes/privacy-policy.tsx'),
   // route('terms-of-use', 'routes/terms-of-use.tsx'),
@@ -55,8 +55,8 @@ export default [
       route('usage-scenes', 'routes/usage-scenes/index.tsx'),
     ]),
     layout(
-      'routes/usecases/layout.tsx',
-      contentRoutes.filter((route) => route.path?.includes('/usecases/')),
+      'routes/content/layout.tsx',
+      contentRoutes.filter((route) => route.path?.includes('/content/')),
     ),
     layout(
       'routes/usage-scenes/layout.tsx',
