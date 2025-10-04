@@ -124,8 +124,8 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
                 </LocaleLink>
               </li>
               <li>
-                <LocaleLink to="/usecases" className={linkButtonClassName}>
-                  {t('navigation.useCase')}
+                <LocaleLink to="/content" className={linkButtonClassName}>
+                  {t('navigation.content')}
                 </LocaleLink>
               </li>
             </ul>

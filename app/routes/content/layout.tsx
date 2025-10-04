@@ -1,15 +1,15 @@
 import * as v from 'valibot'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useMatches } from 'react-router'
-import { usecaseSchema } from '@/schemas'
+import { contentSchema } from '@/schemas'
 import { PageBreadcrumb } from '@/components/composite/page-breadcrumb'
 import { MDXProvider } from '@mdx-js/react'
 import baseComponents from '@/components/pages/common/mdx-components'
 import type { ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
-import { UsecaseTitle } from '@/components/pages/usecase/usecase-title'
+import { ContentTitle } from '@/components/pages/content/content-title'
 
-const itemSchema = v.omit(usecaseSchema, ['id'])
+const itemSchema = v.omit(contentSchema, ['id'])
 
 const components = {
   ...baseComponents,
@@ -35,7 +35,7 @@ const components = {
   },
 }
 
-export default function UseCasesDetailLayout() {
+export default function ContentDetailLayout() {
   const { t: commonT } = useTranslation('common')
   const match = useMatches().at(-1)
   const parsed = v.safeParse(
@@ -45,7 +45,7 @@ export default function UseCasesDetailLayout() {
 
   if (!parsed.success) {
     console.log(parsed.issues)
-    throw new Error('Invalid usecase data')
+    throw new Error('Invalid content data')
   }
 
   const data = parsed.output
@@ -56,13 +56,13 @@ export default function UseCasesDetailLayout() {
         className="container mx-auto px-6"
         list={[
           { label: commonT('navigation.home'), href: '/' },
-          { label: commonT('navigation.useCase'), href: '/usecases' },
+          { label: commonT('navigation.content'), href: '/content' },
           { label: data.tokenName, href: match!.pathname },
         ]}
       />
       <article className="container mx-auto px-6">
         <div className="flex max-md:flex-col items-center gap-10 md:justify-between">
-          <UsecaseTitle
+          <ContentTitle
             tokenName={data.tokenName}
             communityName={data.communityName}
             title={data.title}

@@ -16,8 +16,8 @@ import i18next from '@/i18next.server'
 import type { Route } from './+types/root'
 
 import './app.css'
-import { usecaseSchema, type Usecase } from './schemas'
-import { UseCasesProvider } from './hooks/use-usecases'
+import { contentSchema, type Content } from './schemas'
+import { ContentProvider } from './hooks/use-content'
 import { generateDynamicRoutes } from './.server/route'
 import { BASE_URL, LINKS, supportedLanguages } from './constants'
 import { PageTransitionProvider } from './hooks/use-page-transition'
@@ -28,7 +28,7 @@ import { GlobalFooter } from './components/pages/common/global-footer'
 const loaderSchema = v.object({
   url: v.string(),
   nonce: v.optional(v.string()),
-  usecases: v.array(usecaseSchema),
+  content: v.array(contentSchema),
 })
 
 export const links: Route.LinksFunction = () => [
@@ -53,14 +53,14 @@ export async function loader({ request, context }: Route.LoaderArgs) {
   return v.parse(loaderSchema, {
     url: `${url.origin}${url.pathname}`,
     nonce: context.nonce,
-    usecases: generateDynamicRoutes<Usecase>('usecases', routes, locale).sort(
+    content: generateDynamicRoutes<Content>('content', routes, locale).sort(
       (a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt),
     ),
   })
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { nonce, usecases = [], url } = useLoaderData<typeof loader>() || {}
+  const { nonce, content = [], url } = useLoaderData<typeof loader>() || {}
   const { i18n, t } = useTranslation()
   const siteName = t('siteName')
   const locale = i18n.language
@@ -127,7 +127,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <UseCasesProvider value={usecases}>{children}</UseCasesProvider>
+        <ContentProvider value={content}>{children}</ContentProvider>
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>
