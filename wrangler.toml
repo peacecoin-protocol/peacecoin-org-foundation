@@ -1,5 +1,5 @@
 workers_dev = true
-name = "pc-foundation"
+name = "pc-foundation-dev"
 compatibility_date = "2025-12-10"
 main = "./workers/app.ts"
 assets = { directory = "./build/client/" }
