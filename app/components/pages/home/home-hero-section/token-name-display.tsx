@@ -68,7 +68,7 @@ export function TokenNameDisplay({
   return (
     <div
       className={cn(
-        'flex items-center gap-2 h-[2.5rem] md:h-[3.5rem] after:w-[1px] after:h-[80%] after:bg-primary after:animate-cursor-blink',
+        'flex items-center gap-2 h-10 md:h-14 after:w-px after:h-[80%] after:bg-primary after:animate-cursor-blink',
         className,
       )}
       {...rest}

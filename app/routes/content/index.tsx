@@ -29,7 +29,7 @@ export default function Content() {
   const { t } = useTranslation('content')
   const { t: commonT } = useTranslation('common')
   return (
-    <main className="pt-(--gh) grid gap-16 md:gap-[7.5rem] md:pt-[calc(var(--gh)+3.5rem)]">
+    <main className="pt-(--gh) grid gap-16 md:gap-30 md:pt-[calc(var(--gh)+3.5rem)]">
       <PageBreadcrumb
         className="container mx-auto px-6"
         list={[

@@ -56,7 +56,7 @@ export default function Developers() {
   const { t: commonT } = useTranslation('common')
 
   return (
-    <main className="container mx-auto px-6 pt-(--gh) grid gap-16 md:gap-[7.5rem] md:pt-[calc(var(--gh)+3.5rem)]">
+    <main className="container mx-auto px-6 pt-(--gh) grid gap-16 md:gap-30 md:pt-[calc(var(--gh)+3.5rem)]">
       <PageBreadcrumb
         list={[
           { label: commonT('navigation.home'), href: '/' },

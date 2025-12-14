@@ -15,11 +15,11 @@ export default function Layout() {
           <GlobalHeader state={state} />
           <div
             className={cn(
-              'relative flex flex-col min-h-screen gap-16 md:gap-[7.5rem] transition-opacity duration-300 ease-in-out',
+              'relative flex flex-col min-h-screen gap-16 md:gap-30 transition-opacity duration-300 ease-in-out',
               isTransitioning ? 'opacity-0' : 'opacity-100',
             )}
           >
-            <div className="flex-grow">
+            <div className="grow">
               <Outlet />
             </div>
             <GlobalFooter />

@@ -4,7 +4,6 @@ import tseslint from 'typescript-eslint'
 import pluginReact from 'eslint-plugin-react'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
 import pluginJsxA11y from 'eslint-plugin-jsx-a11y'
-import { fixupPluginRules } from '@eslint/compat'
 import eslintConfigPrettier from 'eslint-config-prettier'
 
 export default tseslint.config(
@@ -12,36 +11,29 @@ export default tseslint.config(
     ignores: ['node_modules', 'build', '.mf', '.wrangler', '.react-router'],
   },
   eslint.configs.recommended,
-  ...tseslint.configs.recommended,
+  tseslint.configs.recommended,
   {
     languageOptions: {
       ecmaVersion: 'latest',
+      sourceType: 'module',
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
         },
       },
-      sourceType: 'module',
       globals: {
         ...globals.browser,
-        ...globals.commonjs,
-        ...globals.es2015,
+        ...globals.es2025,
       },
     },
   },
-  //react
+  // React
   {
-    files: ['**/*.{ts,tsx}'],
-    plugins: {
-      react: pluginReact,
-      'jsx-a11y': pluginJsxA11y,
-      'react-hooks': fixupPluginRules(pluginReactHooks),
-    },
-    rules: {
-      ...pluginReact.configs.recommended.rules,
-      ...pluginReact.configs['jsx-runtime'].rules,
-      ...pluginJsxA11y.configs.recommended.rules,
-      ...pluginReactHooks.configs.recommended.rules,
+    files: ['**/*.{ts,tsx,js,jsx}'],
+    ...pluginReact.configs.flat.recommended,
+    ...pluginReact.configs.flat['jsx-runtime'],
+    languageOptions: {
+      ...pluginReact.configs.flat.recommended.languageOptions,
     },
     settings: {
       react: {
@@ -54,19 +46,35 @@ export default tseslint.config(
       ],
     },
   },
+  // React Hooks
   {
-    files: ['eslint.config.js'],
+    files: ['**/*.{ts,tsx,js,jsx}'],
+    plugins: {
+      'react-hooks': pluginReactHooks,
+    },
+    rules: pluginReactHooks.configs.recommended.rules,
+  },
+  // JSX Accessibility
+  {
+    files: ['**/*.{ts,tsx,js,jsx}'],
+    ...pluginJsxA11y.flatConfigs.recommended,
+  },
+  // Node.js config files
+  {
+    files: ['eslint.config.js', 'vite.config.ts'],
     languageOptions: {
       globals: {
         ...globals.node,
       },
     },
   },
+  // Prettier (must be last)
   eslintConfigPrettier,
-  // custom rules
+  // Custom rules
   {
     rules: {
       '@typescript-eslint/no-unused-vars': 'warn',
+      'react-hooks/refs': 'warn',
     },
   },
 )

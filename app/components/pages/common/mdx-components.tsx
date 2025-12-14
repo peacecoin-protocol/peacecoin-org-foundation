@@ -107,7 +107,7 @@ const components = {
     return (
       <Button
         asChild
-        className="border-primary border-1 text-primary bg-background hover:text-background"
+        className="border-primary border text-primary bg-background hover:text-background"
       >
         {typeof props.to === 'string' && props.to.startsWith('https://') ? (
           <OuterLink href={props.to} {...props} />

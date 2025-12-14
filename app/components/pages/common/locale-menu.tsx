@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next'
 import {
   useCallback,
   useState,
-  useEffect,
   useMemo,
   type ComponentProps,
   type ChangeEvent,
@@ -50,7 +49,9 @@ export function LocaleMenu({
   const { i18n, t } = useTranslation('common')
   const location = useLocation()
   const { navigateWithTransition } = usePageTransition()
-  const [browserDefaults, setBrowserDefaults] = useState<string[]>([])
+  const [browserDefaults] = useState(() =>
+    typeof navigator !== 'undefined' ? [...navigator.languages] : [],
+  )
   const [filterText, setFilterText] = useState('')
 
   const locales = useMemo(() => {
@@ -115,10 +116,6 @@ export function LocaleMenu({
     [],
   )
 
-  useEffect(() => {
-    setBrowserDefaults([...navigator.languages])
-  }, [])
-
   return (
     <AnimatePresence initial>
       {open && (
@@ -167,7 +164,7 @@ export function LocaleMenu({
             </div>
           </div>
 
-          <div className="flex-grow md:h-80 overflow-y-auto hidden-scrollbar">
+          <div className="grow md:h-80 overflow-y-auto hidden-scrollbar">
             {locales?.length ? (
               <ul className="px-5 md:px-3 pt-0 pb-1">
                 {locales.map(

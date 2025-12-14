@@ -1,4 +1,5 @@
 export const translatedProgress = [
-  { locale: 'en', progress: 100, total: 304 },
-  { locale: 'ja-JP', progress: 100, total: 304 },
+  { locale: 'en', progress: 100, total: 2416 },
+  { locale: 'ja-JP', progress: 0, total: 2416 },
+  { locale: 'pt-PT', progress: 0, total: 2416 },
 ]

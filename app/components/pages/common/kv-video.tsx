@@ -109,7 +109,7 @@ export function KVVideo({ pathname, className, ...rest }: KVVideoProps) {
           <source src={`${ASSET_URL}/videos/kv.mp4`} type="video/mp4" />
         </video>
       </div>
-      <i className="absolute left-0 right-0 bottom-0 h-[25%] bg-gradient-to-b from-transparent to-background" />
+      <i className="absolute left-0 right-0 bottom-0 h-[25%] bg-linear-to-b from-transparent to-background" />
     </div>
   )
 }
