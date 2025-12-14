@@ -9,7 +9,7 @@ export function HomeContentSection() {
     keyPrefix: 'content',
   })
   return (
-    <section className="bg-card py-16 md:py-[7.5rem]">
+    <section className="bg-card py-16 md:py-30">
       <div className="flex flex-col items-center justify-center gap-12 md:gap-16 container mx-auto px-6">
         <SectionTitle subtitle="Content">{t('title')}</SectionTitle>
         <ContentList limit={3} />

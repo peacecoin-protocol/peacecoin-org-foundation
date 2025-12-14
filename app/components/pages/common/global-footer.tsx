@@ -85,7 +85,7 @@ export function GlobalFooter({ className, ...rest }: FooterProps) {
       <div className="container mx-auto pt-12 pb-6 px-5">
         <div className="flex max-md:flex-col gap-8 md:gap-16">
           <div className="md:flex-1">
-            <PeaceCoinVerticalIcon className="h-[6rem] w-auto mb-6 block" />
+            <PeaceCoinVerticalIcon className="h-24 w-auto mb-6 block" />
             <p className="text-xs md:text-base leading-[1.8]">
               ADVANCE CAPITALISM TO THE NEXT STAGE
               <br />

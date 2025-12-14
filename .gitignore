@@ -12,3 +12,4 @@
 
 .env
 .dev.vars
+.claude/*.local.json

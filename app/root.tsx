@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import * as v from 'valibot'
 import {
   isRouteErrorResponse,
@@ -8,7 +9,6 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from 'react-router'
-import { useChangeLanguage } from 'remix-i18next/react'
 import { useTranslation } from 'react-i18next'
 
 import i18next from '@/i18next.server'
@@ -26,6 +26,7 @@ import { GlobalHeader } from './components/pages/common/global-header'
 import { GlobalFooter } from './components/pages/common/global-footer'
 
 const loaderSchema = v.object({
+  locale: v.string(),
   url: v.string(),
   nonce: v.optional(v.string()),
   content: v.array(contentSchema),
@@ -51,6 +52,7 @@ export async function loader({ request, context }: Route.LoaderArgs) {
   ])
   const url = new URL(request.url)
   return v.parse(loaderSchema, {
+    locale,
     url: `${url.origin}${url.pathname}`,
     nonce: context.nonce,
     content: generateDynamicRoutes<Content>('content', routes, locale).sort(
@@ -60,13 +62,19 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { nonce, content = [], url } = useLoaderData<typeof loader>() || {}
+  const {
+    locale = 'en',
+    nonce,
+    content = [],
+    url,
+  } = useLoaderData<typeof loader>() || {}
   const { i18n, t } = useTranslation()
   const siteName = t('siteName')
-  const locale = i18n.language
   const xAccount = new URL(LINKS.x).pathname.replace(/^\//g, '')
 
-  useChangeLanguage(locale)
+  useEffect(() => {
+    i18n.changeLanguage(locale)
+  }, [locale, i18n])
 
   return (
     <html lang={locale} dir={i18n.dir()}>
@@ -161,8 +169,8 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         <>
           <KVVideo pathname="/error" />
           <GlobalHeader state={state} />
-          <div className="relative flex flex-col min-h-screen gap-16 md:gap-[7.5rem] pt-(--gh)  md:pt-[calc(var(--gh)+3.5rem)]">
-            <div className="flex-grow container mx-auto px-8 py-8 bg-card rounded-2xl">
+          <div className="relative flex flex-col min-h-screen gap-16 md:gap-30 pt-(--gh)  md:pt-[calc(var(--gh)+3.5rem)]">
+            <div className="grow container mx-auto px-8 py-8 bg-card rounded-2xl">
               <h1 className="text-4xl font-bold text-red-400 mb-4">
                 {message}
               </h1>

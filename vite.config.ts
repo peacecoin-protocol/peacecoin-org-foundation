@@ -21,6 +21,18 @@ function toOneLine(str: string) {
 
 export default defineConfig({
   plugins: [
+    // Workaround for @cloudflare/vite-plugin WebSocket error during build
+    // See: https://github.com/cloudflare/workers-sdk/issues/8909
+    {
+      name: 'cloudflare-vite-plugin-fix',
+      configEnvironment(name, config) {
+        const isDev =
+          process.env.npm_lifecycle_script?.includes('react-router dev')
+        if (name === 'ssr' && !isDev) {
+          delete config.dev
+        }
+      },
+    },
     {
       name: 'run-getTranslatedProgress',
       buildStart: async () => {

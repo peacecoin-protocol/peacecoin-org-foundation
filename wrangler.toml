@@ -1,6 +1,6 @@
 workers_dev = true
 name = "pc-foundation"
-compatibility_date = "2025-03-10"
+compatibility_date = "2025-12-10"
 main = "./workers/app.ts"
 assets = { directory = "./build/client/" }
 compatibility_flags = ["nodejs_compat"]

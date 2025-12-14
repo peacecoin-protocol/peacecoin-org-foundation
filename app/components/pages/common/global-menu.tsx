@@ -77,7 +77,7 @@ export function GlobalMenu({ open }: GlobalMenuProps) {
         )}
       >
         <div className="flex flex-col container mx-auto p-6 pt-(--gh) h-full">
-          <div className="overflow-y-auto hidden-scrollbar flex-grow md:flex md:justify-center md:space-x-24 md:pt-[9rem]">
+          <div className="overflow-y-auto hidden-scrollbar grow md:flex md:justify-center md:space-x-24 md:pt-36">
             <GlobalMenuAccordion
               {...(!isMobile
                 ? {

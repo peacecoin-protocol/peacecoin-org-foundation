@@ -9,7 +9,7 @@ export default {
   ssr: true,
   prerender: false,
   future: {
-    unstable_viteEnvironmentApi: true,
+    v8_viteEnvironmentApi: true,
   },
   async buildEnd({ buildManifest }) {
     const routes = buildManifest?.routes

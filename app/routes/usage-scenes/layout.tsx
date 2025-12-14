@@ -58,7 +58,7 @@ export default function UsageScenesDetailLayout() {
             width="310"
             height="310"
             alt={data.title}
-            className="w-[65%] md:w-[26rem] h-auto"
+            className="w-[65%] md:w-104 h-auto"
           />
         </div>
         <div className="my-10 md:my-16">

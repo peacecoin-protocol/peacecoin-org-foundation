@@ -61,7 +61,7 @@ export function HomeHeroSection({ tokens }: HomeHeroSectionProps) {
         tokens={tokens}
         onActiveTokenChange={setActiveToken}
         autoScrolling={autoScrolling}
-        className="h-[7rem] md:h-[10rem]"
+        className="h-28 md:h-40"
       />
     </section>
   )

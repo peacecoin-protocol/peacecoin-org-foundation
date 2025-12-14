@@ -60,7 +60,7 @@ export default function Concept() {
   const { t } = useTranslation('concept')
   const { t: commonT } = useTranslation('common')
   return (
-    <main className="pt-(--gh) grid gap-16 md:gap-[7.5rem] md:pt-[calc(var(--gh)+3.5rem)]">
+    <main className="pt-(--gh) grid gap-16 md:gap-30 md:pt-[calc(var(--gh)+3.5rem)]">
       <PageBreadcrumb
         className="container mx-auto px-6"
         list={[
@@ -87,7 +87,7 @@ export default function Concept() {
           <h2 className="text-lg md:text-5xl font-medium text-center mb-2 md:mb-16 [&>span]:text-primary">
             <Trans i18nKey="arigatoCreation.title" ns="concept" />
           </h2>
-          <div className="flex flex-col gap-10 lg:relative lg:min-h-[32rem] lg:justify-center lg:pr-[32rem]">
+          <div className="flex flex-col gap-10 lg:relative lg:min-h-128 lg:justify-center lg:pr-128">
             <BreakLine
               component="h3"
               className="text-2xl font-bold leading-relaxed text-center max-sm:[&>br]:hidden lg:text-2xl lg:leading-loose lg:text-left"
